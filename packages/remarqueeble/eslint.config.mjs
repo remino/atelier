@@ -15,7 +15,6 @@ export default [
 			'dist/**',
 			'docs/**',
 			'node_modules/**',
-			'specs/**',
 		],
 	},
 	...toArray(js.configs.recommended),
