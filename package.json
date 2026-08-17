@@ -14,7 +14,7 @@
 		"dev": "npm run dev --workspace=@remino/atelier-docs --",
 		"typecheck": "npm run typecheck --workspaces --if-present",
 		"test": "npm run test --workspaces --if-present && vitest run",
-		"lint": "eslint .",
+		"lint": "eslint apps tests bin eslint.config.mjs prettier.config.mjs vitest.config.mjs",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
 		"format:check": "prettier --check ."

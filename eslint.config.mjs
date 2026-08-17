@@ -13,11 +13,33 @@ export default [
 	...tseslint.configs.recommended,
 	...astroPlugin.configs['flat/recommended'],
 	{
-		files: ['**/*.{js,mjs,cjs}'],
-		languageOptions: { globals: globals.node, sourceType: 'module' },
+		files: ['**/*.js', '**/*.mjs', '**/*.cjs', '**/*.ts', '**/*.tsx'],
+		languageOptions: {
+			parserOptions: {
+				project: false,
+				projectService: false,
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
 	},
 	{
-		files: ['packages/*/src/lib/**/*.ts', 'apps/**/src/assets/**/*.{js,ts}'],
+		files: ['**/*.{js,mjs,cjs}'],
+		languageOptions: {
+			globals: globals.node,
+			sourceType: 'module',
+			parserOptions: {
+				project: false,
+				projectService: false,
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
+	{
+		files: [
+			'packages/*/src/lib/**/*.ts',
+			'apps/**/src/assets/**/*.{js,ts}',
+			'apps/**/src/sites/**/*.{js,ts}',
+		],
 		languageOptions: { globals: globals.browser },
 	},
 	{
@@ -27,12 +49,15 @@ export default [
 		},
 	},
 	{
-		files: ['apps/**/src/**/*.astro'],
+		files: ['apps/**/*.astro', 'packages/**/*.astro'],
 		languageOptions: {
 			parser: astroParser,
 			parserOptions: {
 				extraFileExtensions: ['.astro'],
 				parser: tseslint.parser,
+				project: false,
+				projectService: false,
+				tsconfigRootDir: import.meta.dirname,
 			},
 			globals: { ...globals.browser, ...globals.node },
 		},
