@@ -1,0 +1,23 @@
+{
+	"name": "@remino/atelier-docs",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"build": "astro build",
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"typecheck": "astro check"
+	},
+	"dependencies": {
+		"@remino/jukette-audio": "0.9.0",
+		"@remino/jukette-core": "0.9.0",
+		"@remino/jukette-midi": "0.9.0",
+		"@remino/jukette-soundcloud": "0.9.0",
+		"dactylo": "0.3.0",
+		"jukette": "0.9.0",
+		"paradimg": "0.1.1",
+		"remarqueeble": "0.7.0",
+		"scrollerful": "1.2.2"
+	}
+}

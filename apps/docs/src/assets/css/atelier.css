@@ -1,0 +1,22 @@
+@import '@remino/directive';
+
+main {
+	margin-block-end: calc(var(--rmn-ribbon-push, 0px) + var(--dress-m-b) * 2);
+}
+
+.package-list {
+	display: grid;
+	gap: var(--dress-m-b) var(--dress-m-i);
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+	padding: 0;
+}
+
+.package-list > div {
+	margin: 0;
+}
+
+body > header > h1::before {
+	content: '>';
+	font-weight: normal;
+	opacity: 0.5;
+}

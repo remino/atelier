@@ -1,0 +1,32 @@
+---
+import SiteNavFooter from '@remino/astro-site-nav/SiteNavFooter.astro'
+import SiteNavHeader from '@remino/astro-site-nav/SiteNavHeader.astro'
+import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
+import '../assets/css/atelier.css'
+
+const { title = 'atelier' } = Astro.props
+const documentTitle = title === 'atelier' ? title : `${title} // atelier`
+---
+
+<!doctype html>
+<html lang="en-CA" class="no-js rmn-nav-ribbon-bg-blur">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Rémino’s JavaScript libraries and shared documentation." />
+		<title>{documentTitle}</title>
+		<SiteNavHtmlHead />
+		<script>
+			document.documentElement.classList.add('js')
+			document.documentElement.classList.remove('no-js')
+		</script>
+	</head>
+	<body>
+		<SiteNavHeader />
+		<header>
+			<h1><a href="/">atelier</a></h1>
+		</header>
+		<main><slot /></main>
+		<SiteNavFooter><a href="/">atelier</a></SiteNavFooter>
+	</body>
+</html>

@@ -1,0 +1,184 @@
+:host {
+	--jukette-control-size: 2em;
+	container-type: inline-size;
+	display: block;
+	font: inherit;
+	color: inherit;
+	min-width: 4em;
+	overflow: hidden;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.player {
+	border: 1px solid currentColor;
+	display: grid;
+	gap: 0.5lh;
+	padding: 0.5rlh 1em;
+}
+
+.track {
+	align-items: start;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	min-inline-size: 0;
+}
+
+.display {
+	align-self: center;
+	display: block;
+	font-weight: 700;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.source-link {
+	align-items: center;
+	align-self: stretch;
+	aspect-ratio: 1;
+	color: inherit;
+	display: inline-grid;
+	font-weight: 700;
+	justify-items: center;
+	line-height: 1;
+	margin-inline-start: 0.5em;
+	max-block-size: var(--jukette-control-size);
+	text-decoration: none;
+}
+
+.source-link-glyph {
+	transform: translateY(-0.06em);
+}
+
+.source-link:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 0;
+}
+
+.source-link[hidden] {
+	display: none;
+}
+
+.controls {
+	align-items: center;
+	display: grid;
+	gap: 0.5em;
+	grid-template-columns: var(--jukette-control-size) minmax(0, 1fr) auto;
+}
+
+.play {
+	block-size: var(--jukette-control-size);
+	inline-size: var(--jukette-control-size);
+}
+
+button {
+	align-items: center;
+	appearance: none;
+	background: transparent;
+	border: 1px solid currentColor;
+	block-size: var(--jukette-control-size);
+	color: inherit;
+	cursor: pointer;
+	display: inline-grid;
+	font: inherit;
+	inline-size: var(--jukette-control-size);
+	justify-content: center;
+	padding: 0;
+}
+
+button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 0;
+	outline-radius: 0;
+}
+
+button:active {
+	background: rgb(
+		from currentColor calc(255 - r) calc(255 - g) calc(255 - b)
+	);
+	color: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
+}
+
+button[aria-pressed='true'] {
+	background: rgb(
+		from currentColor calc(255 - r) calc(255 - g) calc(255 - b)
+	);
+	color: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
+}
+
+button:disabled {
+	cursor: default;
+	opacity: 0.45;
+}
+
+input[type='range'] {
+	accent-color: currentColor;
+	margin: 0;
+	width: 100%;
+}
+
+.seek {
+	display: grid;
+}
+
+.time {
+	border: 0;
+	block-size: auto;
+	inline-size: auto;
+	justify-content: end;
+	justify-items: end;
+	padding: 0;
+	text-align: end;
+	white-space: nowrap;
+}
+
+.time time {
+	display: block;
+	font-family: monospace;
+	font-variant-numeric: tabular-nums;
+	min-inline-size: 3em;
+}
+
+.track-picker {
+	display: grid;
+}
+
+.track-picker[hidden] {
+	display: none;
+}
+
+.track-select {
+	appearance: none;
+	background: transparent;
+	border: 1px solid currentColor;
+	border-radius: 0;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	inline-size: 100%;
+	overflow: hidden;
+	padding: 0.35rem 0.5em;
+	max-width: 100%;
+	text-overflow: ellipsis;
+}
+
+.track-select:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 0;
+}
+
+audio {
+	display: none;
+}
+
+@container (max-width: 11rem) {
+	.controls {
+		grid-template-columns: var(--jukette-control-size) minmax(0, 1fr) auto;
+	}
+
+	.seek {
+		visibility: hidden;
+	}
+}
