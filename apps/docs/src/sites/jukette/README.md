@@ -490,26 +490,24 @@ Common root shortcuts:
 
 ## Release
 
-Release automation is available through `release-it`. A release runs checks,
-bumps the root and publishable workspace package versions in lockstep, builds
-the workspace packages, dry-runs publish order, publishes the scoped packages
-first, publishes `jukette` last, creates the GitHub release, and then publishes
-docs:
+Release automation is available from the Atelier workspace. The dry run checks
+the repository, builds every package, and verifies npm pack output in publish
+order:
 
 ```sh
-npm run release:dry-run
-npm run release
+npm run release:jukette:dry-run
 ```
 
-If docs publishing fails after the package release, rerun it directly:
+To release, provide the new version. The command updates all Jukette package and
+docs versions in the lockfile, creates a release commit and tag, then publishes
+the scoped packages first and `jukette` last. npm OTP prompts are handled for
+each package:
 
 ```sh
-npm run docs:publish
+npm run release:jukette -- 0.10.0
 ```
 
-Before running a real release, make sure `RELEASE_IT_GITHUB_TOKEN` is set and
-`npm whoami --registry https://registry.npmjs.org/` passes. Release-it prompts
-for an npm OTP when npm requires one.
+Push the release commit and `jukette-v*` tag after verifying the publishes.
 
 [Back to top](#)
 

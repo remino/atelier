@@ -12,6 +12,8 @@
 		"build:packages": "npm run build --workspaces --if-present --workspace=dactylo --workspace=paradimg --workspace=remarqueeble --workspace=scrollerful --workspace=@remino/jukette-core --workspace=@remino/jukette-audio --workspace=@remino/jukette-midi --workspace=@remino/jukette-soundcloud --workspace=jukette",
 		"build:docs": "npm run build --workspace=@remino/atelier-docs",
 		"dev": "npm run dev --workspace=@remino/atelier-docs --",
+		"release:jukette": "node bin/release-jukette.mjs release",
+		"release:jukette:dry-run": "node bin/release-jukette.mjs dry-run",
 		"typecheck": "npm run typecheck --workspaces --if-present",
 		"test": "npm run test --workspaces --if-present && vitest run",
 		"lint": "eslint tests bin eslint.config.mjs prettier.config.mjs vitest.config.mjs && npm run lint:check --workspaces --if-present",

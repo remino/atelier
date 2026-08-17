@@ -14,6 +14,16 @@ const manifests = [
 	'apps/docs/package.json',
 ]
 
+const lockfileEntries = new Map([
+	['package.json', ''],
+	['packages/core/package.json', 'packages/core'],
+	['packages/audio/package.json', 'packages/audio'],
+	['packages/midi/package.json', 'packages/midi'],
+	['packages/soundcloud/package.json', 'packages/soundcloud'],
+	['packages/jukette/package.json', 'packages/jukette'],
+	['apps/docs/package.json', 'apps/docs'],
+])
+
 const publishableVersions = new Map([
 	['@remino/jukette-core', true],
 	['@remino/jukette-audio', true],
@@ -44,16 +54,28 @@ const run = async ([command, version]) => {
 		throw new Error('Usage: release-workspace-versions.mjs bump <version>')
 	}
 
-	await Promise.all(
+	const updated = await Promise.all(
 		manifests.map(async manifestPath => {
 			const absolutePath = resolve(root, manifestPath)
 			const manifest = JSON.parse(await readFile(absolutePath, 'utf8'))
+			const updatedManifest = updateManifest(manifest, version)
 			await writeFile(
 				absolutePath,
-				`${JSON.stringify(updateManifest(manifest, version), null, '\t')}\n`
+				`${JSON.stringify(updatedManifest, null, '\t')}\n`
 			)
+			return [manifestPath, updatedManifest]
 		})
 	)
+
+	const lockfilePath = resolve(root, 'package-lock.json')
+	const lockfile = JSON.parse(await readFile(lockfilePath, 'utf8'))
+	for (const [manifestPath, lockfilePathname] of lockfileEntries) {
+		const entry = lockfile.packages[lockfilePathname]
+		if (!entry) continue
+		if (!updated.some(([path]) => path === manifestPath)) continue
+		lockfile.packages[lockfilePathname] = updateManifest({ ...entry }, version)
+	}
+	await writeFile(lockfilePath, `${JSON.stringify(lockfile, null, '\t')}\n`)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
