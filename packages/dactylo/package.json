@@ -73,8 +73,8 @@
 		"lint:check": "eslint .",
 		"precommit": "lint-staged",
 		"prepare": "husky",
-		"release": "release-it",
-		"release:dry-run": "release-it --dry-run --verbose",
+		"release": "release-it --config ../../.release-it.json",
+		"release:dry-run": "release-it --config ../../.release-it.json --dry-run --verbose",
 		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
 		"typecheck": "tsc --noEmit"
 	},
@@ -86,36 +86,6 @@
 			"eslint --fix"
 		],
 		"*.{css,md,json,yml,yaml}": "prettier --write"
-	},
-	"release-it": {
-		"git": {
-			"commitMessage": "Release v${version}",
-			"tagName": "v${version}"
-		},
-		"github": {
-			"assets": [
-				"dist/*"
-			],
-			"release": true
-		},
-		"hooks": {
-			"before:init": [
-				"npm run lint:check",
-				"npm run typecheck",
-				"npm test",
-				"npm run build"
-			],
-			"after:bump": [
-				"node bin/release-changelog.mjs promote ${version}",
-				"node bin/release-readme.mjs update ${version}",
-				"npm run build",
-				"git add CHANGELOG.md README.md package.json package-lock.json dist"
-			],
-			"after:release": "npm run docs:publish"
-		},
-		"npm": {
-			"publish": true
-		}
 	},
 	"version": "0.3.0"
 }

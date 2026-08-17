@@ -1,0 +1,35 @@
+{
+	"git": {
+		"commitMessage": "Release ${version}",
+		"requireCleanWorkingDir": true,
+		"requireUpstream": true,
+		"tagAnnotation": "Release ${version}",
+		"tagName": "v${version}"
+	},
+	"github": {
+		"assets": ["dist/*"],
+		"autoGenerate": true,
+		"release": true,
+		"tokenRef": "RELEASE_IT_GITHUB_TOKEN"
+	},
+	"hooks": {
+		"before:init": [
+			"node -e \"if (!process.env.RELEASE_IT_GITHUB_TOKEN) { console.error('RELEASE_IT_GITHUB_TOKEN is required for automated GitHub releases.'); process.exit(1) }\"",
+			"npm test",
+			"npm run typecheck",
+			"npm run lint:check",
+			"npm run format:check"
+		],
+		"after:bump": [
+			"if [ -f bin/release-changelog.mjs ]; then node bin/release-changelog.mjs promote ${version}; fi",
+			"node bin/release-readme.mjs update ${version}",
+			"npm run build",
+			"git add -A -- ."
+		],
+		"before:release": "npm pack --dry-run"
+	},
+	"npm": {
+		"publish": true,
+		"publishArgs": ["--access", "public"]
+	}
+}

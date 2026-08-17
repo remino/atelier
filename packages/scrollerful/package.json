@@ -65,8 +65,8 @@
 		"prepare": "husky",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"release": "release-it",
-		"release:dry-run": "release-it --dry-run --verbose",
+		"release": "release-it --config ../../.release-it.json",
+		"release:dry-run": "release-it --config ../../.release-it.json --dry-run --verbose",
 		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
 		"test:e2e": "playwright test",
 		"typecheck": "tsc --noEmit"

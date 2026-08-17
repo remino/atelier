@@ -87,8 +87,8 @@
 		"lint:check": "eslint .",
 		"precommit": "lint-staged",
 		"prepare": "husky",
-		"release": "release-it",
-		"release:dry-run": "release-it --dry-run --verbose",
+		"release": "release-it --config ../../.release-it.json",
+		"release:dry-run": "release-it --config ../../.release-it.json --dry-run --verbose",
 		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
 		"typecheck": "tsc --noEmit"
 	},
