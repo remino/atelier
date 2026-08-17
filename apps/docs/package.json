@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "astro build",
 		"dev": "astro dev",
+		"lint:check": "eslint .",
 		"preview": "astro preview",
 		"typecheck": "astro check"
 	},

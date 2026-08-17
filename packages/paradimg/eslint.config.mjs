@@ -15,6 +15,12 @@ export default [
 		languageOptions: { globals: globals.browser, sourceType: 'module' },
 	},
 	{
+		files: ['**/*.cjs', 'spec/**/*.js'],
+		languageOptions: {
+			globals: { ...globals.node, ...globals.jasmine },
+		},
+	},
+	{
 		files: ['bin/**/*.mjs'],
 		languageOptions: { globals: globals.node, sourceType: 'module' },
 	},

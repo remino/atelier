@@ -229,7 +229,7 @@ const render = async () => {
 	image.removeAttribute('width')
 	image.removeAttribute('height')
 	image.src = src
-	code.textContent = `<script src="https://unpkg.com/paradimg@0.1.0"><\/script>\n<img src="${src}" alt="" />`
+	code.textContent = `<script src="https://unpkg.com/paradimg@0.1.0"></script>\n<img src="${src}" alt="" />`
 	writeHash()
 	await processImages({ selector: '#preview' })
 }

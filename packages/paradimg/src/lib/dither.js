@@ -51,22 +51,6 @@ const BAYER_MATRICES = {
 const MATRIX = BAYER_8x8
 const RGB_LEVELS = 8
 
-const getClosestColor = (r, g, b, palette) => {
-	let minDist = Infinity
-	let closest = palette[0]
-
-	for (const [pr, pg, pb] of palette) {
-		const dist = (r - pr) ** 2 + (g - pg) ** 2 + (b - pb) ** 2
-
-		if (dist < minDist) {
-			minDist = dist
-			closest = [pr, pg, pb]
-		}
-	}
-
-	return closest
-}
-
 const canvasToBlobURL = canvas => {
 	return new Promise((resolve, reject) => {
 		canvas.toBlob(blob => {
