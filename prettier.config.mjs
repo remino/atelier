@@ -1,6 +1,28 @@
 export default {
+	arrowParens: 'avoid',
+	bracketSameLine: true,
+	bracketSpacing: true,
+	jsxSingleQuote: false,
+	plugins: ['prettier-plugin-astro'],
+	printWidth: 80,
+	proseWrap: 'always',
+	quoteProps: 'as-needed',
 	semi: false,
 	singleQuote: true,
 	tabWidth: 2,
+	trailingComma: 'es5',
 	useTabs: true,
+	overrides: [
+		{
+			files: '*.md',
+			options: {
+				parser: 'markdown',
+				proseWrap: 'always',
+				tabWidth: 4,
+				useTabs: false,
+			},
+		},
+		{ files: '*.yml', options: { parser: 'yaml', useTabs: false } },
+		{ files: '*.yaml', options: { parser: 'yaml', useTabs: false } },
+	],
 }

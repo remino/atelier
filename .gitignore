@@ -1,6 +1,10 @@
 node_modules/
-dist/
-deploy/
-.astro/
+**/dist/
+**/deploy/
+**/.astro/
+**/.build/
+**/build/
+**/bits/
+**/public/
 .env
 *.tsbuildinfo
