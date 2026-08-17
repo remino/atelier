@@ -76,7 +76,7 @@
 		"release": "release-it",
 		"release:dry-run": "release-it --dry-run --verbose",
 		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
-		"typecheck": "astro check && tsc --noEmit"
+		"typecheck": "tsc --noEmit"
 	},
 	"type": "module",
 	"types": "dist/dactylo.d.ts",

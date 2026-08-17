@@ -47,7 +47,7 @@
 		"release": "release-it",
 		"release:dry-run": "release-it --dry-run --verbose",
 		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
-		"typecheck": "astro check"
+		"typecheck": "tsc --noEmit"
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/"
