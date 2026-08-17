@@ -92,9 +92,7 @@ describe('JukettePlayerElement DOM', () => {
 		expect(elements.display.getAttribute('animate')).toBe('overflow')
 		expect(elements.display.textContent).toBe('Loading audio')
 		expect(elements.select.options).toHaveLength(2)
-		expect(elements.select.options[0].textContent).toBe(
-			'One - Artist (--:--)',
-		)
+		expect(elements.select.options[0].textContent).toBe('One - Artist (--:--)')
 		expect(elements.play).toBeTruthy()
 		expect(elements.seek).toBeTruthy()
 		expect(elements.time).toBeTruthy()
@@ -196,9 +194,7 @@ describe('JukettePlayerElement DOM', () => {
 		expect(shadowRoot.querySelector('.display').textContent).toBe(
 			'Loading audio',
 		)
-		expect(shadowRoot.querySelector('.track-select').options).toHaveLength(
-			1,
-		)
+		expect(shadowRoot.querySelector('.track-select').options).toHaveLength(1)
 	})
 
 	it('shows a playlist error when playlist-src fails to load', async () => {
@@ -265,9 +261,7 @@ describe('JukettePlayerElement DOM', () => {
 
 		await flushAsync()
 
-		expect(player.playlist).toEqual([
-			{ src: '/inline.mp3', title: 'Inline' },
-		])
+		expect(player.playlist).toEqual([{ src: '/inline.mp3', title: 'Inline' }])
 		expect(
 			shadowRoot.querySelector('.track-select').options[0].textContent,
 		).toBe('Inline (--:--)')

@@ -9,11 +9,7 @@ import { registerJuketteBackend } from '@remino/jukette-core'
 
 export const juketteMidiBackend: JuketteBackend = {
 	createPlayableTrack(track, callbacks, options) {
-		return new MidiPlayableTrack(
-			track,
-			callbacks,
-			options.getMidiOscillator,
-		)
+		return new MidiPlayableTrack(track, callbacks, options.getMidiOscillator)
 	},
 	inferTrackType(track) {
 		return /\.(?:mid|midi)(?:[?#].*)?$/i.test(track.src) ? 'midi' : null

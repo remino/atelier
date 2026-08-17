@@ -295,9 +295,7 @@ describe('SoundCloud addon', () => {
 		soundCloud.widgets[0].widget.emit(soundCloud.events.FINISH)
 		await ctx.player.play()
 
-		expect(soundCloud.widgets[0].widget.seekTo).toHaveBeenLastCalledWith(
-			12500,
-		)
+		expect(soundCloud.widgets[0].widget.seekTo).toHaveBeenLastCalledWith(12500)
 	})
 
 	it('resets a reselected SoundCloud track back to the beginning', async () => {

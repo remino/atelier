@@ -39,9 +39,7 @@ import { defineElement } from 'https://unpkg.com/jukette@0.1.0/dist/jukette.mjs'
 		const next = updateReadmeVersion(readme, '0.2.0')
 
 		expect(next).toContain('https://unpkg.com/jukette@0.2.0')
-		expect(next).toContain(
-			'https://unpkg.com/jukette@0.2.0/dist/jukette.mjs',
-		)
+		expect(next).toContain('https://unpkg.com/jukette@0.2.0/dist/jukette.mjs')
 		expect(next).not.toContain('jukette@0.1.0')
 	})
 
@@ -59,8 +57,6 @@ import { defineElement } from 'https://unpkg.com/jukette@0.1.0/dist/jukette.mjs'
 				readme.replaceAll('https://unpkg.com/jukette@0.1.0', ''),
 				'0.2.0',
 			),
-		).toThrowError(
-			'Expected to update 2 pinned README CDN URLs, updated 0.',
-		)
+		).toThrowError('Expected to update 2 pinned README CDN URLs, updated 0.')
 	})
 })

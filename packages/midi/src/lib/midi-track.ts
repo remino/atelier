@@ -128,10 +128,7 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 		if (options.restart) {
 			this.pausedAt = this.resetOffset
 			this.callbacks.onProgress(this.pausedAt, this.durationValue)
-		} else if (
-			this.durationValue > 0 &&
-			this.pausedAt >= this.durationValue
-		) {
+		} else if (this.durationValue > 0 && this.pausedAt >= this.durationValue) {
 			this.pausedAt = this.resetOffset
 			this.callbacks.onProgress(this.pausedAt, this.durationValue)
 		}

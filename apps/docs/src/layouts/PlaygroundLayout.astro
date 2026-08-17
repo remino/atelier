@@ -1,0 +1,45 @@
+---
+interface Props {
+	siteName: string
+	siteHref: string
+	resetId?: string
+	fullscreen?: boolean
+	displayId?: string
+	displayLabel?: string
+}
+
+const {
+	siteName,
+	siteHref,
+	resetId,
+	fullscreen = false,
+	displayId = 'playground-display',
+	displayLabel = 'Playground',
+} = Astro.props
+---
+
+<header class="playground-header">
+	<hgroup>
+		<h1><a href={siteHref}><slot name="heading">{siteName}</slot></a></h1>
+		<h2>playground</h2>
+	</hgroup>
+
+	<nav aria-label="Playground navigation">
+		<ul>
+			<li><a role="button" href={siteHref}>Back</a></li>
+			<li><button id={resetId} data-reset type="button">Reset</button></li>
+			{fullscreen && (
+				<li><button id="fullscreen" data-fullscreen type="button">Full Screen</button></li>
+			)}
+		</ul>
+	</nav>
+</header>
+
+<section id={displayId} class="playground-display" aria-labelledby="display-heading">
+	<h1 id="display-heading" class="sr-only">{displayLabel}</h1>
+	<slot name="display" />
+</section>
+
+<section class="playground-controls" aria-label="Playground controls">
+	<slot name="controls" />
+</section>

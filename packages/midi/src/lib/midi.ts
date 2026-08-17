@@ -26,22 +26,16 @@ type ParsedToneMidi = {
 const ToneMidi =
 	(
 		ToneMidiModule as {
-			Midi?: new (
-				buffer?: ArrayBuffer | ArrayLike<number>,
-			) => ParsedToneMidi
+			Midi?: new (buffer?: ArrayBuffer | ArrayLike<number>) => ParsedToneMidi
 			default?: {
-				Midi?: new (
-					buffer?: ArrayBuffer | ArrayLike<number>,
-				) => ParsedToneMidi
+				Midi?: new (buffer?: ArrayBuffer | ArrayLike<number>) => ParsedToneMidi
 			}
 		}
 	).Midi ??
 	(
 		ToneMidiModule as {
 			default?: {
-				Midi?: new (
-					buffer?: ArrayBuffer | ArrayLike<number>,
-				) => ParsedToneMidi
+				Midi?: new (buffer?: ArrayBuffer | ArrayLike<number>) => ParsedToneMidi
 			}
 		}
 	).default?.Midi

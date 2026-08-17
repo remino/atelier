@@ -93,9 +93,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		defineRemarqueebleElements()
 
 		if (typeof MutationObserver !== 'undefined') {
-			this.trackObserver = new MutationObserver(() =>
-				this.syncChildTracks(),
-			)
+			this.trackObserver = new MutationObserver(() => this.syncChildTracks())
 		}
 
 		this.dom = createJukettePlayerDom(this)
@@ -123,9 +121,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		})
 
 		this.dom.playButton.addEventListener('click', () => this.toggle())
-		this.dom.timeButton.addEventListener('click', () =>
-			this.toggleTimeMode(),
-		)
+		this.dom.timeButton.addEventListener('click', () => this.toggleTimeMode())
 		this.dom.trackSelect.addEventListener('change', () =>
 			this.selectTrackFromInput(),
 		)
@@ -133,9 +129,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 			this.handleTrackSelectKeyup(event),
 		)
 		this.dom.seekInput.addEventListener('input', () => this.seekFromInput())
-		this.dom.audio.addEventListener('loadedmetadata', () =>
-			this.syncAudio(),
-		)
+		this.dom.audio.addEventListener('loadedmetadata', () => this.syncAudio())
 		this.dom.audio.addEventListener('timeupdate', () => this.syncAudio())
 		this.dom.audio.addEventListener('ended', () => this.finishTrack())
 	}
@@ -146,8 +140,8 @@ export class JukettePlayerElement extends HTMLElementBase {
 			this.disconnectTeardownId = null
 		}
 
-		this.backendRegistrationCleanup = subscribeJuketteBackendRegistrations(
-			() => this.handleBackendRegistration(),
+		this.backendRegistrationCleanup = subscribeJuketteBackendRegistrations(() =>
+			this.handleBackendRegistration(),
 		)
 		this.trackObserver?.observe(this, {
 			attributeFilter: [
@@ -193,10 +187,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		newValue: string | null,
 	): void {
 		if (oldValue === newValue) return
-		if (
-			name === ATTR_PRELOAD_METADATA ||
-			name === ATTR_PREFER_MEDIA_METADATA
-		) {
+		if (name === ATTR_PRELOAD_METADATA || name === ATTR_PREFER_MEDIA_METADATA) {
 			this.renderCurrentTrack()
 			this.renderTrackSelect()
 			this.preloadPlaylistMetadata()
@@ -267,9 +258,8 @@ export class JukettePlayerElement extends HTMLElementBase {
 
 	get showTrackSelect(): boolean {
 		return (
-			normalizeBooleanAttribute(
-				this.getAttribute(ATTR_SHOW_TRACK_SELECT),
-			) ?? true
+			normalizeBooleanAttribute(this.getAttribute(ATTR_SHOW_TRACK_SELECT)) ??
+			true
 		)
 	}
 
@@ -494,14 +484,10 @@ export class JukettePlayerElement extends HTMLElementBase {
 			onFinish: () => {
 				if (isCurrentTrack()) this.finishTrack()
 			},
-			onMetadata: (
-				metadata: AudioFileMetadata,
-				metadataPreloadId?: number,
-			) => {
+			onMetadata: (metadata: AudioFileMetadata, metadataPreloadId?: number) => {
 				if (
 					metadataPreloadId !== undefined &&
-					metadataPreloadId !==
-						this.metadataController.metadataPreloadId
+					metadataPreloadId !== this.metadataController.metadataPreloadId
 				) {
 					return
 				}
@@ -679,10 +665,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		if (!track) return
 
 		const display = this.getTrackDisplay(track)
-		this.renderDisplay(
-			this.statusMessage || formatTrackDisplay(display),
-			track,
-		)
+		this.renderDisplay(this.statusMessage || formatTrackDisplay(display), track)
 	}
 
 	private preloadPlaylistMetadata(): void {
@@ -732,10 +715,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		)
 	}
 
-	private renderDisplay(
-		text: string,
-		track: JuketteTrack | null = null,
-	): void {
+	private renderDisplay(text: string, track: JuketteTrack | null = null): void {
 		this.dom.displayElement.textContent = text
 		this.dom.displayElement.stop()
 		this.dom.displayElement.start()

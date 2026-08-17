@@ -22,20 +22,28 @@ export default [
 	},
 	{
 		files: ['tests/**/*.js'],
-		languageOptions: { globals: { ...globals.browser, ...globals.node, ...globals.vitest } },
+		languageOptions: {
+			globals: { ...globals.browser, ...globals.node, ...globals.vitest },
+		},
 	},
 	{
 		files: ['apps/**/src/**/*.astro'],
 		languageOptions: {
 			parser: astroParser,
-			parserOptions: { extraFileExtensions: ['.astro'], parser: tseslint.parser },
+			parserOptions: {
+				extraFileExtensions: ['.astro'],
+				parser: tseslint.parser,
+			},
 			globals: { ...globals.browser, ...globals.node },
 		},
 	},
 	{
 		rules: {
 			'no-unused-vars': 'off',
-			'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', ignoreRestSiblings: true }],
+			'@typescript-eslint/no-unused-vars': [
+				'warn',
+				{ argsIgnorePattern: '^_', ignoreRestSiblings: true },
+			],
 		},
 	},
 	prettier,

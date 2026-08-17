@@ -14,9 +14,7 @@ const fileIsCurrent = async (filePath) => {
 	try {
 		const file = await stat(filePath)
 		const generator = await stat(generatorPath)
-		return (
-			file.isFile() && file.size > 0 && file.mtimeMs >= generator.mtimeMs
-		)
+		return file.isFile() && file.size > 0 && file.mtimeMs >= generator.mtimeMs
 	} catch {
 		return false
 	}
@@ -44,9 +42,7 @@ const buildDemoTone = async () => {
 		(_frequency, index) =>
 			`[${index}:a]afade=t=in:st=0:d=0.01,afade=t=out:st=${noteDuration - 0.03}:d=0.03,volume=0.58[n${index}]`,
 	)
-	const concatInputs = notes
-		.map((_frequency, index) => `[n${index}]`)
-		.join('')
+	const concatInputs = notes.map((_frequency, index) => `[n${index}]`).join('')
 	const filterComplex = [
 		...noteFilters,
 		`${concatInputs}concat=n=${notes.length}:v=0:a=1,alimiter=limit=0.9[out]`,

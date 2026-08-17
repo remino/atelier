@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../components/BaseLayout.astro'
+import PlaygroundLayout from '../../../../../layouts/PlaygroundLayout.astro'
 import '../../../assets/css/demo.css'
 ---
 
@@ -9,18 +10,8 @@ import '../../../assets/css/demo.css'
 	bodyClass="demo-page"
 	mainClass="playground-layout"
 	showHeader={false}>
-	<header class="playground-header">
-		<hgroup>
-			<h1><a href="/paradimg/">Paradimg</a></h1><h2>playground</h2>
-		</hgroup><nav>
-			<ul>
-				<li><a role="button" href="/paradimg/">Back</a></li><li>
-					<button id="reset" type="button">Reset</button>
-				</li><li><button id="fullscreen" type="button">Full Screen</button></li>
-			</ul>
-		</nav>
-	</header>
-	<section class="playground-display">
+	<PlaygroundLayout siteName="Paradimg" siteHref="/paradimg/" resetId="reset" fullscreen>
+	<Fragment slot="display">
 		<div class="preview-stage" id="stage">
 			<img
 				id="preview"
@@ -32,8 +23,8 @@ import '../../../assets/css/demo.css'
 				<strong>Code</strong><button id="copy" type="button">Copy</button>
 			</div><code-viewer id="code"></code-viewer>
 		</div>
-	</section>
-	<section class="playground-controls">
+	</Fragment>
+	<Fragment slot="controls">
 		<form>
 			<details open>
 				<summary>Effects</summary><select
@@ -63,8 +54,7 @@ import '../../../assets/css/demo.css'
 				</div>
 			</details>
 		</form>
-	</section>
-	<Fragment slot="scripts">
-		<script src="../../../assets/js/playground.js"></script>
 	</Fragment>
+	</PlaygroundLayout>
+	<Fragment slot="scripts"><script src="../../../assets/js/playground.js"></script></Fragment>
 </BaseLayout>

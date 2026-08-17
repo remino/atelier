@@ -115,8 +115,7 @@ export const trackFromElement = (element: Element): JuketteTrack | null => {
 		preferMediaMetadata:
 			element.getAttribute(ATTR_PREFER_MEDIA_METADATA) ?? undefined,
 		preload: element.getAttribute(ATTR_PRELOAD) ?? undefined,
-		showSourceLink:
-			element.getAttribute(ATTR_SHOW_SOURCE_LINK) ?? undefined,
+		showSourceLink: element.getAttribute(ATTR_SHOW_SOURCE_LINK) ?? undefined,
 		startAt: element.getAttribute(ATTR_START_AT) ?? undefined,
 		src: element.getAttribute(ATTR_SRC) ?? '',
 		title: element.getAttribute(ATTR_TITLE) ?? undefined,

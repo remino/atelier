@@ -95,16 +95,12 @@ button:focus-visible {
 }
 
 button:active {
-	background: rgb(
-		from currentColor calc(255 - r) calc(255 - g) calc(255 - b)
-	);
+	background: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
 	color: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
 }
 
 button[aria-pressed='true'] {
-	background: rgb(
-		from currentColor calc(255 - r) calc(255 - g) calc(255 - b)
-	);
+	background: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
 	color: rgb(from currentColor calc(255 - r) calc(255 - g) calc(255 - b));
 }
 

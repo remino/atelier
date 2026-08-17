@@ -25,11 +25,7 @@ const publishableVersions = new Map([
 const updateManifest = (manifest, version) => {
 	manifest.version = version
 
-	for (const field of [
-		'dependencies',
-		'devDependencies',
-		'peerDependencies',
-	]) {
+	for (const field of ['dependencies', 'devDependencies', 'peerDependencies']) {
 		const deps = manifest[field]
 		if (!deps) continue
 

@@ -4,11 +4,11 @@
 	let position = 0
 
 	Array.from(['header p', 'header h2', 'header .scroll-down']).forEach(
-		selector => {
+		(selector) => {
 			const el = document.querySelector(selector)
 			if (!el) return
 			el.remove()
-		}
+		},
 	)
 
 	document.body.style.overflow = 'hidden'

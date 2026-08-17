@@ -181,7 +181,5 @@ const distFiles = await readdir(resolve(packageRoot, 'dist'))
 await Promise.all(
 	distFiles
 		.filter((fileName) => /\.(?:cjs|mjs|js)$/.test(fileName))
-		.map((fileName) =>
-			ensureBanner(resolve(packageRoot, 'dist', fileName)),
-		),
+		.map((fileName) => ensureBanner(resolve(packageRoot, 'dist', fileName))),
 )

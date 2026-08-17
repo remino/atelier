@@ -16,9 +16,9 @@ By Rémino Rem
 <!-- mtoc-start -->
 
 - [Installation](#installation)
-    - [HTML (CDN)](#html-cdn)
-    - [npm](#npm)
-    - [Direct download](#direct-download)
+  - [HTML (CDN)](#html-cdn)
+  - [npm](#npm)
+  - [Direct download](#direct-download)
 - [Usage](#usage)
 - [Playlist](#playlist)
 - [Tracks](#tracks)

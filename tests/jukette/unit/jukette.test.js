@@ -108,9 +108,7 @@ describe('jukette helpers', () => {
 		expect(inferTrackType({ src: '/track.mp3' })).toBe('audio')
 		registerMidi()
 		expect(inferTrackType({ src: '/track.mid' })).toBe('midi')
-		expect(inferTrackType({ src: 'https://example.com/track' })).toBe(
-			'audio',
-		)
+		expect(inferTrackType({ src: 'https://example.com/track' })).toBe('audio')
 	})
 
 	it('registers built-in backends', () => {
@@ -213,9 +211,7 @@ describe('jukette helpers', () => {
 		expect(JukettePlayerElement.observedAttributes).not.toContain(
 			'playlist-open',
 		)
-		expect(JukettePlayerElement.observedAttributes).toContain(
-			'midi-oscillator',
-		)
+		expect(JukettePlayerElement.observedAttributes).toContain('midi-oscillator')
 		expect(JukettePlayerElement.observedAttributes).toContain(
 			'prefer-media-metadata',
 		)
@@ -225,12 +221,8 @@ describe('jukette helpers', () => {
 		expect(JukettePlayerElement.observedAttributes).toContain(
 			'show-track-select',
 		)
-		expect(JukettePlayerElement.observedAttributes).toContain(
-			'display-marquee',
-		)
-		expect(JukettePlayerElement.observedAttributes).toContain(
-			'playlist-src',
-		)
+		expect(JukettePlayerElement.observedAttributes).toContain('display-marquee')
+		expect(JukettePlayerElement.observedAttributes).toContain('playlist-src')
 	})
 
 	it('normalizes display marquee modes', () => {
@@ -262,10 +254,9 @@ describe('jukette helpers', () => {
 
 	it('parses simple MIDI files', () => {
 		const bytes = new Uint8Array([
-			0x4d, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,
-			0x01, 0x00, 0x60, 0x4d, 0x54, 0x72, 0x6b, 0x00, 0x00, 0x00, 0x0c,
-			0x00, 0x90, 0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00, 0x00, 0xff, 0x2f,
-			0x00,
+			0x4d, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x01,
+			0x00, 0x60, 0x4d, 0x54, 0x72, 0x6b, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x90,
+			0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00, 0x00, 0xff, 0x2f, 0x00,
 		])
 
 		const midi = parseMidi(bytes.buffer)
@@ -327,8 +318,8 @@ describe('jukette helpers', () => {
 
 	it('parses MIDI program changes', () => {
 		const events = new Uint8Array([
-			0x00, 0xc0, 0x18, 0x00, 0x90, 0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00,
-			0x00, 0xff, 0x2f, 0x00,
+			0x00, 0xc0, 0x18, 0x00, 0x90, 0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00, 0x00,
+			0xff, 0x2f, 0x00,
 		])
 		const bytes = new Uint8Array([
 			0x4d,
@@ -384,10 +375,7 @@ describe('jukette helpers', () => {
 			textFrame('TIT2', 'Tagged title'),
 			textFrame('TPE1', 'Tagged artist'),
 		]
-		const frameLength = frames.reduce(
-			(total, frame) => total + frame.length,
-			0,
-		)
+		const frameLength = frames.reduce((total, frame) => total + frame.length, 0)
 		const bytes = new Uint8Array(10 + frameLength)
 		bytes.set(new TextEncoder().encode('ID3'), 0)
 		bytes[3] = 4
@@ -466,10 +454,9 @@ describe('jukette helpers', () => {
 	it('marks MIDI tracks ready after preparation completes', async () => {
 		const onReady = vi.fn()
 		const bytes = new Uint8Array([
-			0x4d, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,
-			0x01, 0x00, 0x60, 0x4d, 0x54, 0x72, 0x6b, 0x00, 0x00, 0x00, 0x0c,
-			0x00, 0x90, 0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00, 0x00, 0xff, 0x2f,
-			0x00,
+			0x4d, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x01,
+			0x00, 0x60, 0x4d, 0x54, 0x72, 0x6b, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x90,
+			0x3c, 0x40, 0x60, 0x80, 0x3c, 0x00, 0x00, 0xff, 0x2f, 0x00,
 		])
 
 		vi.stubGlobal(

@@ -78,9 +78,7 @@ export class AudioPlayableTrack extends JukettePlayableTrack {
 		this.callbacks.onProgress(this.audio.currentTime, this.durationValue)
 	}
 
-	private async preloadFileMetadata(
-		metadataPreloadId: number,
-	): Promise<void> {
+	private async preloadFileMetadata(metadataPreloadId: number): Promise<void> {
 		if (typeof fetch === 'undefined') return
 
 		try {

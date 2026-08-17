@@ -24,9 +24,7 @@ export const renderTrackSelect = ({
 			const display = getDisplay(track)
 			const durationValue = getDuration(track)
 			const durationText =
-				durationValue === undefined
-					? '--:--'
-					: formatTime(durationValue)
+				durationValue === undefined ? '--:--' : formatTime(durationValue)
 
 			option.value = String(index)
 			option.textContent = `${formatTrackDisplay(display)} (${durationText})`
@@ -34,7 +32,5 @@ export const renderTrackSelect = ({
 		}),
 	)
 
-	element.value = String(
-		Math.max(0, Math.min(currentIndex, tracks.length - 1)),
-	)
+	element.value = String(Math.max(0, Math.min(currentIndex, tracks.length - 1)))
 }

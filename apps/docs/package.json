@@ -10,6 +10,7 @@
 		"typecheck": "astro check"
 	},
 	"dependencies": {
+		"@remino/astro-middleware": "^0.1.2",
 		"@remino/jukette-audio": "0.9.0",
 		"@remino/jukette-core": "0.9.0",
 		"@remino/jukette-midi": "0.9.0",

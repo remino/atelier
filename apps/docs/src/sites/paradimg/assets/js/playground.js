@@ -89,8 +89,8 @@ const definitions = {
 		label: 'Ordered dither',
 		options:
 			'<label><span>Pattern</span><select name="pattern"><option value="2x2">2×2</option><option value="4x4">4×4</option><option value="8x8">8×8</option><option value="16x16">16×16</option><option value="none">none</option></select></label><label><span>Colours</span><select name="colours"><option value="2c">2 colours</option><option value="4c">4 colours</option><option value="8c">8 colours</option><option value="bw">monochrome</option></select></label>',
-		value: settings => `${settings.pattern},${settings.colours}`,
-		description: value => {
+		value: (settings) => `${settings.pattern},${settings.colours}`,
+		description: (value) => {
 			const [pattern, colours] = value.split(',')
 			return colours
 				? `${pattern} / ${colours === 'bw' ? 'monochrome' : `${colours[0]} colours`}`
@@ -101,22 +101,22 @@ const definitions = {
 		label: 'Black and white',
 		options:
 			'<label><span>Mode</span><select name="mode"><option value="">grayscale</option><option value="invert">inverted</option><option value="threshold">threshold</option></select></label>',
-		value: settings => settings.mode,
-		description: value => value || 'grayscale',
+		value: (settings) => settings.mode,
+		description: (value) => value || 'grayscale',
 	},
 	brightness: {
 		label: 'Brightness',
 		options:
 			'<label><span>Factor</span><input data-setting-control="range" type="range" min="0" max="2" step="0.05" /><input data-setting-control="number" name="factor" type="number" min="0" step="0.05" /></label>',
-		value: settings => settings.factor,
-		description: value => value,
+		value: (settings) => settings.factor,
+		description: (value) => value,
 	},
 	contrast: {
 		label: 'Contrast',
 		options:
 			'<label><span>Factor</span><input data-setting-control="range" type="range" min="0" max="2" step="0.05" /><input data-setting-control="number" name="factor" type="number" min="0" step="0.05" /></label>',
-		value: settings => settings.factor,
-		description: value => value,
+		value: (settings) => settings.factor,
+		description: (value) => value,
 	},
 	half: {
 		label: 'Scale to half',
@@ -137,7 +137,7 @@ let editingIndex = -1
 let renderedType = effectToAdd.value
 const flags = () =>
 	effects.map(({ type, value }) => (value ? `${type}=${value}` : type))
-const formatEffect = effect => {
+const formatEffect = (effect) => {
 	const definition = definitions[effect.type]
 	const description = definition.description(effect.value)
 	return description ? `${definition.label}: ${description}` : definition.label
@@ -150,7 +150,7 @@ const updateActions = () => {
 }
 const renderEffects = (selectedIndex = -1) => {
 	effectsSelect.replaceChildren(
-		...effects.map((effect, index) => new Option(formatEffect(effect), index))
+		...effects.map((effect, index) => new Option(formatEffect(effect), index)),
 	)
 	effectsSelect.selectedIndex = selectedIndex
 	updateActions()
@@ -168,7 +168,7 @@ const readEffectSettings = ({ type, value }) => {
 	}
 	return next
 }
-const setEditingEffect = index => {
+const setEditingEffect = (index) => {
 	editingIndex = index
 	const effect = effects[index]
 	effectToAdd.value = effect.type
@@ -181,7 +181,7 @@ const setAddingEffect = () => {
 	updateEffect.hidden = true
 }
 const syncSettings = () =>
-	effectOptions.querySelectorAll('[name]').forEach(control => {
+	effectOptions.querySelectorAll('[name]').forEach((control) => {
 		settings[renderedType][control.name] = control.value
 	})
 const renderSettings = () => {
@@ -208,7 +208,7 @@ const readHash = () => {
 	effects = hash
 		.slice(1)
 		.split('&')
-		.flatMap(raw => {
+		.flatMap((raw) => {
 			const index = raw.indexOf('=')
 			const type = decodeURIComponent(index < 0 ? raw : raw.slice(0, index))
 			return definitions[type]
@@ -268,7 +268,7 @@ effectToAdd.addEventListener('change', () => {
 	setAddingEffect()
 	renderSettings()
 })
-effectOptions.addEventListener('input', event => {
+effectOptions.addEventListener('input', (event) => {
 	const { target } = event
 	if (target.dataset.settingControl === 'range') {
 		effectOptions.querySelector('[data-setting-control="number"]').value =

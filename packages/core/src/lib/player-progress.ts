@@ -20,9 +20,7 @@ export class JuketteProgressController {
 	}
 
 	syncProgress(currentTime: number, duration: number): void {
-		const safeDuration = Number.isFinite(duration)
-			? Math.max(0, duration)
-			: 0
+		const safeDuration = Number.isFinite(duration) ? Math.max(0, duration) : 0
 		const safeCurrentTime = Number.isFinite(currentTime)
 			? Math.min(
 					Math.max(0, currentTime),
@@ -65,10 +63,7 @@ export class JuketteProgressController {
 	}
 
 	start(): void {
-		if (
-			this.progressFrame ||
-			typeof requestAnimationFrame === 'undefined'
-		) {
+		if (this.progressFrame || typeof requestAnimationFrame === 'undefined') {
 			return
 		}
 
@@ -89,20 +84,14 @@ export class JuketteProgressController {
 	}
 
 	stop(): void {
-		if (
-			!this.progressFrame ||
-			typeof cancelAnimationFrame === 'undefined'
-		) {
+		if (!this.progressFrame || typeof cancelAnimationFrame === 'undefined') {
 			this.progressFrame = 0
 			return
 		}
 
 		cancelAnimationFrame(this.progressFrame)
 		this.progressFrame = 0
-		this.syncProgress(
-			this.options.getCurrentTime(),
-			this.options.getDuration(),
-		)
+		this.syncProgress(this.options.getCurrentTime(), this.options.getDuration())
 	}
 
 	restart(): void {

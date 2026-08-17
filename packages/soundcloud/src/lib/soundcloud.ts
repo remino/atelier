@@ -259,8 +259,7 @@ class SoundCloudTrackState {
 
 		if (
 			options.restart ||
-			(this.durationSeconds > 0 &&
-				this.positionSeconds >= this.durationSeconds)
+			(this.durationSeconds > 0 && this.positionSeconds >= this.durationSeconds)
 		) {
 			this.seekTo(this.track.startAt ?? 0)
 		}
@@ -322,9 +321,7 @@ class SoundCloudTrackState {
 			url: this.track.src,
 		})
 
-		this.oEmbedPromise = fetch(
-			`${soundCloudOEmbedUrl}?${params.toString()}`,
-		)
+		this.oEmbedPromise = fetch(`${soundCloudOEmbedUrl}?${params.toString()}`)
 			.then(async (response) => {
 				if (!response.ok) {
 					throw new Error('SoundCloud oEmbed request failed.')
@@ -403,9 +400,7 @@ class SoundCloudTrackState {
 			this.widgetReadyReject?.(
 				new Error('SoundCloud widget reported an error.'),
 			)
-			this.activeTrack?.trackCallbacks.onStatus(
-				'SoundCloud playback failed',
-			)
+			this.activeTrack?.trackCallbacks.onStatus('SoundCloud playback failed')
 		})
 	}
 
@@ -522,11 +517,7 @@ export const soundCloudBackend: JuketteBackend = {
 		return new SoundCloudPlayableTrack(
 			track,
 			callbacks,
-			createSoundCloudTrackState(
-				track,
-				options.host,
-				options.trackElement,
-			),
+			createSoundCloudTrackState(track, options.host, options.trackElement),
 		)
 	},
 	preloadTrack: async (

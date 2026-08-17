@@ -48,8 +48,12 @@
 			}
 
 			@keyframes progress {
-				from { opacity: 0; }
-				to { opacity: 1; }
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
 			}
 		</style>
 	</head>
@@ -75,7 +79,10 @@
 				scroller.classList.add('sclf--x', 'horizontal')
 				section.classList.add('sclf--x')
 			}
-			section.style.setProperty('--section-size', `${size}${horizontal ? 'vw' : 'vh'}`)
+			section.style.setProperty(
+				'--section-size',
+				`${size}${horizontal ? 'vw' : 'vh'}`
+			)
 			scrollerful()
 		</script>
 	</body>

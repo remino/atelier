@@ -67,16 +67,16 @@ const getClosestColor = (r, g, b, palette) => {
 	return closest
 }
 
-const canvasToBlobURL = canvas => {
+const canvasToBlobURL = (canvas) => {
 	return new Promise((resolve, reject) => {
-		canvas.toBlob(blob => {
+		canvas.toBlob((blob) => {
 			if (blob) resolve(URL.createObjectURL(blob))
 			else reject(new Error('Failed to convert canvas to blob'))
 		}, 'image/png')
 	})
 }
 
-const formatRawValue = rawValue => {
+const formatRawValue = (rawValue) => {
 	const options = {
 		matrix: MATRIX,
 		levels: RGB_LEVELS,
@@ -87,7 +87,7 @@ const formatRawValue = rawValue => {
 		return options
 	}
 
-	for (const token of rawValue.split(',').map(part => part.trim())) {
+	for (const token of rawValue.split(',').map((part) => part.trim())) {
 		if (!token) continue
 
 		const lowerToken = token.toLowerCase()
@@ -121,7 +121,7 @@ const createDitheredBlob = async (
 	scale = 1,
 	matrix = BAYER_8x8,
 	levels = 8,
-	bw = false
+	bw = false,
 ) => {
 	const width = Math.floor(img.naturalWidth * scale)
 	const height = Math.floor(img.naturalHeight * scale)
@@ -149,7 +149,7 @@ const createDitheredBlob = async (
 
 			if (bw) {
 				const gray = Math.round(
-					0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
+					0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2],
 				)
 				const value = Math.min(255, Math.max(0, gray + threshold))
 				const quantized = Math.round(value / step) * step

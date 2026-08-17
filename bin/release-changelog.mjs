@@ -28,16 +28,12 @@ const getSection = (changelog, heading) => {
 export const extractReleaseNotes = (changelog, version) => {
 	const section = getSection(changelog, headingPattern(version))
 	if (!section) {
-		throw new Error(
-			`No changelog section found for ${normalizeTag(version)}.`,
-		)
+		throw new Error(`No changelog section found for ${normalizeTag(version)}.`)
 	}
 
 	const notes = section.content.trim()
 	if (!notes) {
-		throw new Error(
-			`Changelog section for ${normalizeTag(version)} is empty.`,
-		)
+		throw new Error(`Changelog section for ${normalizeTag(version)} is empty.`)
 	}
 
 	return `${notes}\n`
@@ -69,10 +65,7 @@ export const promoteHead = (changelog, version) => {
 
 	const tocEntry = `- [${tag}](${getAnchor(version)})`
 	if (!next.includes(`${tocEntry}\n`)) {
-		next = next.replace(
-			'- [HEAD](#head)\n',
-			`- [HEAD](#head)\n${tocEntry}\n`,
-		)
+		next = next.replace('- [HEAD](#head)\n', `- [HEAD](#head)\n${tocEntry}\n`)
 	}
 
 	return next
@@ -80,9 +73,7 @@ export const promoteHead = (changelog, version) => {
 
 const run = async ([command, version]) => {
 	if (!command || !version) {
-		throw new Error(
-			'Usage: release-changelog.mjs <promote|notes> <version>',
-		)
+		throw new Error('Usage: release-changelog.mjs <promote|notes> <version>')
 	}
 
 	const changelog = await readFile(changelogPath, 'utf8')

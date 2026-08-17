@@ -57,21 +57,21 @@ Or configure the groups yourself:
 
 ```js
 dactylo({
-    root: document.querySelector('main'),
-    caret: '_',
-    prompt: '>',
-    startDelay: 600,
-    groups: [
-        {
-            sels: 'h1, h2',
-            duration: 600,
-        },
-        {
-            sels: 'p, li',
-            interval: 18,
-            parallel: true,
-        },
-    ],
+	root: document.querySelector('main'),
+	caret: '_',
+	prompt: '>',
+	startDelay: 600,
+	groups: [
+		{
+			sels: 'h1, h2',
+			duration: 600,
+		},
+		{
+			sels: 'p, li',
+			interval: 18,
+			parallel: true,
+		},
+	],
 })
 ```
 

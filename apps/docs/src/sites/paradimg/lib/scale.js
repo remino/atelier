@@ -1,6 +1,6 @@
-const canvasToBlobURL = canvas => {
+const canvasToBlobURL = (canvas) => {
 	return new Promise((resolve, reject) => {
-		canvas.toBlob(blob => {
+		canvas.toBlob((blob) => {
 			if (blob) resolve(URL.createObjectURL(blob))
 			else reject(new Error('Failed to convert canvas to blob'))
 		}, 'image/png')

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../components/BaseLayout.astro'
+import PlaygroundLayout from '../../../../../layouts/PlaygroundLayout.astro'
 import { site } from '../../../data/site'
 import '../../../assets/css/playground.css'
 
@@ -46,28 +47,8 @@ const embedCode = `<jukette-player preload-metadata prefer-media-metadata show-s
 	mainClass="playground-layout"
 	showHeader={false}
 >
-	<header class="playground-header">
-		<hgroup>
-			<h1>
-				<a href="/jukette/">{site.title}</a>
-			</h1>
-			<h2>playground</h2>
-		</hgroup>
-
-		<nav aria-label="Playground navigation">
-			<ul>
-				<li><a role="button" href="/jukette/">Back</a></li>
-				<li><button type="button" data-reset>Reset</button></li>
-			</ul>
-		</nav>
-	</header>
-
-	<section
-		id="playground-display"
-		class="playground-display"
-		aria-labelledby="display-heading"
-	>
-		<h1 id="display-heading" class="sr-only">Jukette playground player</h1>
+	<PlaygroundLayout siteName={site.title} siteHref="/jukette/" displayLabel="Jukette playground player">
+	<Fragment slot="display">
 		<div class="preview-stage">
 			<div class="preview-item">
 				<jukette-player
@@ -107,12 +88,9 @@ const embedCode = `<jukette-player preload-metadata prefer-media-metadata show-s
 			</div>
 			<code-viewer data-copy-source={embedCode}>{embedCode}</code-viewer>
 		</div>
-	</section>
+	</Fragment>
 
-	<section
-		class="playground-controls playground-controls"
-		aria-label="Playground controls"
-	>
+	<Fragment slot="controls">
 		<form data-playground>
 			<details open>
 				<summary>Display</summary>
@@ -163,9 +141,8 @@ const embedCode = `<jukette-player preload-metadata prefer-media-metadata show-s
 				</label>
 			</details>
 		</form>
-	</section>
-
-	<Fragment slot="scripts">
-		<script src="../../../assets/js/playground.js"></script>
 	</Fragment>
+	</PlaygroundLayout>
+
+	<Fragment slot="scripts"><script src="../../../assets/js/playground.js"></script></Fragment>
 </BaseLayout>

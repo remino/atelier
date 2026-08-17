@@ -49,7 +49,7 @@ CSS variables:
 
 ```html
 <div class="re-marquee" style="--re-marquee-duration: 12s;">
-    <div class="re-marquee__track">CSS-only marquee</div>
+	<div class="re-marquee__track">CSS-only marquee</div>
 </div>
 ```
 
@@ -73,11 +73,11 @@ Single-line motion with the base timing.
 
 ```html
 <div class="re-marquee" style="--re-marquee-duration: 14s;">
-    <div class="re-marquee__track">
-        <span>Fresh build</span>
-        <strong>CSS-only</strong>
-        <span>no JS required</span>
-    </div>
+	<div class="re-marquee__track">
+		<span>Fresh build</span>
+		<strong>CSS-only</strong>
+		<span>no JS required</span>
+	</div>
 </div>
 ```
 
@@ -101,11 +101,11 @@ The same structure, but running in the opposite direction.
 
 ```html
 <div class="re-marquee re-marquee--reverse" style="--re-marquee-duration: 18s;">
-    <div class="re-marquee__track">
-        <span>Right to left</span>
-        <span>left to right</span>
-        <em>reverse flow</em>
-    </div>
+	<div class="re-marquee__track">
+		<span>Right to left</span>
+		<span>left to right</span>
+		<em>reverse flow</em>
+	</div>
 </div>
 ```
 
@@ -150,31 +150,33 @@ direction and behavior wording more closely.
 
 ```html
 <div class="re-marquee re-marquee--right" style="--re-marquee-duration: 13s;">
-    <div class="re-marquee__track">
-        <span>`re-marquee--right`</span>
-        <span>same motion as reverse</span>
-        <em>alias class</em>
-    </div>
+	<div class="re-marquee__track">
+		<span>`re-marquee--right`</span>
+		<span>same motion as reverse</span>
+		<em>alias class</em>
+	</div>
 </div>
 
 <div
-    class="re-marquee re-marquee--alternate"
-    style="--re-marquee-duration: 7s;">
-    <div class="re-marquee__track">
-        <span>`re-marquee--alternate`</span>
-        <span>bounces per cycle</span>
-        <strong>alternate</strong>
-    </div>
+	class="re-marquee re-marquee--alternate"
+	style="--re-marquee-duration: 7s;"
+>
+	<div class="re-marquee__track">
+		<span>`re-marquee--alternate`</span>
+		<span>bounces per cycle</span>
+		<strong>alternate</strong>
+	</div>
 </div>
 
 <div
-    class="re-marquee re-marquee--down"
-    style="--re-marquee-duration: 9s; block-size: 9rem;">
-    <div class="re-marquee__track">
-        <span>`re-marquee--down`</span>
-        <span>vertical</span>
-        <span>reverse direction</span>
-    </div>
+	class="re-marquee re-marquee--down"
+	style="--re-marquee-duration: 9s; block-size: 9rem;"
+>
+	<div class="re-marquee__track">
+		<span>`re-marquee--down`</span>
+		<span>vertical</span>
+		<span>reverse direction</span>
+	</div>
 </div>
 ```
 
@@ -199,14 +201,15 @@ A taller lane with stacked content.
 
 ```html
 <div
-    class="re-marquee re-marquee--vertical"
-    style="--re-marquee-duration: 16s; block-size: 12rem;">
-    <div class="re-marquee__track">
-        <span>Alpha</span>
-        <span>Beta</span>
-        <span>Gamma</span>
-        <span>Delta</span>
-    </div>
+	class="re-marquee re-marquee--vertical"
+	style="--re-marquee-duration: 16s; block-size: 12rem;"
+>
+	<div class="re-marquee__track">
+		<span>Alpha</span>
+		<span>Beta</span>
+		<span>Gamma</span>
+		<span>Delta</span>
+	</div>
 </div>
 ```
 
@@ -231,13 +234,14 @@ legacy-style motion.
 
 ```html
 <div
-    class="re-marquee"
-    style="--re-marquee-duration: 10s; --re-marquee-timing-function: steps(24, end);">
-    <div class="re-marquee__track">
-        <span>Stepped motion</span>
-        <strong>steps(24, end)</strong>
-        <span>CSS timing</span>
-    </div>
+	class="re-marquee"
+	style="--re-marquee-duration: 10s; --re-marquee-timing-function: steps(24, end);"
+>
+	<div class="re-marquee__track">
+		<span>Stepped motion</span>
+		<strong>steps(24, end)</strong>
+		<span>CSS timing</span>
+	</div>
 </div>
 ```
 
@@ -261,13 +265,14 @@ Hover the lane to freeze it.
 
 ```html
 <div
-    class="re-marquee re-marquee--pause-on-hover"
-    style="--re-marquee-duration: 11s;">
-    <div class="re-marquee__track">
-        <span>Hover me</span>
-        <span>and I stop</span>
-        <span>moving</span>
-    </div>
+	class="re-marquee re-marquee--pause-on-hover"
+	style="--re-marquee-duration: 11s;"
+>
+	<div class="re-marquee__track">
+		<span>Hover me</span>
+		<span>and I stop</span>
+		<span>moving</span>
+	</div>
 </div>
 ```
 
@@ -291,11 +296,11 @@ A static state for holding a frame in place.
 
 ```html
 <div class="re-marquee re-marquee--paused" style="--re-marquee-duration: 11s;">
-    <div class="re-marquee__track">
-        <span>Paused</span>
-        <span>on purpose</span>
-        <mark>still visible</mark>
-    </div>
+	<div class="re-marquee__track">
+		<span>Paused</span>
+		<span>on purpose</span>
+		<mark>still visible</mark>
+	</div>
 </div>
 ```
 

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../components/BaseLayout.astro'
+import PlaygroundLayout from '../../../../../layouts/PlaygroundLayout.astro'
 import { site } from '../../../data/site'
 import '../../../assets/css/demo.css'
 import '../../../lib/lite.css'
@@ -12,35 +13,14 @@ import '../../../lib/lite.css'
 	bodyClass="demo-page"
 	mainClass="playground-layout"
 	showHeader={false}>
-	<header class="playground-header">
-		<hgroup>
-			<h1>
-				<a href="/remarqueeble/" aria-labelledby="site-title-readable">
-					<span id="site-title-readable" class="sr-only">
-						<mark>{site.readableTitle}</mark>
-					</span>
-					<mark aria-hidden="true">{site.title}</mark>
-				</a>
-			</h1>
-			<h2>playground</h2>
-		</hgroup>
-
-		<nav aria-label="Playground navigation">
-			<ul>
-				<li><a role="button" href="/remarqueeble/">Back</a></li>
-				<li><button type="button" data-reset>Reset</button></li>
-				<li>
-					<button type="button" data-fullscreen>Full Screen</button>
-				</li>
-			</ul>
-		</nav>
-	</header>
-
-	<section
-		id="playground-display"
-		class="playground-display"
-		aria-labelledby="display-heading">
-		<h1 id="display-heading" class="sr-only">Playground</h1>
+	<PlaygroundLayout siteName={site.title} siteHref="/remarqueeble/" fullscreen>
+	<Fragment slot="heading">
+		<span aria-labelledby="site-title-readable">
+			<span id="site-title-readable" class="sr-only"><mark>{site.readableTitle}</mark></span>
+			<mark aria-hidden="true">{site.title}</mark>
+		</span>
+	</Fragment>
+	<Fragment slot="display">
 		<div class="preview-stage" data-preview></div>
 		<div class="code-preview">
 			<div class="code-preview-header">
@@ -56,9 +36,9 @@ import '../../../lib/lite.css'
 			<pre
 				class="astro-code"><code data-events-output>// waiting for marquee events</code></pre>
 		</div>
-	</section>
+	</Fragment>
 
-	<section class="playground-controls" aria-label="Playground controls">
+	<Fragment slot="controls">
 		<form data-playground>
 			<details open>
 				<summary>Show</summary>
@@ -290,9 +270,8 @@ import '../../../lib/lite.css'
 				</label>
 			</details>
 		</form>
-	</section>
-
-	<Fragment slot="scripts">
-		<script src="../../../assets/js/demo.js"></script>
 	</Fragment>
+	</PlaygroundLayout>
+
+	<Fragment slot="scripts"><script src="../../../assets/js/demo.js"></script></Fragment>
 </BaseLayout>

@@ -17,9 +17,9 @@ By Rémino Rem
 <!-- mtoc-start -->
 
 - [Installation](#installation)
-    - [HTML (CDN)](#html-cdn)
-    - [npm](#npm)
-    - [Direct download](#direct-download)
+  - [HTML (CDN)](#html-cdn)
+  - [npm](#npm)
+  - [Direct download](#direct-download)
 - [Usage](#usage)
 - [Feature Comparison](#feature-comparison)
 - [Attributes](#attributes)
@@ -58,9 +58,9 @@ If you want the API instead of auto-registration, import the ES module directly:
 
 ```html
 <script type="module">
-    import { defineRemarqueebleElements } from 'https://unpkg.com/remarqueeble@0.7.0/dist/remarqueeble.mjs'
+	import { defineRemarqueebleElements } from 'https://unpkg.com/remarqueeble@0.7.0/dist/remarqueeble.mjs'
 
-    defineRemarqueebleElements()
+	defineRemarqueebleElements()
 </script>
 ```
 
@@ -196,7 +196,7 @@ directly. For direct CDN usage, `dist/lite.min.css` is also available.
 <link rel="stylesheet" href="https://unpkg.com/remarqueeble/dist/lite.css" />
 
 <div class="re-marquee" style="--re-marquee-duration: 12s;">
-    <div class="re-marquee__track">CSS-only marquee</div>
+	<div class="re-marquee__track">CSS-only marquee</div>
 </div>
 ```
 
