@@ -1,39 +1,115 @@
 # Atelier
 
-Atelier is the shared workspace for Rémino’s publishable JavaScript libraries
-and their documentation. It is deliberately a repository README: it explains
-the workspace, while every published package keeps its own user-facing README.
+Rémino’s monorepo for publishable JavaScript libraries and their shared Astro
+documentation site.
 
-## Layout
+Atelier v0.1.0
 
-- `packages/` contains independently versioned npm packages.
-- `apps/docs/` is the single Astro 7 documentation site. Each library keeps its
-  existing public route, including `/dactylo/`, `/jukette/`, `/paradimg/`,
-  `/remarqueeble/`, and `/scrollerful/`.
-- `bin/` contains the shared Jukette package build and release helpers.
+By Rémino Rem  
+<https://remino.net/>
 
-## Package documentation
+[Docs](https://remino.net/) |
+[Code Repo](https://github.com/remino/atelier)
 
-Package READMEs follow the established library style used by dactylo and
-remarqueeble:
+---
 
-1. Package name and one-sentence description.
-2. Current version, author, and Docs / repository / npm links.
-3. Generated `mtoc` navigation.
-4. Installation, usage, API, development, contribution, and licence sections.
+<!-- mtoc-start -->
 
-Keep documentation about using a library in its package README. Keep workspace
-commands and contributor guidance here.
+- [Packages](#packages)
+- [Documentation](#documentation)
+- [Development](#development)
+- [Repository layout](#repository-layout)
+- [Contributing](#contributing)
+- [Licence](#licence)
+
+<!-- mtoc-end -->
+
+---
+
+## Packages
+
+Atelier contains independently versioned npm packages:
+
+- `dactylo`: typography and text utilities.
+- `paradimg`: browser-side image URL modifiers.
+- `remarqueeble`: a custom element tribute to `<marquee>`.
+- `scrollerful`: scroll-driven web components.
+- `@remino/jukette-*`: the Jukette audio, MIDI, SoundCloud, and core packages.
+
+Each package keeps its own README with installation, usage, API, and release
+documentation.
+
+[Back to top](#)
+
+---
+
+## Documentation
+
+The single Astro 7 site lives in `apps/docs`. Library sites retain their public
+paths:
+
+- <https://remino.net/dactylo/>
+- <https://remino.net/jukette/>
+- <https://remino.net/paradimg/>
+- <https://remino.net/remarqueeble/>
+- <https://remino.net/scrollerful/>
+
+Shared navigation, fonts, and other site assets are supplied through the
+environment-configured middleware proxy.
+
+[Back to top](#)
+
+---
 
 ## Development
 
 ```sh
 npm install
 npm run dev
+npm run build
 ```
 
-Build every package and the documentation site with `npm run build`.
+Pass Astro arguments after `--`:
 
-The root also provides `npm run lint`, `npm run format`, `npm run typecheck`,
-and `npm test`. `just` offers matching shortcuts; run `just hooks` to install
-the Lefthook pre-commit and pre-push checks.
+```sh
+npm run dev -- --host 0.0.0.0
+```
+
+Useful checks:
+
+```sh
+npm run typecheck
+npm test
+npm run lint
+npm run format:check
+```
+
+[Back to top](#)
+
+---
+
+## Repository layout
+
+- `packages/` contains the publishable workspaces.
+- `apps/docs/` contains the merged documentation site.
+- `bin/` contains shared Jukette build and release helpers.
+
+[Back to top](#)
+
+---
+
+## Contributing
+
+Install dependencies, run the checks above, and keep package-specific changes
+inside the relevant workspace. Update the package README when changing a
+library’s public API.
+
+[Back to top](#)
+
+---
+
+## Licence
+
+Individual packages retain their own licence files and terms.
+
+[Back to top](#)
