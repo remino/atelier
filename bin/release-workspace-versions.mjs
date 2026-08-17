@@ -45,19 +45,19 @@ const run = async ([command, version]) => {
 	}
 
 	await Promise.all(
-		manifests.map(async (manifestPath) => {
+		manifests.map(async manifestPath => {
 			const absolutePath = resolve(root, manifestPath)
 			const manifest = JSON.parse(await readFile(absolutePath, 'utf8'))
 			await writeFile(
 				absolutePath,
-				`${JSON.stringify(updateManifest(manifest, version), null, '\t')}\n`,
+				`${JSON.stringify(updateManifest(manifest, version), null, '\t')}\n`
 			)
-		}),
+		})
 	)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-	run(process.argv.slice(2)).catch((error) => {
+	run(process.argv.slice(2)).catch(error => {
 		console.error(error.message)
 		process.exitCode = 1
 	})

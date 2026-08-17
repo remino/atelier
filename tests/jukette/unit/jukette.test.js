@@ -43,13 +43,13 @@ describe('jukette helpers', () => {
 			normalizeTrack({
 				preferMediaMetadata: true,
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ preferMediaMetadata: true, src: '/track.mp3' })
 		expect(
 			normalizeTrack({
 				preferMediaMetadata: 'false',
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ preferMediaMetadata: false, src: '/track.mp3' })
 	})
 
@@ -58,13 +58,13 @@ describe('jukette helpers', () => {
 			normalizeTrack({
 				preload: true,
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ preload: true, src: '/track.mp3' })
 		expect(
 			normalizeTrack({
 				preload: 'false',
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ preload: false, src: '/track.mp3' })
 	})
 
@@ -73,13 +73,13 @@ describe('jukette helpers', () => {
 			normalizeTrack({
 				showSourceLink: true,
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ showSourceLink: true, src: '/track.mp3' })
 		expect(
 			normalizeTrack({
 				showSourceLink: 'false',
 				src: '/track.mp3',
-			}),
+			})
 		).toEqual({ showSourceLink: false, src: '/track.mp3' })
 	})
 
@@ -88,19 +88,19 @@ describe('jukette helpers', () => {
 			normalizeTrack({
 				src: '/track.mp3',
 				startAt: 1.5,
-			}),
+			})
 		).toEqual({ src: '/track.mp3', startAt: 1.5 })
 		expect(
 			normalizeTrack({
 				src: '/track.mp3',
 				startAt: '2.25',
-			}),
+			})
 		).toEqual({ src: '/track.mp3', startAt: 2.25 })
 		expect(
 			normalizeTrack({
 				src: '/track.mp3',
 				startAt: -3,
-			}),
+			})
 		).toEqual({ src: '/track.mp3', startAt: 0 })
 	})
 
@@ -137,7 +137,7 @@ describe('jukette helpers', () => {
 		registerMidi()
 
 		expect(listener).toHaveBeenCalledWith(
-			expect.objectContaining({ type: 'midi' }),
+			expect.objectContaining({ type: 'midi' })
 		)
 
 		unsubscribe()
@@ -206,20 +206,20 @@ describe('jukette helpers', () => {
 
 	it('observes preload metadata option changes', () => {
 		expect(JukettePlayerElement.observedAttributes).toContain(
-			'preload-metadata',
+			'preload-metadata'
 		)
 		expect(JukettePlayerElement.observedAttributes).not.toContain(
-			'playlist-open',
+			'playlist-open'
 		)
 		expect(JukettePlayerElement.observedAttributes).toContain('midi-oscillator')
 		expect(JukettePlayerElement.observedAttributes).toContain(
-			'prefer-media-metadata',
+			'prefer-media-metadata'
 		)
 		expect(JukettePlayerElement.observedAttributes).toContain(
-			'show-source-link',
+			'show-source-link'
 		)
 		expect(JukettePlayerElement.observedAttributes).toContain(
-			'show-track-select',
+			'show-track-select'
 		)
 		expect(JukettePlayerElement.observedAttributes).toContain('display-marquee')
 		expect(JukettePlayerElement.observedAttributes).toContain('playlist-src')
@@ -464,7 +464,7 @@ describe('jukette helpers', () => {
 			vi.fn().mockResolvedValue({
 				arrayBuffer: () => Promise.resolve(bytes.buffer),
 				ok: true,
-			}),
+			})
 		)
 
 		const track = new MidiPlayableTrack(
@@ -479,7 +479,7 @@ describe('jukette helpers', () => {
 				onReady,
 				onStatus() {},
 			},
-			() => 'auto',
+			() => 'auto'
 		)
 
 		await track.load({ metadataPreloadId: 1, restart: true })

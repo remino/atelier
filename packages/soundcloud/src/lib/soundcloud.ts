@@ -25,7 +25,7 @@ type SoundCloudEventPayload = {
 interface SoundCloudWidget {
 	bind(
 		eventName: string,
-		listener: (payload?: SoundCloudEventPayload) => void,
+		listener: (payload?: SoundCloudEventPayload) => void
 	): void
 	getDuration(callback: (duration: number) => void): void
 	getPosition(callback: (position: number) => void): void
@@ -80,7 +80,7 @@ const ensureSoundCloudWidgetApi = async (): Promise<SoundCloudWindow> => {
 
 	soundCloudWidgetPromise = new Promise((resolve, reject) => {
 		const existingScript = document.querySelector<HTMLScriptElement>(
-			`script[src="${soundCloudWidgetApiUrl}"]`,
+			`script[src="${soundCloudWidgetApiUrl}"]`
 		)
 		const script = existingScript ?? document.createElement('script')
 		const cleanup = () => {
@@ -119,7 +119,7 @@ const getHostStateKey = (track: JuketteTrack) =>
 	`${track.type ?? soundCloudPlayerType}:${track.src}`
 
 const parseSoundCloudMetadata = (
-	oembed: SoundCloudOEmbedResponse,
+	oembed: SoundCloudOEmbedResponse
 ): AudioFileMetadata | undefined => {
 	const title = oembed.title?.replace(/\s+by\s+[^]+$/, '').trim()
 	const artist = oembed.author_name?.trim()
@@ -128,7 +128,7 @@ const parseSoundCloudMetadata = (
 }
 
 const parseSoundCloudIframeSrc = (
-	oembed: SoundCloudOEmbedResponse,
+	oembed: SoundCloudOEmbedResponse
 ): string | null => {
 	if (!oembed.html || typeof document === 'undefined') return null
 
@@ -159,7 +159,7 @@ const createHiddenIframe = (src: string): HTMLIFrameElement => {
 const getSoundCloudRoot = (host: HTMLElement): HTMLElement => {
 	const rootNode = host.shadowRoot ?? host
 	const existing = rootNode.querySelector<HTMLElement>(
-		`[${soundCloudRootAttribute}]`,
+		`[${soundCloudRootAttribute}]`
 	)
 	if (existing) return existing
 
@@ -189,7 +189,7 @@ class SoundCloudTrackState {
 	constructor(
 		private readonly track: JuketteTrack,
 		private readonly host: HTMLElement,
-		private readonly trackElement: Element | null,
+		private readonly trackElement: Element | null
 	) {}
 
 	get currentTime(): number {
@@ -213,7 +213,7 @@ class SoundCloudTrackState {
 	}
 
 	async preload(
-		options: JuketteBackendPreloadOptions,
+		options: JuketteBackendPreloadOptions
 	): Promise<JuketteBackendPreloadResult | void> {
 		if (!options.prepare && !options.preloadMetadata) {
 			return
@@ -246,7 +246,7 @@ class SoundCloudTrackState {
 		}
 		this.activeTrack?.trackCallbacks.onProgress(
 			this.positionSeconds,
-			this.durationSeconds,
+			this.durationSeconds
 		)
 		this.activeTrack?.trackCallbacks.onReady()
 		this.activeTrack?.trackCallbacks.onStatus()
@@ -286,18 +286,18 @@ class SoundCloudTrackState {
 		if (!this.widget) return
 
 		const [position, duration] = await Promise.all([
-			new Promise<number>((resolve) =>
-				this.widget?.getPosition((value) => resolve(value / 1000)),
+			new Promise<number>(resolve =>
+				this.widget?.getPosition(value => resolve(value / 1000))
 			),
-			new Promise<number>((resolve) =>
-				this.widget?.getDuration((value) => resolve(value / 1000)),
+			new Promise<number>(resolve =>
+				this.widget?.getDuration(value => resolve(value / 1000))
 			),
 		])
 		if (duration > 0) this.durationSeconds = duration
 		if (position >= 0) this.positionSeconds = position
 		this.activeTrack?.trackCallbacks.onProgress(
 			this.positionSeconds,
-			this.durationSeconds,
+			this.durationSeconds
 		)
 	}
 
@@ -322,14 +322,14 @@ class SoundCloudTrackState {
 		})
 
 		this.oEmbedPromise = fetch(`${soundCloudOEmbedUrl}?${params.toString()}`)
-			.then(async (response) => {
+			.then(async response => {
 				if (!response.ok) {
 					throw new Error('SoundCloud oEmbed request failed.')
 				}
 
 				return (await response.json()) as SoundCloudOEmbedResponse
 			})
-			.then((oembed) => {
+			.then(oembed => {
 				this.metadata = parseSoundCloudMetadata(oembed)
 				return oembed
 			})
@@ -371,13 +371,13 @@ class SoundCloudTrackState {
 			this.ready = true
 			this.widgetReadyResolve?.()
 		})
-		this.widget.bind(events.PLAY_PROGRESS, (payload) => {
+		this.widget.bind(events.PLAY_PROGRESS, payload => {
 			if (!this.playing) return
 			const position = (payload?.currentPosition ?? 0) / 1000
 			if (Number.isFinite(position)) this.positionSeconds = position
 			this.activeTrack?.trackCallbacks.onProgress(
 				this.positionSeconds,
-				this.durationSeconds,
+				this.durationSeconds
 			)
 		})
 		this.widget.bind(events.PLAY, () => {
@@ -398,7 +398,7 @@ class SoundCloudTrackState {
 		})
 		this.widget.bind(events.ERROR, () => {
 			this.widgetReadyReject?.(
-				new Error('SoundCloud widget reported an error.'),
+				new Error('SoundCloud widget reported an error.')
 			)
 			this.activeTrack?.trackCallbacks.onStatus('SoundCloud playback failed')
 		})
@@ -407,8 +407,8 @@ class SoundCloudTrackState {
 	private async readDuration(): Promise<void> {
 		if (!this.widget) return
 
-		const duration = await new Promise<number>((resolve) =>
-			this.widget?.getDuration((value) => resolve(value / 1000)),
+		const duration = await new Promise<number>(resolve =>
+			this.widget?.getDuration(value => resolve(value / 1000))
 		)
 		if (duration > 0) {
 			this.durationSeconds = duration
@@ -423,7 +423,7 @@ class SoundCloudPlayableTrack extends JukettePlayableTrack {
 	constructor(
 		track: JuketteTrack,
 		callbacks: PlayableTrackCallbacks,
-		private readonly state: SoundCloudTrackState,
+		private readonly state: SoundCloudTrackState
 	) {
 		super(track, callbacks)
 		this.state.attach(this)
@@ -486,7 +486,7 @@ class SoundCloudPlayableTrack extends JukettePlayableTrack {
 const createSoundCloudTrackState = (
 	track: JuketteTrack,
 	host: HTMLElement,
-	trackElement: Element | null,
+	trackElement: Element | null
 ): SoundCloudTrackState => {
 	if (trackElement) {
 		const current = elementStates.get(trackElement)
@@ -517,17 +517,17 @@ export const soundCloudBackend: JuketteBackend = {
 		return new SoundCloudPlayableTrack(
 			track,
 			callbacks,
-			createSoundCloudTrackState(track, options.host, options.trackElement),
+			createSoundCloudTrackState(track, options.host, options.trackElement)
 		)
 	},
 	preloadTrack: async (
 		track: JuketteTrack,
-		options,
+		options
 	): Promise<JuketteBackendPreloadResult | void> =>
 		createSoundCloudTrackState(
 			track,
 			options.host,
-			options.trackElement,
+			options.trackElement
 		).preload(options),
 	type: soundCloudPlayerType,
 }

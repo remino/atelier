@@ -1,7 +1,7 @@
 import type { AudioFileMetadata, JuketteDisplayMarquee } from './types'
 
 export const normalizeDisplayMarquee = (
-	value: string | null,
+	value: string | null
 ): JuketteDisplayMarquee => {
 	if (value === 'always' || value === 'never' || value === 'overflow') {
 		return value
@@ -10,7 +10,7 @@ export const normalizeDisplayMarquee = (
 }
 
 export const formatTrackDisplay = (
-	display: Required<AudioFileMetadata>,
+	display: Required<AudioFileMetadata>
 ): string => {
 	const title = display.title.trim()
 	const artist = display.artist.trim()

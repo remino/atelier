@@ -16,12 +16,12 @@ export const juketteAudioBackend: JuketteBackend = {
 	},
 	preloadTrack: async (
 		track: JuketteTrack,
-		options,
+		options
 	): Promise<JuketteBackendPreloadResult | void> => {
 		const result: JuketteBackendPreloadResult = {}
 
 		if (options.preloadDuration && typeof Audio !== 'undefined') {
-			const duration = await new Promise<number | undefined>((resolve) => {
+			const duration = await new Promise<number | undefined>(resolve => {
 				const audio = new Audio()
 				const cleanup = () => {
 					audio.removeEventListener('loadedmetadata', onLoadedMetadata)

@@ -3,7 +3,7 @@ const ORIGINAL_SRC_ATTR = 'data-image-processor-original-src'
 const PROCESSED_SRC_ATTR = 'data-image-processor-processed-src'
 const PROCESSED_CLASS = 'image-processor--processed'
 
-export const parseHashFlags = (src) => {
+export const parseHashFlags = src => {
 	if (!src) return []
 
 	const hash = new URL(src, window.location.href).hash.slice(1)
@@ -14,13 +14,13 @@ export const parseHashFlags = (src) => {
 
 	return query
 		.split('&')
-		.map((token) => {
+		.map(token => {
 			if (!token) return null
 
 			const eqIndex = token.indexOf('=')
 			const hasValue = eqIndex !== -1
 			const keyword = decodeURIComponent(
-				(hasValue ? token.slice(0, eqIndex) : token).trim(),
+				(hasValue ? token.slice(0, eqIndex) : token).trim()
 			).trim()
 
 			if (!keyword) return null
@@ -35,13 +35,13 @@ export const parseHashFlags = (src) => {
 		.filter(Boolean)
 }
 
-export const stripHash = (src) => {
+export const stripHash = src => {
 	const url = new URL(src, window.location.href)
 	url.hash = ''
 	return url.href
 }
 
-const getHash = (src) => {
+const getHash = src => {
 	return new URL(src, window.location.href).hash
 }
 
@@ -53,7 +53,7 @@ const withOriginalHash = (src, hash) => {
 	return url.href
 }
 
-const setImageDimensions = (img) => {
+const setImageDimensions = img => {
 	if (!img.getAttribute('width')) img.setAttribute('width', img.naturalWidth)
 	if (!img.getAttribute('height')) img.setAttribute('height', img.naturalHeight)
 }
@@ -85,7 +85,7 @@ class ImageProcessor {
 		const originalHash = getHash(source)
 		const flags = parseHashFlags(source)
 		const effects = flags
-			.map((flag) => {
+			.map(flag => {
 				const plugin = this.getPlugin(flag.keyword)
 
 				if (!plugin) return null
@@ -184,7 +184,7 @@ class ImageProcessor {
 			const source = img.dataset.imageProcessorOriginalSrc || img.src
 			const flags = parseHashFlags(source)
 
-			if (!flags.some((flag) => this.getPlugin(flag.keyword))) {
+			if (!flags.some(flag => this.getPlugin(flag.keyword))) {
 				continue
 			}
 

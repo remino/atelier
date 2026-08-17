@@ -56,7 +56,7 @@ const highlighter = createHighlighterCore({
 	themes: [githubDark],
 })
 
-const highlightCode = async (value) => {
+const highlightCode = async value => {
 	const shiki = await highlighter
 
 	return shiki
@@ -126,9 +126,9 @@ if (
 	customElements.define(CODE_VIEWER_TAG_NAME, CodeViewer)
 }
 
-const getControl = (name) => form?.elements.namedItem(name)
+const getControl = name => form?.elements.namedItem(name)
 
-const readSetting = (name) => {
+const readSetting = name => {
 	const control = getControl(name)
 
 	if (control instanceof HTMLInputElement && control.type === 'checkbox') {
@@ -162,7 +162,7 @@ const toggleBooleanAttribute = (element, name, enabled) => {
 	element.removeAttribute(name)
 }
 
-const buildEmbedCode = (settings) => {
+const buildEmbedCode = settings => {
 	const attributes = []
 
 	if (settings.preloadMetadata === 'true') {
@@ -220,7 +220,7 @@ const render = () => {
 		toggleBooleanAttribute(
 			player,
 			'prefer-media-metadata',
-			settings.preferMediaMetadata === 'true',
+			settings.preferMediaMetadata === 'true'
 		)
 	}
 
@@ -228,7 +228,7 @@ const render = () => {
 		toggleBooleanAttribute(
 			player,
 			'preload-metadata',
-			settings.preloadMetadata === 'true',
+			settings.preloadMetadata === 'true'
 		)
 	}
 
@@ -236,7 +236,7 @@ const render = () => {
 		toggleBooleanAttribute(
 			player,
 			'show-source-link',
-			settings.showSourceLink === 'true',
+			settings.showSourceLink === 'true'
 		)
 	}
 

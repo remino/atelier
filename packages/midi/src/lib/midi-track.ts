@@ -33,7 +33,7 @@ type ToneTransport = ReturnType<typeof Tone.getTransport>
 export const midiPlaybackRuntime = {
 	createPart(
 		callback: (time: number, note: ScheduledMidiNote) => void,
-		notes: ScheduledMidiNote[],
+		notes: ScheduledMidiNote[]
 	): Tone.Part<ScheduledMidiNote> {
 		return new Tone.Part(callback, notes)
 	},
@@ -54,7 +54,7 @@ export const midiPlaybackRuntime = {
 export const warmMidiAudioContext = async (): Promise<void> => {
 	if (warmMidiPromise) return warmMidiPromise
 
-	warmMidiPromise = midiPlaybackRuntime.start().catch((error) => {
+	warmMidiPromise = midiPlaybackRuntime.start().catch(error => {
 		warmMidiPromise = null
 		throw error
 	})
@@ -74,7 +74,7 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 	constructor(
 		track: JuketteTrack,
 		callbacks: PlayableTrackCallbacks,
-		private readonly getOscillator: () => JuketteMidiOscillator,
+		private readonly getOscillator: () => JuketteMidiOscillator
 	) {
 		super(track, callbacks)
 	}
@@ -139,7 +139,7 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 
 		const oscillatorType = resolveMidiOscillatorType(
 			this.getOscillator(),
-			this.sequence?.metadata?.program,
+			this.sequence?.metadata?.program
 		)
 		this.ensureSynth(oscillatorType)
 		if (!this.synth || !this.sequence) return false
@@ -158,7 +158,7 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 
 		this.timer = window.setTimeout(
 			() => this.finishPlayback(),
-			Math.max(0, this.durationValue - startOffset) * 1000,
+			Math.max(0, this.durationValue - startOffset) * 1000
 		)
 		return true
 	}
@@ -227,7 +227,7 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 	}
 
 	private createPart(
-		notes: MidiSequence['notes'],
+		notes: MidiSequence['notes']
 	): Tone.Part<ScheduledMidiNote> {
 		return midiPlaybackRuntime.createPart(
 			(time, note) => {
@@ -235,15 +235,15 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 					note.frequency,
 					note.duration,
 					time,
-					Math.max(minimumMidiVelocity, note.velocity),
+					Math.max(minimumMidiVelocity, note.velocity)
 				)
 			},
-			notes.map((note) => ({
+			notes.map(note => ({
 				duration: note.duration,
 				frequency: note.frequency,
 				time: note.start,
 				velocity: note.velocity,
-			})),
+			}))
 		)
 	}
 
@@ -260,13 +260,13 @@ export class MidiPlayableTrack extends JukettePlayableTrack {
 
 			const clippedDuration = Math.max(
 				minimumMidiNoteDuration,
-				note.start + note.duration - startOffset,
+				note.start + note.duration - startOffset
 			)
 			this.synth.triggerAttackRelease(
 				note.frequency,
 				clippedDuration,
 				startTime,
-				Math.max(minimumMidiVelocity, note.velocity),
+				Math.max(minimumMidiVelocity, note.velocity)
 			)
 		}
 	}

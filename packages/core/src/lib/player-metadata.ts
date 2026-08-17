@@ -89,10 +89,10 @@ export class JuketteMetadataController {
 	preloadPlaylistMetadata(): void {
 		this.preloadId += 1
 		const tracks = this.options.getTracks()
-		const hasMetadataPreference = tracks.some((track) =>
-			this.options.trackPrefersMediaMetadata(track),
+		const hasMetadataPreference = tracks.some(track =>
+			this.options.trackPrefersMediaMetadata(track)
 		)
-		const hasPrepareRequests = tracks.some((track) => track.preload)
+		const hasPrepareRequests = tracks.some(track => track.preload)
 		if (
 			!this.options.getPreloadMetadata() &&
 			!hasMetadataPreference &&
@@ -109,7 +109,7 @@ export class JuketteMetadataController {
 
 	private async preloadTrackMetadata(
 		track: JuketteTrack,
-		metadataPreloadId: number,
+		metadataPreloadId: number
 	): Promise<void> {
 		const backend = resolveJuketteBackend(track)
 		if (!backend?.preloadTrack) return

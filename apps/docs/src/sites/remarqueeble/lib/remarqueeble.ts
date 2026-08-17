@@ -28,7 +28,7 @@ const HTMLElementBase =
 	globalThis.HTMLElement ?? (class {} as typeof HTMLElement)
 
 export const parsePresentationalDimension = (
-	value: string | null,
+	value: string | null
 ): string | null => {
 	if (value === null) return null
 
@@ -188,7 +188,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 		const track = shadowRoot.querySelector<HTMLElement>('.track')
 		if (!track) throw new Error('Remarqueeble track element was not created.')
 		const scrollAmountProbe = shadowRoot.querySelector<HTMLElement>(
-			'.scrollamount-probe',
+			'.scrollamount-probe'
 		)
 		if (!scrollAmountProbe) {
 			throw new Error('Remarqueeble scrollamount probe was not created.')
@@ -216,7 +216,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 	attributeChangedCallback(
 		_name: string,
 		oldValue: string | null,
-		newValue: string | null,
+		newValue: string | null
 	): void {
 		if (oldValue === newValue) return
 
@@ -360,7 +360,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 
 	private getAlternateStartPosition(
 		hostSize: number,
-		trackSize: number,
+		trackSize: number
 	): number {
 		return this.directionSign < 0 ? hostSize - trackSize : 0
 	}
@@ -527,11 +527,11 @@ export class RemarqueebleElement extends HTMLElementBase {
 	private stepAlternate(hostSize: number, trackSize: number): void {
 		const minPosition = Math.min(
 			this.getAlternateStartPosition(hostSize, trackSize),
-			this.getFlushEndPosition(hostSize, trackSize),
+			this.getFlushEndPosition(hostSize, trackSize)
 		)
 		const maxPosition = Math.max(
 			this.getAlternateStartPosition(hostSize, trackSize),
-			this.getFlushEndPosition(hostSize, trackSize),
+			this.getFlushEndPosition(hostSize, trackSize)
 		)
 		let nextPosition = this.currentPosition + this.currentStepDelta
 
@@ -550,7 +550,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 
 			if (this.hasCompletedIterations()) {
 				this.completeFiniteAnimation(
-					this.currentStepDelta > 0 ? minPosition : maxPosition,
+					this.currentStepDelta > 0 ? minPosition : maxPosition
 				)
 				return
 			}
@@ -590,7 +590,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 			const maxPosition = Math.max(geometry.startPosition, geometry.endPosition)
 			this.currentPosition = Math.min(
 				maxPosition,
-				Math.max(minPosition, this.currentPosition),
+				Math.max(minPosition, this.currentPosition)
 			)
 			return
 		}
@@ -600,7 +600,7 @@ export class RemarqueebleElement extends HTMLElementBase {
 			const maxPosition = Math.max(geometry.startPosition, geometry.endPosition)
 			this.currentPosition = Math.min(
 				maxPosition,
-				Math.max(minPosition, this.currentPosition),
+				Math.max(minPosition, this.currentPosition)
 			)
 		}
 	}

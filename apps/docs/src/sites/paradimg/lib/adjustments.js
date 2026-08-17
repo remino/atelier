@@ -1,6 +1,6 @@
-const canvasToBlobURL = (canvas) => {
+const canvasToBlobURL = canvas => {
 	return new Promise((resolve, reject) => {
-		canvas.toBlob((blob) => {
+		canvas.toBlob(blob => {
 			if (blob) resolve(URL.createObjectURL(blob))
 			else reject(new Error('Failed to convert canvas to blob'))
 		}, 'image/png')
@@ -46,7 +46,7 @@ const createAdjustedBlob = async (img, adjustPixel) => {
 const brightness = {
 	keyword: 'brightness',
 	processedClass: 'brightness--processed',
-	formatValue: (rawValue) => ({
+	formatValue: rawValue => ({
 		factor: parseFactor(rawValue, 1.15),
 	}),
 	async process(img, { value }) {
@@ -61,7 +61,7 @@ const brightness = {
 const contrast = {
 	keyword: 'contrast',
 	processedClass: 'contrast--processed',
-	formatValue: (rawValue) => ({
+	formatValue: rawValue => ({
 		factor: parseFactor(rawValue, 1.2),
 	}),
 	async process(img, { value }) {
@@ -71,15 +71,15 @@ const contrast = {
 		return createAdjustedBlob(img, (r, g, b) => [
 			Math.min(
 				255,
-				Math.max(0, Math.round((r - midpoint) * factor + midpoint)),
+				Math.max(0, Math.round((r - midpoint) * factor + midpoint))
 			),
 			Math.min(
 				255,
-				Math.max(0, Math.round((g - midpoint) * factor + midpoint)),
+				Math.max(0, Math.round((g - midpoint) * factor + midpoint))
 			),
 			Math.min(
 				255,
-				Math.max(0, Math.round((b - midpoint) * factor + midpoint)),
+				Math.max(0, Math.round((b - midpoint) * factor + midpoint))
 			),
 		])
 	},

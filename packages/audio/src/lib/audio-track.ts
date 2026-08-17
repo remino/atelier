@@ -14,7 +14,7 @@ export class AudioPlayableTrack extends JukettePlayableTrack {
 	constructor(
 		track: JuketteTrack,
 		private readonly audio: HTMLAudioElement,
-		callbacks: PlayableTrackCallbacks,
+		callbacks: PlayableTrackCallbacks
 	) {
 		super(track, callbacks)
 	}
@@ -89,7 +89,7 @@ export class AudioPlayableTrack extends JukettePlayableTrack {
 
 			this.callbacks.onMetadata(
 				parseAudioFileMetadata(await response.arrayBuffer()),
-				metadataPreloadId,
+				metadataPreloadId
 			)
 		} catch {
 			// Leave authored title and artist in place when tags cannot be read.

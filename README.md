@@ -8,8 +8,7 @@ Atelier v0.1.0
 By Rémino Rem  
 <https://remino.net/>
 
-[Docs](https://remino.net/) |
-[Code Repo](https://github.com/remino/atelier)
+[Docs](https://remino.net/) | [Code Repo](https://github.com/remino/atelier)
 
 ---
 

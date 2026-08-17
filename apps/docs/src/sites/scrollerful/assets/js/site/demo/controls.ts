@@ -1,38 +1,38 @@
 const controlsOpenKey = 'scrollerful-demo-controls-open'
 const scopeSpriteSelector = '.sclf:not(.contain-always)'
 
-const changedDirection = (value) => {
+const changedDirection = value => {
 	document.body.classList.remove(
 		'demo--horizontal',
 		'demo--vertical',
-		'sclf--x',
+		'sclf--x'
 	)
 	document.body.classList.add(`demo--${value}`)
 	if (value === 'horizontal') document.body.classList.add('sclf--x')
 }
 
-const changedScope = (value) => {
+const changedScope = value => {
 	document.body.classList.remove('demo--contain', 'demo--cover')
 	document.body.classList.add(`demo--${value}`)
 
 	if (value === 'contain') {
 		document
 			.querySelectorAll(`${scopeSpriteSelector} .sclf__sprite`)
-			.forEach((el) => {
+			.forEach(el => {
 				el.classList.remove('sclf__sprite')
 				el.classList.add('sclf__sprite--contain')
 			})
 	} else {
 		document
 			.querySelectorAll(`${scopeSpriteSelector} .sclf__sprite--contain`)
-			.forEach((el) => {
+			.forEach(el => {
 				el.classList.remove('sclf__sprite--contain')
 				el.classList.add('sclf__sprite')
 			})
 	}
 }
 
-const changedSize = (value) => {
+const changedSize = value => {
 	document.body.style.setProperty('--container-size', value)
 }
 
@@ -55,7 +55,7 @@ const radioChanged = ({ currentTarget }) => {
 const loadDemoTemplates = () => {
 	let controls: Element | null = null
 
-	document.querySelectorAll('template.js-template').forEach((template) => {
+	document.querySelectorAll('template.js-template').forEach(template => {
 		if (!(template instanceof HTMLTemplateElement)) return
 
 		const content = template.content.cloneNode(true) as DocumentFragment
@@ -66,7 +66,7 @@ const loadDemoTemplates = () => {
 	return controls
 }
 
-const setupControls = (element) => {
+const setupControls = element => {
 	if (!(element instanceof HTMLDetailsElement)) return null
 	const controls = element
 
@@ -84,28 +84,28 @@ const setupControls = (element) => {
 		}
 	})
 
-	document.querySelectorAll('input[type=radio]').forEach((el) => {
+	document.querySelectorAll('input[type=radio]').forEach(el => {
 		el.addEventListener('change', radioChanged)
 	})
 
 	const scope = document.querySelector<HTMLInputElement>(
-		'input[name=scope]:checked',
+		'input[name=scope]:checked'
 	)
 	if (scope) changedScope(scope.value)
 
 	const size = document.querySelector<HTMLInputElement>(
-		'input[name=size]:checked',
+		'input[name=size]:checked'
 	)
 	if (size) changedSize(size.value)
 
 	return controls
 }
 
-const revealControlsAfterIntro = (controls) => {
+const revealControlsAfterIntro = controls => {
 	const intro = document.querySelector('.sclf')
 	if (!controls || !intro) return
 
-	const observer = new IntersectionObserver((entries) => {
+	const observer = new IntersectionObserver(entries => {
 		if (entries[0].isIntersecting) return
 
 		controls.classList.add('controls--visible')

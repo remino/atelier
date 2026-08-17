@@ -49,7 +49,7 @@ const isDocumentScroller = (el: HTMLElement): boolean =>
 const getDocumentScrollSize = (horizontal = false): number =>
 	Math.max(
 		getElScrollSize(document.body, horizontal),
-		getElScrollSize(document.documentElement, horizontal),
+		getElScrollSize(document.documentElement, horizontal)
 	)
 const getStyleEl = (): HTMLStyleElement | null =>
 	document.getElementById(EL_ID_STYLE) as HTMLStyleElement | null
@@ -61,7 +61,7 @@ const getViewportSize = (horizontal: boolean): number =>
 	getViewportRect()[horizontal ? 'width' : 'height']
 const showsOverflow = (el: HTMLElement, horizontal: boolean): boolean =>
 	['auto', 'scroll'].includes(
-		getComputedStyle(el).getPropertyValue(`overflow-${horizontal ? 'x' : 'y'}`),
+		getComputedStyle(el).getPropertyValue(`overflow-${horizontal ? 'x' : 'y'}`)
 	)
 const sortNums = (...nums: number[]): number[] => nums.sort((a, b) => a - b)
 
@@ -111,7 +111,7 @@ const getElAxisCoords = (el: HTMLElement, horizontal = false): AxisCoords => {
 
 const getContainerCoords = (
 	el: HTMLElement,
-	horizontal: boolean,
+	horizontal: boolean
 ): ContainerCoords => {
 	const { size, start } = getElAxisCoords(el, horizontal)
 	const overflow = showsOverflow(el, horizontal)
@@ -133,11 +133,11 @@ const getContainerCoords = (
 
 const sectionProgress = (
 	el: HTMLElement,
-	horizontal: boolean,
+	horizontal: boolean
 ): ScrollProgress => {
 	const { containerStart, containerSize, viewSize } = getContainerCoords(
 		el,
-		horizontal,
+		horizontal
 	)
 
 	return {
@@ -155,12 +155,12 @@ const processSection = (el: HTMLElement, horizontal: boolean): void => {
 			bubbles: true,
 			cancelable: true,
 			composed: false,
-		}),
+		})
 	)
 }
 
 const removeStyleProperties = (el: HTMLElement, ...names: string[]): void => {
-	names.forEach((name) => el.style.removeProperty(name))
+	names.forEach(name => el.style.removeProperty(name))
 }
 
 const setStyleVars = (event: Event): void => {
@@ -178,7 +178,7 @@ const setStyleVars = (event: Event): void => {
 		removeStyleProperties(
 			target,
 			CSS_PROP_PROGRESS_CONTAIN,
-			CSS_PROP_PROGRESS_COVER,
+			CSS_PROP_PROGRESS_COVER
 		)
 		return
 	}
@@ -192,7 +192,7 @@ const triggerEnterExit = (
 	progress: number,
 	eventEnter: string,
 	eventExit: string,
-	className: string,
+	className: string
 ): void => {
 	if (!isWithin(progress, 0, 1)) {
 		if (target.classList.contains(className)) {
@@ -203,7 +203,7 @@ const triggerEnterExit = (
 					bubbles: true,
 					cancelable: true,
 					composed: false,
-				}),
+				})
 			)
 		}
 	} else if (!target.classList.contains(className)) {
@@ -214,7 +214,7 @@ const triggerEnterExit = (
 				bubbles: true,
 				cancelable: true,
 				composed: false,
-			}),
+			})
 		)
 	}
 }
@@ -235,7 +235,7 @@ const triggerContainEnterExit = (event: Event): void => {
 		contain,
 		EVENT_CONTAIN_ENTER,
 		EVENT_CONTAIN_EXIT,
-		CSS_CLASS_INSIDE_CONTAIN,
+		CSS_CLASS_INSIDE_CONTAIN
 	)
 }
 
@@ -255,7 +255,7 @@ const triggerCoverEnterExit = (event: Event): void => {
 		cover,
 		EVENT_COVER_ENTER,
 		EVENT_COVER_EXIT,
-		CSS_CLASS_INSIDE_COVER,
+		CSS_CLASS_INSIDE_COVER
 	)
 }
 
@@ -264,8 +264,8 @@ const scrollFrame = (target: HTMLElement): void => {
 
 	Promise.all(
 		[target, ...Array.from(target.querySelectorAll<HTMLElement>(SEL_TRAY))].map(
-			(el) => processSection(el, horizontal),
-		),
+			el => processSection(el, horizontal)
+		)
 	)
 }
 
@@ -282,7 +282,7 @@ const addScrollListeners = (scrollEl: HTMLElement): void => {
 	;[
 		scrollEl,
 		...Array.from(scrollEl.querySelectorAll<HTMLElement>(SEL_TRAY)),
-	].forEach((el) => {
+	].forEach(el => {
 		el.addEventListener(EVENT_SCROLL, setStyleVars)
 		el.addEventListener(EVENT_SCROLL, triggerCoverEnterExit)
 		el.addEventListener(EVENT_SCROLL, triggerContainEnterExit)
@@ -294,12 +294,12 @@ const scrollerful = (): void => {
 	addRuler()
 
 	Array.from(document.querySelectorAll<HTMLElement>(SEL_SCROLL)).forEach(
-		(target) => {
+		target => {
 			target.addEventListener('resize', () => scroll(target))
 			target.addEventListener('scroll', () => scroll(target))
 			addScrollListeners(target)
 			scroll(target)
-		},
+		}
 	)
 
 	window.addEventListener('resize', () => scroll(document.body))

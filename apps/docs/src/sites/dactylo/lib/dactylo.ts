@@ -126,7 +126,7 @@ const playPlayback = (state: PlaybackState): boolean => {
 }
 
 const wait = (duration: number, state: PlaybackState): Promise<void> =>
-	new Promise((resolve) => {
+	new Promise(resolve => {
 		const started = Date.now()
 
 		const tick = (): void => {
@@ -154,23 +154,23 @@ const getPlaybackState = (state: PlaybackState): DactyloState => {
 const runInSeries = (tasks: Array<() => Promise<unknown>>): Promise<void> =>
 	tasks.reduce<Promise<unknown>>(
 		(promise, task) => promise.then(task),
-		Promise.resolve(),
+		Promise.resolve()
 	) as Promise<void>
 
 const dispatchEvent = (
 	name: string,
 	element: Element,
-	detail: Record<string, unknown> = {},
+	detail: Record<string, unknown> = {}
 ): void => {
 	element.dispatchEvent(
-		new CustomEvent(name, { bubbles: true, cancelable: true, detail }),
+		new CustomEvent(name, { bubbles: true, cancelable: true, detail })
 	)
 }
 
 const selectElements = (
 	root: ParentNode,
 	selectors: string | string[],
-	notIn: string[] = [],
+	notIn: string[] = []
 ): HTMLElement[] => {
 	const selector = toSelector(selectors)
 	const rootMatches =
@@ -186,8 +186,8 @@ const selectElements = (
 		(element, index, elements) =>
 			elements.indexOf(element) === index &&
 			!element.closest(SKIP_SELECTOR) &&
-			!notIn.some((selector) => element.closest(selector)) &&
-			element.innerText.trim() !== '',
+			!notIn.some(selector => element.closest(selector)) &&
+			element.innerText.trim() !== ''
 	)
 }
 
@@ -253,7 +253,7 @@ const step = (
 	prepared: PreparedElement,
 	output: HTMLElement,
 	options: Required<Pick<DactyloOptions, 'showFinalCaret'>>,
-	state: PlaybackState,
+	state: PlaybackState
 ): boolean => {
 	const active = activeElements.get(prepared.element)
 	if (!active || active.id !== prepared.id || state.stopped) return false
@@ -268,7 +268,7 @@ const step = (
 	output.append(prepared.element.ownerDocument.createElement('wbr'))
 	output.classList.toggle(
 		'dactylo__output--hide-caret',
-		!options.showFinalCaret && pointer >= chars.length - 1,
+		!options.showFinalCaret && pointer >= chars.length - 1
 	)
 
 	if (pointer < chars.length) return true
@@ -281,9 +281,9 @@ const typeElement = (
 	prepared: PreparedElement,
 	group: DactyloGroup,
 	options: Required<Pick<DactyloOptions, 'caret' | 'showFinalCaret'>>,
-	state: PlaybackState,
+	state: PlaybackState
 ): Promise<void> =>
-	new Promise((resolve) => {
+	new Promise(resolve => {
 		const chars = Array.from(prepared.element.innerText)
 		const started = Date.now()
 		const duration =
@@ -314,7 +314,7 @@ const typeElement = (
 const showPrompt = async (
 	first: PreparedElement | undefined,
 	options: Required<Pick<DactyloOptions, 'caret' | 'prompt' | 'startDelay'>>,
-	state: PlaybackState,
+	state: PlaybackState
 ): Promise<void> => {
 	if (!first) return
 	if (
@@ -348,17 +348,17 @@ const runGroup = (
 	root: ParentNode,
 	prepared: Map<HTMLElement, PreparedElement>,
 	options: Required<Pick<DactyloOptions, 'caret' | 'showFinalCaret'>>,
-	state: PlaybackState,
+	state: PlaybackState
 ): Promise<unknown> => {
 	const tasks = selectElements(root, group.sels, group.notIn)
-		.map((element) => prepared.get(element))
-		.filter((preparedElement) => preparedElement !== undefined)
+		.map(element => prepared.get(element))
+		.filter(preparedElement => preparedElement !== undefined)
 		.map(
-			(preparedElement) => () =>
-				typeElement(preparedElement, group, options, state),
+			preparedElement => () =>
+				typeElement(preparedElement, group, options, state)
 		)
 
-	if (group.parallel) return Promise.all(tasks.map((task) => task()))
+	if (group.parallel) return Promise.all(tasks.map(task => task()))
 	return runInSeries(tasks)
 }
 
@@ -443,7 +443,7 @@ export const resetDactylo = (root?: ParentNode): void => {
 	for (const element of elements) {
 		const active = activeElements.get(element)
 		const original = element.querySelector<HTMLElement>(
-			'[data-dactylo-original]',
+			'[data-dactylo-original]'
 		)
 		element.innerHTML =
 			active?.originalHtml ?? original?.innerHTML ?? element.innerHTML
@@ -454,7 +454,7 @@ export const resetDactylo = (root?: ParentNode): void => {
 
 export const dactylo = (
 	rootOrOptions?: ParentNode | DactyloOptions,
-	maybeOptions: DactyloOptions = {},
+	maybeOptions: DactyloOptions = {}
 ): DactyloController => {
 	const root =
 		rootOrOptions && 'querySelectorAll' in rootOrOptions
@@ -489,12 +489,12 @@ export const dactylo = (
 
 	resetDactylo(targetRoot)
 
-	const selected = groups.flatMap((group) =>
-		selectElements(targetRoot, group.sels, group.notIn),
+	const selected = groups.flatMap(group =>
+		selectElements(targetRoot, group.sels, group.notIn)
 	)
 	const elements = [...new Set(selected)]
 	const prepared = new Map(
-		elements.map((element) => [element, prepareElement(element)]),
+		elements.map(element => [element, prepareElement(element)])
 	)
 	const runId = ++activeRunId
 	const playback = createPlaybackState()
@@ -549,19 +549,19 @@ export const dactylo = (
 					showPrompt(
 						prepared.values().next().value,
 						{ caret, prompt, startDelay },
-						playback,
+						playback
 					),
 				...groups.map(
-					(group) => () =>
+					group => () =>
 						runGroup(
 							group,
 							targetRoot,
 							prepared,
 							{ caret, showFinalCaret },
-							playback,
-						),
+							playback
+						)
 				),
-			]),
+			])
 		)
 		.then(() => {
 			if (activeRunId !== runId) return

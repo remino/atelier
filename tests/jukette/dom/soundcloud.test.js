@@ -6,14 +6,14 @@ import { register as registerSoundCloud } from '@remino/jukette-soundcloud'
 
 const soundCloudTrackUrl = 'https://soundcloud.com/forss/flickermood'
 
-const patchAudio = (audio) => {
+const patchAudio = audio => {
 	let currentTime = 0
 	let paused = true
 
 	Object.defineProperty(audio, 'currentTime', {
 		configurable: true,
 		get: () => currentTime,
-		set: (value) => {
+		set: value => {
 			currentTime = value
 		},
 	})
@@ -37,7 +37,7 @@ const patchAudio = (audio) => {
 
 const createSoundCloudApi = () => {
 	const widgets = []
-	const createWidget = (iframe) => {
+	const createWidget = iframe => {
 		const listeners = new Map()
 		const widget = {
 			bind: vi.fn((eventName, listener) => {
@@ -46,8 +46,8 @@ const createSoundCloudApi = () => {
 			emit(eventName, payload) {
 				listeners.get(eventName)?.(payload)
 			},
-			getDuration: vi.fn((callback) => callback(123000)),
-			getPosition: vi.fn((callback) => callback(0)),
+			getDuration: vi.fn(callback => callback(123000)),
+			getPosition: vi.fn(callback => callback(0)),
 			pause: vi.fn(() => {
 				widget.emit(events.PAUSE)
 			}),
@@ -80,7 +80,7 @@ const stubSoundCloudEnvironment = () => {
 	const soundCloud = createSoundCloudApi()
 	vi.stubGlobal(
 		'fetch',
-		vi.fn(async (url) => ({
+		vi.fn(async url => ({
 			json: async () => ({
 				author_name: 'Forss',
 				html: '<iframe src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F293"></iframe>',
@@ -88,13 +88,13 @@ const stubSoundCloudEnvironment = () => {
 			}),
 			ok: true,
 			url,
-		})),
+		}))
 	)
 	window.SC = soundCloud.api
 	return soundCloud
 }
 
-const renderPlayer = (markup) => {
+const renderPlayer = markup => {
 	defineElement()
 	registerAudio()
 	registerSoundCloud()
@@ -120,7 +120,7 @@ const renderPlayer = (markup) => {
 const flushAsync = async (count = 3) => {
 	for (let index = 0; index < count; index += 1) {
 		await Promise.resolve()
-		await new Promise((resolve) => window.setTimeout(resolve, 0))
+		await new Promise(resolve => window.setTimeout(resolve, 0))
 	}
 }
 
@@ -142,20 +142,20 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected SoundCloud widget to be created.',
+			'Expected SoundCloud widget to be created.'
 		)
 		expect(ctx.elements.play.disabled).toBe(true)
 
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected SoundCloud track to become ready.',
+			'Expected SoundCloud track to become ready.'
 		)
 
 		expect(ctx.elements.play.disabled).toBe(false)
 		await waitFor(
 			() => ctx.elements.display.textContent === 'Flickermood - Forss',
-			'Expected SoundCloud display metadata to update.',
+			'Expected SoundCloud display metadata to update.'
 		)
 		expect(ctx.elements.display.textContent).toBe('Flickermood - Forss')
 
@@ -173,11 +173,11 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => ctx.elements.sourceLink.hidden === false,
-			'Expected source link to become visible.',
+			'Expected source link to become visible.'
 		)
 
 		expect(ctx.elements.sourceLink.getAttribute('href')).toBe(
-			soundCloudTrackUrl,
+			soundCloudTrackUrl
 		)
 		expect(ctx.elements.sourceLink.textContent).toBe('↗')
 	})
@@ -199,22 +199,22 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => ctx.elements.sourceLink.hidden === false,
-			'Expected first track source link to become visible.',
+			'Expected first track source link to become visible.'
 		)
 		expect(ctx.elements.sourceLink.getAttribute('href')).toBe(
-			soundCloudTrackUrl,
+			soundCloudTrackUrl
 		)
 
 		ctx.elements.select.value = '1'
 		ctx.elements.select.dispatchEvent(new Event('change'))
 		await waitFor(
 			() => soundCloud.widgets.length === 2,
-			'Expected second SoundCloud widget to be created.',
+			'Expected second SoundCloud widget to be created.'
 		)
 
 		await waitFor(
 			() => ctx.elements.sourceLink.hidden === true,
-			'Expected second track source link to become hidden.',
+			'Expected second track source link to become hidden.'
 		)
 		expect(ctx.elements.sourceLink.hasAttribute('href')).toBe(false)
 
@@ -231,14 +231,14 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected SoundCloud widget to be created.',
+			'Expected SoundCloud widget to be created.'
 		)
 
 		soundCloud.widgets[0].widget.emit(soundCloud.events.PLAY)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected SoundCloud track to become ready.',
+			'Expected SoundCloud track to become ready.'
 		)
 
 		expect(ctx.elements.play.getAttribute('aria-label')).toBe('Play')
@@ -253,12 +253,12 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected first SoundCloud widget to be created.',
+			'Expected first SoundCloud widget to be created.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected initial SoundCloud track to become ready.',
+			'Expected initial SoundCloud track to become ready.'
 		)
 		ctx.elements.select.value = '1'
 		ctx.elements.select.dispatchEvent(new Event('change'))
@@ -267,7 +267,7 @@ describe('SoundCloud addon', () => {
 		ctx.elements.select.dispatchEvent(new Event('change'))
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected SoundCloud widget to be reused after reselecting the track.',
+			'Expected SoundCloud widget to be reused after reselecting the track.'
 		)
 
 		expect(soundCloud.widgets).toHaveLength(1)
@@ -281,12 +281,12 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected SoundCloud widget to be created.',
+			'Expected SoundCloud widget to be created.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected SoundCloud track to become ready.',
+			'Expected SoundCloud track to become ready.'
 		)
 
 		expect(soundCloud.widgets[0].widget.seekTo).toHaveBeenCalledWith(12500)
@@ -307,12 +307,12 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected first SoundCloud widget to be created.',
+			'Expected first SoundCloud widget to be created.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected initial SoundCloud track to become ready.',
+			'Expected initial SoundCloud track to become ready.'
 		)
 
 		await ctx.player.play()
@@ -329,12 +329,12 @@ describe('SoundCloud addon', () => {
 		ctx.elements.select.dispatchEvent(new Event('change'))
 		await waitFor(
 			() => ctx.elements.play.disabled === true,
-			'Expected reselected SoundCloud track to prepare again.',
+			'Expected reselected SoundCloud track to prepare again.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected reselected SoundCloud track to become ready.',
+			'Expected reselected SoundCloud track to become ready.'
 		)
 
 		expect(soundCloud.widgets[0].widget.seekTo).toHaveBeenLastCalledWith(0)
@@ -350,12 +350,12 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected first SoundCloud widget to be created.',
+			'Expected first SoundCloud widget to be created.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected initial SoundCloud track to become ready.',
+			'Expected initial SoundCloud track to become ready.'
 		)
 
 		await ctx.player.play()
@@ -376,12 +376,12 @@ describe('SoundCloud addon', () => {
 		})
 		await waitFor(
 			() => ctx.elements.play.disabled === true,
-			'Expected reselected SoundCloud track to prepare again.',
+			'Expected reselected SoundCloud track to prepare again.'
 		)
 		soundCloud.widgets[0].widget.emit(soundCloud.events.READY)
 		await waitFor(
 			() => ctx.elements.play.disabled === false,
-			'Expected reselected SoundCloud track to become ready.',
+			'Expected reselected SoundCloud track to become ready.'
 		)
 
 		expect(ctx.player.currentTime).toBe(0)
@@ -396,14 +396,14 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected preloaded SoundCloud widget to be created.',
+			'Expected preloaded SoundCloud widget to be created.'
 		)
 
 		expect(soundCloud.widgets).toHaveLength(1)
 		expect(
 			fetch.mock.calls.filter(([url]) =>
-				String(url).startsWith('https://soundcloud.com/oembed'),
-			),
+				String(url).startsWith('https://soundcloud.com/oembed')
+			)
 		).toHaveLength(1)
 	})
 
@@ -419,8 +419,8 @@ describe('SoundCloud addon', () => {
 		expect(soundCloud.widgets).toHaveLength(0)
 		expect(
 			fetch.mock.calls.filter(([url]) =>
-				String(url).startsWith('https://soundcloud.com/oembed'),
-			),
+				String(url).startsWith('https://soundcloud.com/oembed')
+			)
 		).toHaveLength(0)
 	})
 
@@ -433,13 +433,13 @@ describe('SoundCloud addon', () => {
 
 		await waitFor(
 			() => soundCloud.widgets.length === 1,
-			'Expected first SoundCloud widget to be created.',
+			'Expected first SoundCloud widget to be created.'
 		)
 		ctx.elements.select.value = '1'
 		ctx.elements.select.dispatchEvent(new Event('change'))
 		await waitFor(
 			() => soundCloud.widgets.length === 2,
-			'Expected second SoundCloud widget to be created.',
+			'Expected second SoundCloud widget to be created.'
 		)
 
 		expect(soundCloud.widgets).toHaveLength(2)

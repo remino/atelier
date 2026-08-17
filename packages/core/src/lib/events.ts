@@ -2,7 +2,7 @@ import type { JuketteEventDetail } from './types'
 import { inferTrackType } from './tracks'
 
 export const createJuketteEventDetail = (
-	detail: Omit<JuketteEventDetail, 'type'>,
+	detail: Omit<JuketteEventDetail, 'type'>
 ): JuketteEventDetail => ({
 	...detail,
 	tracks: [...detail.tracks],

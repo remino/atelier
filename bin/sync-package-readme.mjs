@@ -5,11 +5,11 @@ import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
 
-const run = async (args) => {
+const run = async args => {
 	const [packagePath, mode = 'copy'] = args
 	if (!packagePath) {
 		throw new Error(
-			'Usage: sync-package-readme.mjs <package-path> [copy|clean]',
+			'Usage: sync-package-readme.mjs <package-path> [copy|clean]'
 		)
 	}
 
@@ -20,7 +20,7 @@ const run = async (args) => {
 	}
 	if (mode !== 'copy') {
 		throw new Error(
-			'Usage: sync-package-readme.mjs <package-path> [copy|clean]',
+			'Usage: sync-package-readme.mjs <package-path> [copy|clean]'
 		)
 	}
 
@@ -28,7 +28,7 @@ const run = async (args) => {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-	run(process.argv.slice(2)).catch((error) => {
+	run(process.argv.slice(2)).catch(error => {
 		console.error(error.message)
 		process.exitCode = 1
 	})

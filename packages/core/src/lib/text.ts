@@ -14,7 +14,7 @@ export const decodeUtf16Be = (bytes: Uint8Array): string => {
 
 export const decodeTextBytes = (
 	bytes: Uint8Array,
-	encoding: string,
+	encoding: string
 ): string => {
 	try {
 		return new TextDecoder(encoding).decode(bytes)

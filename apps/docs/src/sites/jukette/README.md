@@ -16,9 +16,9 @@ By Rémino Rem
 <!-- mtoc-start -->
 
 - [Installation](#installation)
-  - [HTML (CDN)](#html-cdn)
-  - [npm](#npm)
-  - [Direct download](#direct-download)
+    - [HTML (CDN)](#html-cdn)
+    - [npm](#npm)
+    - [Direct download](#direct-download)
 - [Usage](#usage)
 - [Playlist](#playlist)
 - [Tracks](#tracks)
@@ -59,9 +59,9 @@ If you want the API instead of auto-registration, import the ES module directly:
 
 ```html
 <script type="module">
-	import { defineElement } from 'https://unpkg.com/jukette@0.9.0/dist/jukette.mjs'
+    import { defineElement } from 'https://unpkg.com/jukette@0.9.0/dist/jukette.mjs'
 
-	defineElement()
+    defineElement()
 </script>
 ```
 
@@ -98,12 +98,11 @@ npm install jukette @remino/jukette-midi @remino/jukette-soundcloud
 - `jukette`: convenience package with `@remino/jukette-core` and
   `@remino/jukette-audio`.
 - `@remino/jukette-core`: backendless player infrastructure.
-- `@remino/jukette-audio` and `@remino/jukette-audio/auto`: browser-native
-  audio backend.
-- `@remino/jukette-midi` and `@remino/jukette-midi/auto`: optional MIDI
+- `@remino/jukette-audio` and `@remino/jukette-audio/auto`: browser-native audio
   backend.
-- `@remino/jukette-soundcloud` and `@remino/jukette-soundcloud/auto`:
-  optional SoundCloud backend.
+- `@remino/jukette-midi` and `@remino/jukette-midi/auto`: optional MIDI backend.
+- `@remino/jukette-soundcloud` and `@remino/jukette-soundcloud/auto`: optional
+  SoundCloud backend.
 
 Typical addon usage:
 
@@ -147,28 +146,24 @@ Or pass a playlist with child track elements:
 
 ```html
 <jukette-player preload-metadata prefer-media-metadata>
-	<jukette-track
-		title="Theme"
-		artist="Local"
-		src="/audio/theme.mp3"
-	></jukette-track>
-	<jukette-track
-		title="Sketch"
-		src="/midi/sketch.mid"
-		type="midi"
-	></jukette-track>
-	<jukette-track
-		title="Flickermood"
-		artist="Forss"
-		src="https://soundcloud.com/forss/flickermood"
-		type="soundcloud"
-		preload
-	></jukette-track>
-	<jukette-track
-		title="Reprise"
-		artist="Local"
-		src="/audio/reprise.ogg"
-	></jukette-track>
+    <jukette-track
+        title="Theme"
+        artist="Local"
+        src="/audio/theme.mp3"></jukette-track>
+    <jukette-track
+        title="Sketch"
+        src="/midi/sketch.mid"
+        type="midi"></jukette-track>
+    <jukette-track
+        title="Flickermood"
+        artist="Forss"
+        src="https://soundcloud.com/forss/flickermood"
+        type="soundcloud"
+        preload></jukette-track>
+    <jukette-track
+        title="Reprise"
+        artist="Local"
+        src="/audio/reprise.ogg"></jukette-track>
 </jukette-player>
 ```
 
@@ -195,30 +190,28 @@ Use direct `<jukette-track>` children for authored HTML. Browser HTML requires
 explicit closing tags, so write `<jukette-track></jukette-track>` rather than a
 self-closing tag.
 
-For generated markup or compatibility with older usage, the `playlist`
-attribute also accepts JSON. Each item can be either a URL string or a track
-object.
+For generated markup or compatibility with older usage, the `playlist` attribute
+also accepts JSON. Each item can be either a URL string or a track object.
 
 ```json
 [
-	"/audio/one.mp3",
-	{
-		"title": "Two",
-		"artist": "Example",
-		"src": "/audio/two.ogg",
-		"type": "audio",
-		"preload": true,
-		"preferMediaMetadata": false
-	}
+    "/audio/one.mp3",
+    {
+        "title": "Two",
+        "artist": "Example",
+        "src": "/audio/two.ogg",
+        "type": "audio",
+        "preload": true,
+        "preferMediaMetadata": false
+    }
 ]
 ```
 
 When JSON parsing fails, Jukette treats the attribute as a newline-separated URL
 list.
 
-For remote JSON, point `playlist-src` at an endpoint or static file that
-returns the same JSON array or object shape accepted by the `playlist`
-attribute.
+For remote JSON, point `playlist-src` at an endpoint or static file that returns
+the same JSON array or object shape accepted by the `playlist` attribute.
 
 ```html
 <jukette-player playlist-src="/audio/playlist.json"></jukette-player>
@@ -252,8 +245,8 @@ Track sources are resolved in this order:
   preparation preference.
 - `prefer-media-metadata` / `preferMediaMetadata`: optional per-track override
   for the player's media metadata preference.
-- `show-source-link` / `showSourceLink`: optional per-track override for
-  whether the selected track should expose a source-page link in the header.
+- `show-source-link` / `showSourceLink`: optional per-track override for whether
+  the selected track should expose a source-page link in the header.
 
 If `type` is omitted, Jukette treats `.mid` / `.midi` sources as `midi`.
 Everything else defaults to `audio`.
@@ -269,10 +262,10 @@ previews, not a full General MIDI instrument set.
 SoundCloud playback is available through the optional
 `@remino/jukette-soundcloud` addon. Selecting a SoundCloud track prepares the
 hidden widget and oEmbed metadata first, then enables Play once the widget is
-ready to accept playback calls. Player-level `preload-metadata` does not
-prepare SoundCloud tracks by itself; use per-track `preload` when you want a
-SoundCloud widget prepared before selection, and `prefer-media-metadata` when
-you want authored labels to yield to fetched SoundCloud metadata.
+ready to accept playback calls. Player-level `preload-metadata` does not prepare
+SoundCloud tracks by itself; use per-track `preload` when you want a SoundCloud
+widget prepared before selection, and `prefer-media-metadata` when you want
+authored labels to yield to fetched SoundCloud metadata.
 
 If a selected track type has no registered backend, Jukette leaves the track
 selected, keeps playback controls disabled, and surfaces that the track type is
@@ -326,24 +319,24 @@ registered backends that provide preload hooks, including browser-native audio
 and local MIDI. SoundCloud stays opt-in here: player-level `preload-metadata`
 alone does not fetch or prepare SoundCloud tracks.
 
-Use `currentTime` to read the current playback position in seconds. Assigning
-to `currentTime` seeks, matching native media element behavior.
+Use `currentTime` to read the current playback position in seconds. Assigning to
+`currentTime` seeks, matching native media element behavior.
 
 Use `currentTrack`, `currentTrackIndex`, and `totalTracks` to inspect the track
 selection state.
 
 Selecting a track prepares it and resets playback to the start of that track.
-Playback begins only after an explicit `play()` call or a user press on the
-play button.
+Playback begins only after an explicit `play()` call or a user press on the play
+button.
 
 If the selected track backend is unavailable, Jukette keeps the selected track
 visible but leaves play, seek, and time controls disabled.
 
 Use `prefer-media-metadata` or `preferMediaMetadata` to let readable media-file
-tags override authored track titles and artists. Jukette currently reads MP3
-ID3 `TIT2` title and `TPE1` artist tags, plus MIDI track/sequence names as
-titles. MIDI artists stay authored-only. Authored values stay in place when
-tags are missing, unreadable, or unsupported.
+tags override authored track titles and artists. Jukette currently reads MP3 ID3
+`TIT2` title and `TPE1` artist tags, plus MIDI track/sequence names as titles.
+MIDI artists stay authored-only. Authored values stay in place when tags are
+missing, unreadable, or unsupported.
 
 Direct `<jukette-track>` children and JavaScript track objects can override the
 player-level preference per track. Use `prefer-media-metadata` or
@@ -368,16 +361,15 @@ display scrolls. Supported values are `overflow`, `always`, and `never`.
 
 Use `show-track-select` or `showTrackSelect` to control whether the track
 selector row is shown. The default is on. Set `show-track-select="false"` or
-`player.showTrackSelect = false` to hide it, and omit the attribute or set it
-to `true` to show it.
+`player.showTrackSelect = false` to hide it, and omit the attribute or set it to
+`true` to show it.
 
 Use `show-source-link` or `showSourceLink` to expose a narrow source-page link
 beside the header display for the selected track. The default is off. When
 enabled, Jukette uses the selected track's `src` as the link target. Direct
 `<jukette-track>` children and JavaScript track objects can override the player
-setting per track with `show-source-link`,
-`show-source-link="false"`, `showSourceLink: true`, or
-`showSourceLink: false`.
+setting per track with `show-source-link`, `show-source-link="false"`,
+`showSourceLink: true`, or `showSourceLink: false`.
 
 Jukette dispatches bubbling composed custom events from the `<jukette-player>`
 host:
@@ -402,12 +394,12 @@ font, a single border, and native range controls. Style the host element first:
 
 ```css
 jukette-player {
-	color: #111;
-	font:
-		1rem/1.4 system-ui,
-		sans-serif;
-	max-inline-size: 36rem;
-	--jukette-control-size: 2.25rem;
+    color: #111;
+    font:
+        1rem/1.4 system-ui,
+        sans-serif;
+    max-inline-size: 36rem;
+    --jukette-control-size: 2.25rem;
 }
 ```
 
@@ -417,14 +409,14 @@ The host supports these stable styling inputs:
 - `font`: inherited by labels, buttons, and the track selector.
 - `--jukette-control-size`: controls the square play button size. Defaults to
   `2em`.
-- `inline-size`, `max-inline-size`, `margin`, and other normal layout
-  properties on `jukette-player`.
+- `inline-size`, `max-inline-size`, `margin`, and other normal layout properties
+  on `jukette-player`.
 
 Use host attributes for state-specific styling:
 
 ```css
 jukette-player[data-kind='midi'] {
-	color: #164e63;
+    color: #164e63;
 }
 ```
 
@@ -440,16 +432,16 @@ For deeper styling, Jukette exposes stable `::part()` hooks:
 
 ```css
 jukette-player::part(player) {
-	border: 0;
-	padding: 0;
+    border: 0;
+    padding: 0;
 }
 
 jukette-player::part(play-button) {
-	border-radius: 999px;
+    border-radius: 999px;
 }
 
 jukette-player::part(track-select) {
-	font-size: 0.95rem;
+    font-size: 0.95rem;
 }
 ```
 

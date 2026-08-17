@@ -10,7 +10,7 @@ import {
 const readSynchsafeInteger = (
 	data: Uint8Array,
 	offset: number,
-	length = 4,
+	length = 4
 ): number => {
 	let value = 0
 	for (let index = 0; index < length; index++) {
@@ -41,7 +41,7 @@ const decodeId3TextFrame = (frameData: Uint8Array): string => {
 }
 
 export const parseAudioFileMetadata = (
-	buffer: ArrayBuffer,
+	buffer: ArrayBuffer
 ): AudioFileMetadata => {
 	const data = new Uint8Array(buffer)
 	if (data.length < 10 || decodeAscii(data.slice(0, 3)) !== 'ID3') {

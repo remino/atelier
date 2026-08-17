@@ -19,5 +19,5 @@ export const plugins = [bw, brightness, contrast, half, double, dither]
 export const createImageProcessor = (options = {}) =>
 	new ImageProcessor(options.plugins ?? plugins, options.selector)
 
-export const processImages = (options) =>
+export const processImages = options =>
 	createImageProcessor(options).processImages()

@@ -102,14 +102,13 @@ export class JukettePlayerElement extends HTMLElementBase {
 		this.metadataController = new JuketteMetadataController({
 			getHost: () => this,
 			getPreloadMetadata: () => this.preloadMetadata,
-			getTrackElement: (track) => this.trackElements.get(track) ?? null,
-			getTrackKey: (track) => this.getTrackKey(track),
+			getTrackElement: track => this.trackElements.get(track) ?? null,
+			getTrackKey: track => this.getTrackKey(track),
 			getTracks: () => this.tracks,
-			isCurrentTrack: (track) => this.isCurrentTrack(track),
+			isCurrentTrack: track => this.isCurrentTrack(track),
 			onCurrentTrackDisplayChange: () => this.renderCurrentTrack(),
 			onPlaylistDisplayChange: () => this.renderTrackSelect(),
-			trackPrefersMediaMetadata: (track) =>
-				this.trackPrefersMediaMetadata(track),
+			trackPrefersMediaMetadata: track => this.trackPrefersMediaMetadata(track),
 		})
 		this.progressController = new JuketteProgressController({
 			dom: this.dom,
@@ -123,10 +122,10 @@ export class JukettePlayerElement extends HTMLElementBase {
 		this.dom.playButton.addEventListener('click', () => this.toggle())
 		this.dom.timeButton.addEventListener('click', () => this.toggleTimeMode())
 		this.dom.trackSelect.addEventListener('change', () =>
-			this.selectTrackFromInput(),
+			this.selectTrackFromInput()
 		)
-		this.dom.trackSelect.addEventListener('keyup', (event) =>
-			this.handleTrackSelectKeyup(event),
+		this.dom.trackSelect.addEventListener('keyup', event =>
+			this.handleTrackSelectKeyup(event)
 		)
 		this.dom.seekInput.addEventListener('input', () => this.seekFromInput())
 		this.dom.audio.addEventListener('loadedmetadata', () => this.syncAudio())
@@ -141,7 +140,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 		}
 
 		this.backendRegistrationCleanup = subscribeJuketteBackendRegistrations(() =>
-			this.handleBackendRegistration(),
+			this.handleBackendRegistration()
 		)
 		this.trackObserver?.observe(this, {
 			attributeFilter: [
@@ -184,7 +183,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 	attributeChangedCallback(
 		name: string,
 		oldValue: string | null,
-		newValue: string | null,
+		newValue: string | null
 	): void {
 		if (oldValue === newValue) return
 		if (name === ATTR_PRELOAD_METADATA || name === ATTR_PREFER_MEDIA_METADATA) {
@@ -298,7 +297,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 
 	set playlist(tracks: JuketteTrack[]) {
 		this.playlistOverride = tracks
-			.map((track) => normalizeTrack(track))
+			.map(track => normalizeTrack(track))
 			.filter((track): track is JuketteTrack => track !== null)
 		this.tracks = [...this.playlistOverride]
 		this.index = 0
@@ -369,7 +368,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 	}
 
 	private getJuketteEventDetail(
-		detail: Partial<JuketteEventDetail> = {},
+		detail: Partial<JuketteEventDetail> = {}
 	): JuketteEventDetail {
 		return createJuketteEventDetail({
 			currentTime: this.getCurrentTime(),
@@ -384,7 +383,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 
 	private emitJuketteEvent(
 		name: JuketteEventName,
-		detail: Partial<JuketteEventDetail> = {},
+		detail: Partial<JuketteEventDetail> = {}
 	): void {
 		if (typeof CustomEvent === 'undefined') return
 
@@ -393,7 +392,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 				bubbles: true,
 				composed: true,
 				detail: this.getJuketteEventDetail(detail),
-			}),
+			})
 		)
 	}
 
@@ -445,7 +444,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 	}
 
 	private getChildTracks(): JuketteTrack[] {
-		return Array.from(this.children).flatMap((element) => {
+		return Array.from(this.children).flatMap(element => {
 			const track = trackFromElement(element)
 			if (!track) return []
 			this.trackElements.set(track, element)
@@ -454,7 +453,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 	}
 
 	private createPlayableTrack(
-		track: JuketteTrack,
+		track: JuketteTrack
 	): JukettePlayableTrack | null {
 		const callbacks = this.createPlayableCallbacks(track)
 		const backend = resolveJuketteBackend(track)
@@ -585,8 +584,8 @@ export class JukettePlayerElement extends HTMLElementBase {
 			currentIndex: this.index,
 			element: this.dom.trackSelect,
 			formatTime,
-			getDisplay: (track) => this.getTrackDisplay(track),
-			getDuration: (track) => this.getTrackDuration(track),
+			getDisplay: track => this.getTrackDisplay(track),
+			getDuration: track => this.getTrackDuration(track),
 			tracks: this.tracks,
 		})
 	}
@@ -711,7 +710,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 
 		this.renderDisplay(
 			message || formatTrackDisplay(this.getTrackDisplay(track)),
-			track,
+			track
 		)
 	}
 
@@ -840,7 +839,7 @@ export class JukettePlayerElement extends HTMLElementBase {
 			}
 
 			const parsed = normalizePlaylistItems(
-				JSON.parse(await response.text()) as unknown,
+				JSON.parse(await response.text()) as unknown
 			)
 			if (requestId !== this.remotePlaylistRequestId) return
 

@@ -14,7 +14,7 @@ beforeEach(() => {
 	if (typeof window !== 'undefined') {
 		vi.stubGlobal(
 			'requestAnimationFrame',
-			vi.fn(() => 1),
+			vi.fn(() => 1)
 		)
 		vi.stubGlobal('cancelAnimationFrame', vi.fn())
 	}

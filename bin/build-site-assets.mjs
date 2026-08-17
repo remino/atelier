@@ -10,7 +10,7 @@ const generatorPath = fileURLToPath(import.meta.url)
 const demoTonePath = resolve(root, 'apps/docs/public/jukette/demo-tone.mp3')
 const demoMidiPath = resolve(root, 'apps/docs/public/jukette/demo-scale.mid')
 
-const fileIsCurrent = async (filePath) => {
+const fileIsCurrent = async filePath => {
 	try {
 		const file = await stat(filePath)
 		const generator = await stat(generatorPath)
@@ -40,7 +40,7 @@ const buildDemoTone = async () => {
 	const notes = Array.from({ length: 4 }, () => arpeggio).flat()
 	const noteFilters = notes.map(
 		(_frequency, index) =>
-			`[${index}:a]afade=t=in:st=0:d=0.01,afade=t=out:st=${noteDuration - 0.03}:d=0.03,volume=0.58[n${index}]`,
+			`[${index}:a]afade=t=in:st=0:d=0.01,afade=t=out:st=${noteDuration - 0.03}:d=0.03,volume=0.58[n${index}]`
 	)
 	const concatInputs = notes.map((_frequency, index) => `[n${index}]`).join('')
 	const filterComplex = [
@@ -54,7 +54,7 @@ const buildDemoTone = async () => {
 		'-loglevel',
 		'error',
 		'-y',
-		...notes.flatMap((frequency) => [
+		...notes.flatMap(frequency => [
 			'-f',
 			'lavfi',
 			'-i',
@@ -74,7 +74,7 @@ const buildDemoTone = async () => {
 	console.log(`site:assets generated ${demoTonePath}`)
 }
 
-const variableLength = (value) => {
+const variableLength = value => {
 	const bytes = [value & 0x7f]
 	value >>= 7
 
@@ -86,8 +86,7 @@ const variableLength = (value) => {
 	return bytes
 }
 
-const textBytes = (value) =>
-	[...value].map((character) => character.charCodeAt(0))
+const textBytes = value => [...value].map(character => character.charCodeAt(0))
 
 const buildDemoMidi = async () => {
 	if (await fileIsCurrent(demoMidiPath)) {

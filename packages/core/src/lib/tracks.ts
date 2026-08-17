@@ -28,7 +28,7 @@ export const inferTrackType = (track: Pick<JuketteTrack, 'src' | 'type'>) => {
 	if (track.type) return track.type
 
 	for (const backend of getRegisteredJuketteBackends().sort(
-		(left, right) => (right.priority ?? 0) - (left.priority ?? 0),
+		(left, right) => (right.priority ?? 0) - (left.priority ?? 0)
 	)) {
 		const inferredType = backend.inferTrackType?.(track)
 		if (inferredType) return inferredType
@@ -57,7 +57,7 @@ export const normalizeTrack = (value: unknown): JuketteTrack | null => {
 		track.preferMediaMetadata = value.preferMediaMetadata
 	} else if (typeof value.preferMediaMetadata === 'string') {
 		const preferMediaMetadata = normalizeBooleanAttribute(
-			value.preferMediaMetadata,
+			value.preferMediaMetadata
 		)
 		if (preferMediaMetadata !== undefined) {
 			track.preferMediaMetadata = preferMediaMetadata
@@ -95,7 +95,7 @@ export const parsePlaylist = (value: string | null): JuketteTrack[] => {
 	} catch {
 		return value
 			.split('\n')
-			.map((item) => normalizeTrack(item))
+			.map(item => normalizeTrack(item))
 			.filter((item): item is JuketteTrack => item !== null)
 	}
 }
@@ -103,7 +103,7 @@ export const parsePlaylist = (value: string | null): JuketteTrack[] => {
 export const normalizePlaylistItems = (value: unknown): JuketteTrack[] => {
 	const items = Array.isArray(value) ? value : [value]
 	return items
-		.map((item) => normalizeTrack(item))
+		.map(item => normalizeTrack(item))
 		.filter((item): item is JuketteTrack => item !== null)
 }
 

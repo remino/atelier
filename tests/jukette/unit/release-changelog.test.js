@@ -73,7 +73,7 @@ describe('bin/release-changelog.mjs', () => {
 `
 
 		expect(() => promoteHead(emptyHead, '0.2.0')).toThrowError(
-			'HEAD changelog section is empty.',
+			'HEAD changelog section is empty.'
 		)
 	})
 
@@ -81,7 +81,7 @@ describe('bin/release-changelog.mjs', () => {
 		const next = promoteHead(changelog, '0.2.0')
 
 		expect(() => promoteHead(next, '0.2.0')).toThrowError(
-			'Changelog already has a section for v0.2.0.',
+			'Changelog already has a section for v0.2.0.'
 		)
 	})
 })

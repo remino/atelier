@@ -24,7 +24,7 @@ export class JuketteProgressController {
 		const safeCurrentTime = Number.isFinite(currentTime)
 			? Math.min(
 					Math.max(0, currentTime),
-					safeDuration || Number.MAX_SAFE_INTEGER,
+					safeDuration || Number.MAX_SAFE_INTEGER
 				)
 			: 0
 		const ratio =
@@ -42,8 +42,8 @@ export class JuketteProgressController {
 			Math.round(
 				this.options.getTimeMode() === 'remaining'
 					? safeDuration - safeCurrentTime
-					: safeCurrentTime,
-			),
+					: safeCurrentTime
+			)
 		)}S`
 	}
 
@@ -52,7 +52,7 @@ export class JuketteProgressController {
 		this.options.dom.playButton.textContent = playing ? 'Ⅱ' : '▶'
 		this.options.dom.playButton.setAttribute(
 			'aria-label',
-			playing ? 'Pause' : 'Play',
+			playing ? 'Pause' : 'Play'
 		)
 		if (playing) {
 			this.setStatus()
@@ -75,7 +75,7 @@ export class JuketteProgressController {
 
 			this.syncProgress(
 				this.options.getCurrentTime(),
-				this.options.getDuration(),
+				this.options.getDuration()
 			)
 			this.progressFrame = requestAnimationFrame(tick)
 		}

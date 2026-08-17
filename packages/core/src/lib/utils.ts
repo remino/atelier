@@ -2,7 +2,7 @@ export const isRecord = (value: unknown): value is Record<string, unknown> =>
 	typeof value === 'object' && value !== null
 
 export const normalizeBooleanAttribute = (
-	value: string | null,
+	value: string | null
 ): boolean | undefined => {
 	if (value === null) return undefined
 

@@ -29,7 +29,7 @@ export const renderTrackSelect = ({
 			option.value = String(index)
 			option.textContent = `${formatTrackDisplay(display)} (${durationText})`
 			return option
-		}),
+		})
 	)
 
 	element.value = String(Math.max(0, Math.min(currentIndex, tracks.length - 1)))

@@ -6,13 +6,13 @@ export type ProgressBounds = {
 
 export const calcContainerEnd = (
 	containerStart: number,
-	containerSize: number,
+	containerSize: number
 ): number => containerStart + containerSize
 
 export const calcContainProgress = (
 	containerStart: number,
 	containerSize: number,
-	viewSize: number,
+	viewSize: number
 ): number => {
 	if (containerSize === viewSize) {
 		const progress = ((containerStart - viewSize) / viewSize) * -1
@@ -40,5 +40,5 @@ export const calcContainProgress = (
 export const calcCoverProgress = (
 	containerStart: number,
 	containerSize: number,
-	viewSize: number,
+	viewSize: number
 ): number => ((containerStart - viewSize) / (viewSize + containerSize)) * -1

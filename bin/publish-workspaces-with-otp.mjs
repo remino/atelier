@@ -25,7 +25,7 @@ function promptOTP() {
 				terminal: true,
 			})
 
-			rl.question('Enter npm OTP (one-time password): ', (otp) => {
+			rl.question('Enter npm OTP (one-time password): ', otp => {
 				rl.close()
 				resolve(otp && otp.trim())
 			})
@@ -81,7 +81,7 @@ async function main() {
 	// After all publishes succeed, optionally continue with docs publish handled by release-it hook
 }
 
-main().catch((err) => {
+main().catch(err => {
 	console.error('Error during publish:', err)
 	process.exit(1)
 })

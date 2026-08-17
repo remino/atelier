@@ -160,19 +160,19 @@ import '../../../../lib/scrollerful.css'
 				const clamp = (min, val, max) => Math.max(min, Math.min(max, val))
 
 				const showContainProgress = (event: Event) => {
-					const { progress: { contain: progress } } = (
-						event as CustomEvent<{ progress: { contain: number } }>
-					).detail
+					const {
+						progress: { contain: progress },
+					} = (event as CustomEvent<{ progress: { contain: number } }>).detail
 					const roundedProgress = clamp(0, Math.round(progress * 100), 100)
 					const toy = document.querySelector('.toy')
 					if (!toy) return
-					toy.innerHTML =
-						`<strong>${symbol(roundedProgress)}</strong><span>${roundedProgress}%</span>`
+					toy.innerHTML = `<strong>${symbol(roundedProgress)}</strong><span>${roundedProgress}%</span>`
 				}
 
 				const main = () => {
 					const scroller = document.querySelector('.sclf')
-					if (scroller) scroller.addEventListener('sclf:scroll', showContainProgress)
+					if (scroller)
+						scroller.addEventListener('sclf:scroll', showContainProgress)
 				}
 
 				if (document.readyState === 'interactive') {

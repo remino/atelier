@@ -38,7 +38,7 @@ export const initVideo = () => {
 	})
 
 	video.pause()
-	document.querySelectorAll('.section--video').forEach((el) => {
+	document.querySelectorAll('.section--video').forEach(el => {
 		el.addEventListener('sclf:scroll', updateVideo)
 	})
 }

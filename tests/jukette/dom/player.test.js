@@ -10,7 +10,7 @@ const patchAudio = (audio, { duration = 10 } = {}) => {
 	Object.defineProperty(audio, 'currentTime', {
 		configurable: true,
 		get: () => currentTime,
-		set: (value) => {
+		set: value => {
 			currentTime = value
 		},
 	})
@@ -38,7 +38,7 @@ const patchAudio = (audio, { duration = 10 } = {}) => {
 	}
 }
 
-const renderPlayer = (tracksMarkup) => {
+const renderPlayer = tracksMarkup => {
 	defineElement()
 	registerAudio()
 
@@ -77,7 +77,7 @@ const markAudioReady = ({ audio }, duration = 10) => {
 const flushAsync = async (count = 3) => {
 	for (let index = 0; index < count; index += 1) {
 		await Promise.resolve()
-		await new Promise((resolve) => window.setTimeout(resolve, 0))
+		await new Promise(resolve => window.setTimeout(resolve, 0))
 	}
 }
 
@@ -167,7 +167,7 @@ describe('JukettePlayerElement DOM', () => {
 					JSON.stringify([
 						{ artist: 'Remote', src: '/remote.mp3', title: 'One' },
 					]),
-			}),
+			})
 		)
 		defineElement()
 		registerAudio()
@@ -179,20 +179,20 @@ describe('JukettePlayerElement DOM', () => {
 		patchAudio(audio)
 
 		expect(shadowRoot.querySelector('.display').textContent).toBe(
-			'Loading playlist',
+			'Loading playlist'
 		)
 
 		await flushAsync()
 
 		const playlistRequests = fetch.mock.calls.filter(
-			([url]) => url === '/playlist.json',
+			([url]) => url === '/playlist.json'
 		)
 		expect(playlistRequests).toHaveLength(1)
 		expect(player.playlist).toEqual([
 			{ artist: 'Remote', src: '/remote.mp3', title: 'One' },
 		])
 		expect(shadowRoot.querySelector('.display').textContent).toBe(
-			'Loading audio',
+			'Loading audio'
 		)
 		expect(shadowRoot.querySelector('.track-select').options).toHaveLength(1)
 	})
@@ -204,7 +204,7 @@ describe('JukettePlayerElement DOM', () => {
 				ok: false,
 				status: 404,
 				text: async () => 'missing',
-			}),
+			})
 		)
 		defineElement()
 		registerAudio()
@@ -219,7 +219,7 @@ describe('JukettePlayerElement DOM', () => {
 
 		expect(player.playlist).toEqual([])
 		expect(shadowRoot.querySelector('.display').textContent).toBe(
-			'Playlist failed to load',
+			'Playlist failed to load'
 		)
 		expect(shadowRoot.querySelector('.track-select').disabled).toBe(true)
 	})
@@ -244,7 +244,7 @@ describe('JukettePlayerElement DOM', () => {
 				ok: true,
 				text: async () =>
 					JSON.stringify([{ src: '/remote.mp3', title: 'Remote' }]),
-			}),
+			})
 		)
 		defineElement()
 		registerAudio()
@@ -263,7 +263,7 @@ describe('JukettePlayerElement DOM', () => {
 
 		expect(player.playlist).toEqual([{ src: '/inline.mp3', title: 'Inline' }])
 		expect(
-			shadowRoot.querySelector('.track-select').options[0].textContent,
+			shadowRoot.querySelector('.track-select').options[0].textContent
 		).toBe('Inline (--:--)')
 	})
 
@@ -310,7 +310,7 @@ describe('JukettePlayerElement DOM', () => {
 		expect(ctx.elements.seek.disabled).toBe(true)
 		expect(ctx.elements.time.disabled).toBe(true)
 		expect(ctx.elements.display.textContent).toBe(
-			'soundcloud playback unavailable',
+			'soundcloud playback unavailable'
 		)
 	})
 
@@ -417,7 +417,7 @@ describe('JukettePlayerElement DOM', () => {
 				bubbles: true,
 				cancelable: true,
 				key: 'Enter',
-			}),
+			})
 		)
 		await flushAsync()
 
@@ -429,7 +429,7 @@ describe('JukettePlayerElement DOM', () => {
 				bubbles: true,
 				cancelable: true,
 				key: 'Enter',
-			}),
+			})
 		)
 		await flushAsync()
 
@@ -445,7 +445,7 @@ describe('JukettePlayerElement DOM', () => {
 				bubbles: true,
 				cancelable: true,
 				key: ' ',
-			}),
+			})
 		)
 		await flushAsync()
 
@@ -467,7 +467,7 @@ describe('JukettePlayerElement DOM', () => {
 
 		const player = ctx.player
 		document.body.removeChild(player)
-		await new Promise((resolve) => window.setTimeout(resolve, 25))
+		await new Promise(resolve => window.setTimeout(resolve, 25))
 		document.body.appendChild(player)
 		await flushAsync()
 
@@ -489,7 +489,7 @@ describe('JukettePlayerElement DOM', () => {
 		const player = ctx.player
 		const stopSpy = vi.spyOn(player.activePlayableTrack, 'stop')
 		document.body.removeChild(player)
-		await new Promise((resolve) => window.setTimeout(resolve, 1100))
+		await new Promise(resolve => window.setTimeout(resolve, 1100))
 
 		expect(stopSpy).toHaveBeenCalledTimes(1)
 
@@ -589,7 +589,7 @@ describe('JukettePlayerElement DOM', () => {
 
 		expect(display.textContent).toBe('Tagged Title - Tagged Artist')
 		expect(select.options[0].textContent).toBe(
-			'Tagged Title - Tagged Artist (--:--)',
+			'Tagged Title - Tagged Artist (--:--)'
 		)
 	})
 

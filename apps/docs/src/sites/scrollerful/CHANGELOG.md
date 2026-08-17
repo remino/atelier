@@ -14,8 +14,8 @@
 ## v1.2.2
 
 - Fixed
-  - Measure the document’s full scroll size so horizontal page scrolling has
-    accurate animation progress.
+    - Measure the document’s full scroll size so horizontal page scrolling has
+      accurate animation progress.
 
 ## v1.0.0
 
@@ -55,16 +55,16 @@ scrollerfulscroll     -> sclf:scroll
 ```js
 /* 🚫 Before */
 const {
-	detail: {
-		progress: { inner, outer },
-	},
+    detail: {
+        progress: { inner, outer },
+    },
 } = event
 
 /* ✅ Now */
 const {
-	detail: {
-		progress: { contain, cover },
-	},
+    detail: {
+        progress: { contain, cover },
+    },
 } = event
 ```
 

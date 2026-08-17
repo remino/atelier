@@ -16,9 +16,9 @@ By Rémino Rem
 <!-- mtoc-start -->
 
 - [Installation](#installation)
-  - [HTML (CDN)](#html-cdn)
-  - [npm](#npm)
-  - [Direct download](#direct-download)
+    - [HTML (CDN)](#html-cdn)
+    - [npm](#npm)
+    - [Direct download](#direct-download)
 - [Usage](#usage)
 - [URL modifiers](#url-modifiers)
 - [API](#api)
@@ -142,16 +142,16 @@ The package exports the processor and every built-in plugin:
 
 ```js
 import {
-	ImageProcessor,
-	brightness,
-	bw,
-	contrast,
-	createImageProcessor,
-	dither,
-	double,
-	half,
-	parseHashFlags,
-	processImages,
+    ImageProcessor,
+    brightness,
+    bw,
+    contrast,
+    createImageProcessor,
+    dither,
+    double,
+    half,
+    parseHashFlags,
+    processImages,
 } from 'paradimg'
 ```
 

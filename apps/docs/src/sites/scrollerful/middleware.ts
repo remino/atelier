@@ -8,5 +8,5 @@ import proxyFilesConfig from './data/proxyFiles.json'
 
 export const onRequest = defineChainedMiddleware(
 	utf8,
-	proxyFiles(proxyFilesConfig) as Middleware,
+	proxyFiles(proxyFilesConfig) as Middleware
 )

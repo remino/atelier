@@ -28,14 +28,14 @@ export const updateReadmeVersion = (readme, version) => {
 
 	let pinnedUrlCount = 0
 
-	next = next.replace(pinnedPackagePattern, (match) => {
+	next = next.replace(pinnedPackagePattern, match => {
 		pinnedUrlCount += 1
 		return match.replace(/@\d+\.\d+\.\d+(?:[-+\w.]+)?$/, `@${version}`)
 	})
 
 	if (pinnedUrlCount !== 2) {
 		throw new Error(
-			`Expected to update 2 pinned README CDN URLs, updated ${pinnedUrlCount}.`,
+			`Expected to update 2 pinned README CDN URLs, updated ${pinnedUrlCount}.`
 		)
 	}
 
@@ -52,7 +52,7 @@ const run = async ([command, version]) => {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-	run(process.argv.slice(2)).catch((error) => {
+	run(process.argv.slice(2)).catch(error => {
 		console.error(error.message)
 		process.exitCode = 1
 	})

@@ -52,8 +52,8 @@ const getMidiTitle = (midi: ParsedToneMidi): string | undefined => {
 	const title =
 		cleanMidiText(midi.name) ||
 		midi.tracks
-			.map((track) => cleanMidiText(track.name))
-			.find((value) => value.length > 0) ||
+			.map(track => cleanMidiText(track.name))
+			.find(value => value.length > 0) ||
 		''
 
 	return title || undefined
@@ -61,9 +61,9 @@ const getMidiTitle = (midi: ParsedToneMidi): string | undefined => {
 
 const getMidiProgram = (midi: ParsedToneMidi): number | undefined =>
 	midi.tracks
-		.filter((track) => track.notes.length > 0)
-		.map((track) => track.instrument.number)
-		.find((program) => Number.isInteger(program) && program > 0)
+		.filter(track => track.notes.length > 0)
+		.map(track => track.instrument.number)
+		.find(program => Number.isInteger(program) && program > 0)
 
 export const midiProgramToOscillator = (program?: number): OscillatorType => {
 	if (program === undefined) return 'triangle'
@@ -77,20 +77,20 @@ export const midiProgramToOscillator = (program?: number): OscillatorType => {
 
 export const resolveMidiOscillatorType = (
 	oscillator: JuketteMidiOscillator,
-	program?: number,
+	program?: number
 ): OscillatorType =>
 	oscillator === 'auto' ? midiProgramToOscillator(program) : oscillator
 
 export const parseMidi = (buffer: ArrayBuffer): MidiSequence => {
 	const midi = new ToneMidi(buffer)
 	const notes: MidiNote[] = midi.tracks
-		.flatMap((track) =>
-			track.notes.map((note) => ({
+		.flatMap(track =>
+			track.notes.map(note => ({
 				duration: Math.max(0.03, note.duration),
 				frequency: midiNoteFrequency(note.midi),
 				start: note.time,
 				velocity: note.velocity,
-			})),
+			}))
 		)
 		.sort((left, right) => left.start - right.start)
 
@@ -107,7 +107,7 @@ export const parseMidi = (buffer: ArrayBuffer): MidiSequence => {
 	const duration =
 		notes.reduce(
 			(maximum, note) => Math.max(maximum, note.start + note.duration),
-			midi.duration,
+			midi.duration
 		) || 0
 
 	return {

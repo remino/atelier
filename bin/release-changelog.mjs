@@ -1,12 +1,12 @@
 import { readFile, writeFile } from 'node:fs/promises'
 
 const changelogPath = new URL('../CHANGELOG.md', import.meta.url)
-const headingPattern = (version) => `## ${normalizeTag(version)}`
+const headingPattern = version => `## ${normalizeTag(version)}`
 
-export const normalizeTag = (version) =>
+export const normalizeTag = version =>
 	version.startsWith('v') ? version : `v${version}`
 
-export const getAnchor = (version) =>
+export const getAnchor = version =>
 	`#${normalizeTag(version).replaceAll('.', '')}`
 
 const getSection = (changelog, heading) => {
@@ -92,7 +92,7 @@ const run = async ([command, version]) => {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-	run(process.argv.slice(2)).catch((error) => {
+	run(process.argv.slice(2)).catch(error => {
 		console.error(error.message)
 		process.exitCode = 1
 	})

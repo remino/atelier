@@ -31,14 +31,14 @@ export interface JuketteBackend {
 	createPlayableTrack(
 		track: JuketteTrack,
 		callbacks: PlayableTrackCallbacks,
-		options: JuketteBackendCreateTrackOptions,
+		options: JuketteBackendCreateTrackOptions
 	): JukettePlayableTrack
 	inferTrackType?(
-		track: Pick<JuketteTrack, 'src' | 'type'>,
+		track: Pick<JuketteTrack, 'src' | 'type'>
 	): JuketteTrackKind | null
 	preloadTrack?(
 		track: JuketteTrack,
-		options: JuketteBackendPreloadOptions,
+		options: JuketteBackendPreloadOptions
 	):
 		| Promise<JuketteBackendPreloadResult | void>
 		| JuketteBackendPreloadResult
@@ -54,11 +54,11 @@ export const getRegisteredJuketteBackends = (): JuketteBackend[] =>
 	Array.from(backends.values())
 
 export const getJuketteBackend = (
-	type: JuketteTrackKind,
+	type: JuketteTrackKind
 ): JuketteBackend | undefined => backends.get(type)
 
 export const registerJuketteBackend = (
-	backend: JuketteBackend,
+	backend: JuketteBackend
 ): JuketteBackend => {
 	backends.set(backend.type, backend)
 	for (const listener of registrationListeners) listener(backend)
@@ -71,7 +71,7 @@ export const resetJuketteBackends = (): void => {
 }
 
 export const subscribeJuketteBackendRegistrations = (
-	listener: (backend: JuketteBackend) => void,
+	listener: (backend: JuketteBackend) => void
 ): (() => void) => {
 	registrationListeners.add(listener)
 	return () => {
@@ -80,12 +80,12 @@ export const subscribeJuketteBackendRegistrations = (
 }
 
 export const resolveJuketteBackend = (
-	track: Pick<JuketteTrack, 'src' | 'type'>,
+	track: Pick<JuketteTrack, 'src' | 'type'>
 ): JuketteBackend | undefined => {
 	if (track.type) return getJuketteBackend(track.type)
 
 	for (const backend of getRegisteredJuketteBackends().sort(
-		(left, right) => (right.priority ?? 0) - (left.priority ?? 0),
+		(left, right) => (right.priority ?? 0) - (left.priority ?? 0)
 	)) {
 		if (backend.inferTrackType?.(track) === backend.type) {
 			return backend

@@ -5,7 +5,7 @@ import { build } from 'vite'
 const packageRoot = process.cwd()
 const workspaceRoot = resolve(packageRoot, '../..')
 const pkg = JSON.parse(
-	await readFile(resolve(packageRoot, 'package.json'), 'utf8'),
+	await readFile(resolve(packageRoot, 'package.json'), 'utf8')
 )
 
 const currentYear = new Date().getFullYear()
@@ -97,7 +97,7 @@ const externalPackages = [
 	...Object.keys(pkg.peerDependencies ?? {}),
 ]
 
-const ensureBanner = async (filePath) => {
+const ensureBanner = async filePath => {
 	const file = await readFile(filePath, 'utf8')
 	if (file.startsWith(banner)) return
 	await writeFile(filePath, `${banner}\n${file}`)
@@ -119,7 +119,7 @@ const buildLibrary = async ({
 			emptyOutDir: false,
 			lib: {
 				entry: resolve(packageRoot, entry),
-				fileName: (format) => {
+				fileName: format => {
 					if (format === 'es') return `${fileBase}.mjs`
 					if (format === 'cjs') return `${fileBase}.cjs`
 					return `${fileBase}.js`
@@ -141,19 +141,19 @@ const buildLibrary = async ({
 			alias: {
 				'@remino/jukette-core': resolve(
 					workspaceRoot,
-					'packages/core/src/lib/core.ts',
+					'packages/core/src/lib/core.ts'
 				),
 				'@remino/jukette-audio': resolve(
 					workspaceRoot,
-					'packages/audio/src/lib/audio.ts',
+					'packages/audio/src/lib/audio.ts'
 				),
 				'@remino/jukette-midi': resolve(
 					workspaceRoot,
-					'packages/midi/src/lib/midi-entry.ts',
+					'packages/midi/src/lib/midi-entry.ts'
 				),
 				'@remino/jukette-soundcloud': resolve(
 					workspaceRoot,
-					'packages/soundcloud/src/lib/soundcloud.ts',
+					'packages/soundcloud/src/lib/soundcloud.ts'
 				),
 			},
 		},
@@ -180,6 +180,6 @@ if (buildConfig.minifiedAutoEntry) {
 const distFiles = await readdir(resolve(packageRoot, 'dist'))
 await Promise.all(
 	distFiles
-		.filter((fileName) => /\.(?:cjs|mjs|js)$/.test(fileName))
-		.map((fileName) => ensureBanner(resolve(packageRoot, 'dist', fileName))),
+		.filter(fileName => /\.(?:cjs|mjs|js)$/.test(fileName))
+		.map(fileName => ensureBanner(resolve(packageRoot, 'dist', fileName)))
 )

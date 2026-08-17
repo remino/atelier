@@ -16,11 +16,11 @@ const speedSection = document.querySelector('[data-section="speed"]')
 const liteCssSection = document.querySelector('[data-section="lite-css"]')
 const speedSectionBody = document.querySelector('[data-section-body="speed"]')
 const liteCssSectionBody = document.querySelector(
-	'[data-section-body="lite-css"]',
+	'[data-section-body="lite-css"]'
 )
 const speedSectionNote = document.querySelector('[data-section-note="speed"]')
 const liteCssSectionNote = document.querySelector(
-	'[data-section-note="lite-css"]',
+	'[data-section-note="lite-css"]'
 )
 const CODE_VIEWER_TAG_NAME = 'code-viewer'
 const showModeControls = [
@@ -75,7 +75,7 @@ const liteStyleProperties = [
 	[
 		'duration',
 		'--re-marquee-duration',
-		(value) => {
+		value => {
 			const number = Number(value.trim())
 
 			return Number.isFinite(number) && number > 0 ? `${number}s` : ''
@@ -84,7 +84,7 @@ const liteStyleProperties = [
 	[
 		'loop',
 		'--re-marquee-iteration-count',
-		(value) => {
+		value => {
 			const trimmed = value.trim()
 
 			if (!trimmed) return ''
@@ -101,7 +101,7 @@ const styleProperties = [
 	[
 		'fontSize',
 		'font-size',
-		(value) => {
+		value => {
 			const number = Number(value)
 
 			return Number.isFinite(number) && number >= 8 && number <= 96
@@ -127,12 +127,12 @@ const highlighter = createHighlighterCore({
 const EVENT_LOG_PLACEHOLDER = '// waiting for marquee events'
 let eventLogEntries = []
 
-const escapeHtml = (value) =>
+const escapeHtml = value =>
 	value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 
-const escapeAttribute = (value) => escapeHtml(value).replaceAll('"', '&quot;')
+const escapeAttribute = value => escapeHtml(value).replaceAll('"', '&quot;')
 
-const highlightCode = async (value) => {
+const highlightCode = async value => {
 	const shiki = await highlighter
 
 	return shiki
@@ -202,9 +202,9 @@ if (
 	customElements.define(CODE_VIEWER_TAG_NAME, CodeViewer)
 }
 
-const stripHexColorPrefix = (value) => value.replace(/^#/, '').trim()
+const stripHexColorPrefix = value => value.replace(/^#/, '').trim()
 
-const isHexColor = (value) => /^[\da-f]{3}(?:[\da-f]{3})?$/iu.test(value)
+const isHexColor = value => /^[\da-f]{3}(?:[\da-f]{3})?$/iu.test(value)
 
 const normalizeHexColorValue = (value, fallback = '') => {
 	const hex = stripHexColorPrefix(value)
@@ -212,7 +212,7 @@ const normalizeHexColorValue = (value, fallback = '') => {
 	if (/^[\da-f]{3}$/iu.test(hex)) {
 		return hex
 			.split('')
-			.map((character) => character.repeat(2))
+			.map(character => character.repeat(2))
 			.join('')
 			.toLowerCase()
 	}
@@ -224,13 +224,13 @@ const normalizeHexColorValue = (value, fallback = '') => {
 	return fallback
 }
 
-const readHexColorValue = (name) => {
+const readHexColorValue = name => {
 	const value = normalizeHexColorValue(getValue(name))
 
 	return value ? `#${value}` : ''
 }
 
-const parsePresentationalDimension = (value) => {
+const parsePresentationalDimension = value => {
 	const trimmed = value.trim()
 
 	if (!trimmed) return ''
@@ -242,13 +242,13 @@ const parsePresentationalDimension = (value) => {
 	return CSS.supports('width', trimmed) ? trimmed : ''
 }
 
-const parseLegacyColor = (value) => {
+const parseLegacyColor = value => {
 	const trimmed = value.trim()
 
 	return trimmed && CSS.supports('background-color', trimmed) ? trimmed : ''
 }
 
-const sanitizeContentHtml = (value) =>
+const sanitizeContentHtml = value =>
 	DOMPurify.sanitize(value, {
 		ALLOWED_ATTR: ['aria-label', 'class', 'title'],
 		ALLOWED_TAGS: [
@@ -266,22 +266,22 @@ const sanitizeContentHtml = (value) =>
 		],
 	})
 
-const getControl = (name) => form?.elements.namedItem(name)
+const getControl = name => form?.elements.namedItem(name)
 
-const getValue = (name) => getControl(name)?.value ?? ''
+const getValue = name => getControl(name)?.value ?? ''
 
-const getDefaultValue = (name) => defaultValues[name] ?? ''
+const getDefaultValue = name => defaultValues[name] ?? ''
 
 const getSelectedShowModes = () =>
 	showModeControls
 		.filter(([name]) => getControl(name)?.checked)
 		.map(([, mode]) => mode)
 
-const getShowModeLabelHtml = (mode) =>
+const getShowModeLabelHtml = mode =>
 	showModeControls.find(([, value]) => value === mode)?.[2] ?? mode
 
-const getCodeDependencies = (modes) =>
-	[...new Set(modes.flatMap((mode) => modeDependencies[mode] ?? []))].join('\n')
+const getCodeDependencies = modes =>
+	[...new Set(modes.flatMap(mode => modeDependencies[mode] ?? []))].join('\n')
 
 const syncShowCheckboxAvailability = () => {
 	const selectedModes = getSelectedShowModes()
@@ -292,7 +292,7 @@ const syncShowCheckboxAvailability = () => {
 
 	const selectedControls = showModeControls
 		.map(([name]) => getControl(name))
-		.filter((control) => control instanceof HTMLInputElement && control.checked)
+		.filter(control => control instanceof HTMLInputElement && control.checked)
 
 	const shouldDisableChecked = selectedControls.length <= 1
 
@@ -336,7 +336,7 @@ const syncSectionAvailability = () => {
 	}
 }
 
-const readSetting = (name) => {
+const readSetting = name => {
 	const control = getControl(name)
 
 	if (control instanceof HTMLInputElement && control.type === 'checkbox') {
@@ -368,7 +368,7 @@ const syncRangeValue = (rangeName, value) => {
 	}
 }
 
-const syncPairedInput = (target) => {
+const syncPairedInput = target => {
 	if (!(target instanceof HTMLInputElement)) return
 
 	if (target.name === 'scrollamountRange') {
@@ -599,7 +599,7 @@ const getLiteStyleAttributeValue = () =>
 		.map(([property, value]) => `${property}: ${value}`)
 		.join('; ')
 
-const getElementCode = (tagName) => {
+const getElementCode = tagName => {
 	const attributesSource =
 		tagName === 'marquee' ? getNativeAttributes() : getAttributes()
 	const attributes = [
@@ -607,7 +607,7 @@ const getElementCode = (tagName) => {
 		...(getStyleAttributeValue() ? [['style', getStyleAttributeValue()]] : []),
 	]
 		.map(([name, value]) =>
-			value ? `${name}="${escapeAttribute(value)}"` : name,
+			value ? `${name}="${escapeAttribute(value)}"` : name
 		)
 		.join(' ')
 	const openTag = attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`
@@ -624,7 +624,7 @@ const getLiteCode = () => {
 			: []),
 	]
 		.map(([name, value]) =>
-			value ? `${name}="${escapeAttribute(value)}"` : name,
+			value ? `${name}="${escapeAttribute(value)}"` : name
 		)
 		.join(' ')
 	const content = sanitizeContentHtml(getValue('content').trim())
@@ -632,7 +632,7 @@ const getLiteCode = () => {
 	return `<div ${attributes}><div class="re-marquee__track">${content}</div></div>`
 }
 
-const applyAttributes = (element) => {
+const applyAttributes = element => {
 	const attributesSource =
 		element.tagName.toLowerCase() === 'marquee'
 			? getNativeAttributes()
@@ -651,7 +651,7 @@ const applyAttributes = (element) => {
 	}
 }
 
-const applyLiteAttributes = (element) => {
+const applyLiteAttributes = element => {
 	element.className = getLiteClassNames().join(' ')
 
 	for (const [property, value] of [
@@ -665,7 +665,7 @@ const applyLiteAttributes = (element) => {
 
 const attachMarqueeEventLogging = (element, mode) => {
 	for (const type of ['start', 'bounce', 'finish']) {
-		element.addEventListener(type, (event) => {
+		element.addEventListener(type, event => {
 			appendEventLog(`[${mode}] ${event.type}`)
 			console.log(`[playground:${mode}] ${event.type}`, event)
 		})
@@ -686,7 +686,7 @@ const clearEventLog = () => {
 	renderEventLog()
 }
 
-const appendEventLog = (entry) => {
+const appendEventLog = entry => {
 	if (!eventsOutput) return
 
 	const isPinnedToBottom =
@@ -702,7 +702,7 @@ const appendEventLog = (entry) => {
 	}
 }
 
-const createPreviewItem = (mode) => {
+const createPreviewItem = mode => {
 	const wrapper = document.createElement('div')
 	const label = document.createElement('h2')
 	const content = sanitizeContentHtml(getValue('content'))
@@ -747,17 +747,17 @@ const getSettingEntries = () => {
 	return entries
 }
 
-const applyLegacyShowSetting = (value) => {
+const applyLegacyShowSetting = value => {
 	const showValue = String(value)
 
 	writeSetting(
 		'show-re-marquee',
-		showValue === 're-marquee' || showValue === 'both' ? 'true' : 'false',
+		showValue === 're-marquee' || showValue === 'both' ? 'true' : 'false'
 	)
 	writeSetting('show-lite', showValue === 'lite' ? 'true' : 'false')
 	writeSetting(
 		'show-marquee',
-		showValue === 'marquee' || showValue === 'both' ? 'true' : 'false',
+		showValue === 'marquee' || showValue === 'both' ? 'true' : 'false'
 	)
 }
 
@@ -803,7 +803,7 @@ const readStateFromHash = () => {
 
 	for (const name of settingNames) {
 		const legacyName = Object.entries(legacyShowModeNames).find(
-			([, nextName]) => nextName === name,
+			([, nextName]) => nextName === name
 		)?.[0]
 		if (params.has(name)) {
 			writeSetting(name, params.get(name) ?? '')
@@ -824,10 +824,10 @@ const render = ({ syncHash = true } = {}) => {
 
 	const modes = getSelectedShowModes()
 
-	preview.replaceChildren(...modes.map((mode) => createPreviewItem(mode)))
+	preview.replaceChildren(...modes.map(mode => createPreviewItem(mode)))
 
-	const snippets = modes.map((mode) =>
-		mode === 'lite' ? getLiteCode() : getElementCode(mode),
+	const snippets = modes.map(mode =>
+		mode === 'lite' ? getLiteCode() : getElementCode(mode)
 	)
 	const dependencies = getCodeDependencies(modes)
 	const source = [dependencies, snippets.join('\n')]
@@ -842,11 +842,11 @@ const render = ({ syncHash = true } = {}) => {
 }
 
 const setupColorInputs = () => {
-	document.querySelectorAll('[data-color-hex]').forEach((hexInput) => {
+	document.querySelectorAll('[data-color-hex]').forEach(hexInput => {
 		if (!(hexInput instanceof HTMLInputElement) || !hexInput.name) return
 
 		const colorInput = document.querySelector(
-			`[data-color-picker="${hexInput.name}"]`,
+			`[data-color-picker="${hexInput.name}"]`
 		)
 
 		if (!(colorInput instanceof HTMLInputElement)) return
@@ -854,7 +854,7 @@ const setupColorInputs = () => {
 		const syncColorInput = () => {
 			const normalized = normalizeHexColorValue(
 				hexInput.value,
-				stripHexColorPrefix(colorInput.value),
+				stripHexColorPrefix(colorInput.value)
 			)
 
 			colorInput.value = `#${normalized || '000000'}`
@@ -875,7 +875,7 @@ const setupColorInputs = () => {
 			if (isHexColor(hex)) {
 				colorInput.value = `#${normalizeHexColorValue(
 					hex,
-					stripHexColorPrefix(colorInput.value),
+					stripHexColorPrefix(colorInput.value)
 				)}`
 			}
 		})
@@ -906,15 +906,15 @@ const togglePreviewFullscreen = async () => {
 	await preview.requestFullscreen()
 }
 
-form?.addEventListener('input', (event) => {
+form?.addEventListener('input', event => {
 	syncPairedInput(event.target)
 	render()
 })
-form?.addEventListener('change', (event) => {
+form?.addEventListener('change', event => {
 	syncPairedInput(event.target)
 	render()
 })
-form?.addEventListener('submit', (event) => {
+form?.addEventListener('submit', event => {
 	event.preventDefault()
 })
 if (form) {
@@ -929,7 +929,7 @@ fullscreenButton?.addEventListener('click', async () => {
 resetButton?.addEventListener('click', () => {
 	resetSettings()
 })
-preview?.addEventListener('dblclick', async (event) => {
+preview?.addEventListener('dblclick', async event => {
 	if (event.target !== preview) return
 
 	await togglePreviewFullscreen()
@@ -937,7 +937,7 @@ preview?.addEventListener('dblclick', async (event) => {
 document.addEventListener('fullscreenchange', () => {
 	fullscreenButton?.setAttribute(
 		'aria-pressed',
-		String(Boolean(document.fullscreenElement)),
+		String(Boolean(document.fullscreenElement))
 	)
 })
 copyButton?.addEventListener('click', async () => {

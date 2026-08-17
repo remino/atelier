@@ -27,7 +27,7 @@ export abstract class JukettePlayableTrack {
 
 	constructor(
 		readonly track: JuketteTrack,
-		protected readonly callbacks: PlayableTrackCallbacks,
+		protected readonly callbacks: PlayableTrackCallbacks
 	) {}
 
 	get currentTime(): number {

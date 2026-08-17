@@ -7,7 +7,7 @@ const showProgress = (target, progress) => {
 	if (!output) return
 
 	output.textContent = String(
-		Math.max(0, Math.min(100, Math.round(progress * 100))),
+		Math.max(0, Math.min(100, Math.round(progress * 100)))
 	)
 }
 
@@ -23,7 +23,7 @@ const updatePercentage = (event: Event) => {
 }
 
 export const initProgress = () => {
-	document.querySelectorAll('.section--percentage').forEach((el) => {
+	document.querySelectorAll('.section--percentage').forEach(el => {
 		el.addEventListener('sclf:scroll', updatePercentage)
 	})
 }

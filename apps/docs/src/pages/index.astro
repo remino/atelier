@@ -8,11 +8,13 @@ const packages = [
 		name: 'dactylo',
 	},
 	{
-		description: 'White-label jukebox custom element for audio, SoundCloud, and MIDI playlists.',
+		description:
+			'White-label jukebox custom element for audio, SoundCloud, and MIDI playlists.',
 		name: 'jukette',
 	},
 	{
-		description: 'Browser-side image processing controlled through URL fragments.',
+		description:
+			'Browser-side image processing controlled through URL fragments.',
 		name: 'paradimg',
 	},
 	{
@@ -32,9 +34,13 @@ const packages = [
 		<h2>Packages</h2>
 		<dl class="package-list">
 			{
-				packages.map((item) => (
+				packages.map(item => (
 					<div>
-						<dt><a href={`/${item.name}/`}><strong>{item.name}</strong></a></dt>
+						<dt>
+							<a href={`/${item.name}/`}>
+								<strong>{item.name}</strong>
+							</a>
+						</dt>
 						<dd>{item.description}</dd>
 					</div>
 				))

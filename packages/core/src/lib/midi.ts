@@ -1,7 +1,7 @@
 import type { JuketteMidiOscillator } from './types'
 
 export const normalizeMidiOscillator = (
-	value: string | null,
+	value: string | null
 ): JuketteMidiOscillator => {
 	if (
 		value === 'sine' ||

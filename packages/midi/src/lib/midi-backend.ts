@@ -16,7 +16,7 @@ export const juketteMidiBackend: JuketteBackend = {
 	},
 	preloadTrack: async (
 		track: JuketteTrack,
-		options,
+		options
 	): Promise<JuketteBackendPreloadResult | void> => {
 		if (!options.preloadDuration && !options.preloadMetadata) return
 

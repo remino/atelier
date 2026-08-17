@@ -20,23 +20,23 @@ yet support it, like Firefox and Safari, but doesn't work for all cases.
 <!-- mtoc-start -->
 
 - [About](#about)
-  - [What is it?](#what-is-it)
-  - [How does it work?](#how-does-it-work)
-  - [Built With](#built-with)
+    - [What is it?](#what-is-it)
+    - [How does it work?](#how-does-it-work)
+    - [Built With](#built-with)
 - [Getting Started](#getting-started)
-  - [Via CDN](#via-cdn)
-  - [Via npm](#via-npm)
-  - [Download](#download)
+    - [Via CDN](#via-cdn)
+    - [Via npm](#via-npm)
+    - [Download](#download)
 - [Usage](#usage)
 - [Tips](#tips)
-  - [Control when the animation starts and ends](#control-when-the-animation-starts-and-ends)
-  - [Applying multiple animations with different timings](#applying-multiple-animations-with-different-timings)
-  - [Animating only when the container covers the viewport](#animating-only-when-the-container-covers-the-viewport)
-  - [Horizontal scrolling](#horizontal-scrolling)
-  - [Snapping](#snapping)
-  - [Make the whole page the container](#make-the-whole-page-the-container)
-  - [Make sprites animate but without the floater](#make-sprites-animate-but-without-the-floater)
-  - [Animating the `<body>` itself.](#animating-the-body-itself)
+    - [Control when the animation starts and ends](#control-when-the-animation-starts-and-ends)
+    - [Applying multiple animations with different timings](#applying-multiple-animations-with-different-timings)
+    - [Animating only when the container covers the viewport](#animating-only-when-the-container-covers-the-viewport)
+    - [Horizontal scrolling](#horizontal-scrolling)
+    - [Snapping](#snapping)
+    - [Make the whole page the container](#make-the-whole-page-the-container)
+    - [Make sprites animate but without the floater](#make-sprites-animate-but-without-the-floater)
+    - [Animating the `<body>` itself.](#animating-the-body-itself)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -71,8 +71,8 @@ scrolling.
 - CSS
 - [Vite](https://vite.dev)
 - Docs:
-  - [Astro](https://astro.build)
-  - [Astro Compressor](https://github.com/rlemaigre/astro-compressor)
+    - [Astro](https://astro.build)
+    - [Astro Compressor](https://github.com/rlemaigre/astro-compressor)
 
 [Back to top](#scrollerful)
 
@@ -126,10 +126,10 @@ formats. [Back to top](#scrollerful)
 
 ```html
 <div class="sclf">
-	<div class="sclf__float">
-		<div class="bg sclf__sprite"></div>
-		<div class="toy sclf__sprite--contain"></div>
-	</div>
+    <div class="sclf__float">
+        <div class="bg sclf__sprite"></div>
+        <div class="toy sclf__sprite--contain"></div>
+    </div>
 </div>
 ```
 
@@ -137,40 +137,40 @@ formats. [Back to top](#scrollerful)
 
 ```css
 @keyframes bg {
-	from {
-		background-color: #000;
-	}
+    from {
+        background-color: #000;
+    }
 
-	to {
-		background-color: #fff;
-	}
+    to {
+        background-color: #fff;
+    }
 }
 
 @keyframes toy {
-	from {
-		border-radius: 100%;
-		color: #fff;
-		transform: rotate(0) scale(1);
-	}
+    from {
+        border-radius: 100%;
+        color: #fff;
+        transform: rotate(0) scale(1);
+    }
 
-	to {
-		border-radius: 0;
-		color: #000;
-		transform: rotate(1turn) scale(1.4);
-	}
+    to {
+        border-radius: 0;
+        color: #000;
+        transform: rotate(1turn) scale(1.4);
+    }
 }
 
 .bg {
-	--sclf-animation: bg;
-	inset: 0;
-	position: absolute;
-	z-index: -1;
+    --sclf-animation: bg;
+    inset: 0;
+    position: absolute;
+    z-index: -1;
 }
 
 .toy {
-	--sclf-animation: toy;
-	height: 6rem;
-	width: 6rem;
+    --sclf-animation: toy;
+    height: 6rem;
+    width: 6rem;
 }
 ```
 
@@ -219,11 +219,11 @@ the container, or finish it before reaching the end.
 
 ```css
 .sclf--enabled .toy {
-	/* Start animation when scrolling at a quarter: */
-	--sclf-delay: 25;
+    /* Start animation when scrolling at a quarter: */
+    --sclf-delay: 25;
 
-	/* End animation when scrolling at three quarters: */
-	--sclf-duration: 75;
+    /* End animation when scrolling at three quarters: */
+    --sclf-duration: 75;
 }
 ```
 
@@ -235,17 +235,17 @@ the `animation-range` for the `animation-timeline` yourself.
 
 ```css
 .sclf--enabled .toy {
-	animation-delay:
-		calc(var(--sclf-progress-contain, 0) * -100s + 25s),
-		calc(var(--sclf-progress-contain, 0) * -100s + 50s),
-		calc(var(--sclf-progress-contain, 0) * -100s + 0s);
+    animation-delay:
+        calc(var(--sclf-progress-contain, 0) * -100s + 25s),
+        calc(var(--sclf-progress-contain, 0) * -100s + 50s),
+        calc(var(--sclf-progress-contain, 0) * -100s + 0s);
 
-	animation-duration: 50s, 50s, 25s;
+    animation-duration: 50s, 50s, 25s;
 
-	animation-range:
-		contain 25% contain 75%,
-		contain 50% contain 100%,
-		contain 0% contain 25%;
+    animation-range:
+        contain 25% contain 75%,
+        contain 50% contain 100%,
+        contain 0% contain 25%;
 }
 ```
 
@@ -278,12 +278,12 @@ the `<body>`:
 
 ```html
 <body class="sclf--x">
-	<div class="sclf">
-		<div class="sclf__float">
-			<div class="bg sclf__sprite"></div>
-			<div class="toy sclf__sprite--contain"></div>
-		</div>
-	</div>
+    <div class="sclf">
+        <div class="sclf__float">
+            <div class="bg sclf__sprite"></div>
+            <div class="toy sclf__sprite--contain"></div>
+        </div>
+    </div>
 </body>
 ```
 
@@ -314,8 +314,8 @@ have them animate in place, just omit it. For example:
 
 ```html
 <div class="sclf">
-	<div class="bg sclf__sprite"></div>
-	<div class="toy sclf__sprite--contain"></div>
+    <div class="bg sclf__sprite"></div>
+    <div class="toy sclf__sprite--contain"></div>
 </div>
 ```
 
@@ -330,12 +330,12 @@ turning it into a sprite:
 
 ```css
 body {
-	--sclf-animation: bg;
+    --sclf-animation: bg;
 }
 
 /* Ensure the <html> has a proper flexible height. */
 html {
-	min-height: 100%;
+    min-height: 100%;
 }
 ```
 
