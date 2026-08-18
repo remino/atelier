@@ -1,8 +1,8 @@
 {
-	"name": "atelier",
+	"name": "@remino/atelier",
 	"version": "0.1.0",
 	"private": true,
-	"description": "Rémino's JavaScript libraries and their shared documentation site.",
+	"description": "Collection of artsy components.",
 	"workspaces": [
 		"packages/*",
 		"apps/*"

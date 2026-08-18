@@ -1,7 +1,6 @@
 # Atelier
 
-Rémino’s monorepo for publishable JavaScript libraries and their shared Astro
-documentation site.
+Collection of artsy components.
 
 Atelier v0.1.0
 
