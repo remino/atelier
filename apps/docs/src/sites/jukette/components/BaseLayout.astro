@@ -2,6 +2,7 @@
 import SiteNavFooter from '@remino/astro-site-nav/SiteNavFooter.astro'
 import SiteNavHeader from '@remino/astro-site-nav/SiteNavHeader.astro'
 import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
+import AtelierNav from '../../../components/AtelierNav.astro'
 import HeaderNav from './HeaderNav.astro'
 import { site } from '../data/site'
 import '../assets/css/style.css'
@@ -45,8 +46,12 @@ const readableDocumentTitle =
 const breadcrumbItems =
 	breadcrumbs ??
 	(title === site.title
-		? [{ label: site.readableTitle, href: '/jukette/' }]
+		? [
+				{ label: 'Atelier', href: '/atelier/' },
+				{ label: site.readableTitle, href: '/jukette/' },
+			]
 		: [
+				{ label: 'Atelier', href: '/atelier/' },
 				{ label: site.readableTitle, href: '/jukette/' },
 				{ label: title, href: path },
 			])
@@ -108,6 +113,7 @@ const navItems = [
 		{
 			showHeader && (
 				<header>
+					<AtelierNav />
 					<hgroup>
 						<h1>
 							<a href="/jukette/">{site.title}</a>

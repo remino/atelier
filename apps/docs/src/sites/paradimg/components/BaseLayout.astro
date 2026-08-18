@@ -2,6 +2,7 @@
 import SiteNavFooter from '@remino/astro-site-nav/SiteNavFooter.astro'
 import SiteNavHeader from '@remino/astro-site-nav/SiteNavHeader.astro'
 import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
+import AtelierNav from '../../../components/AtelierNav.astro'
 import HeaderNav from './HeaderNav.astro'
 import '../assets/css/style.css'
 
@@ -34,8 +35,12 @@ const navItems = [
 const breadcrumbItems =
 	breadcrumbs ??
 	(title === 'Paradimg'
-		? [{ label: 'Paradimg', href: '/paradimg/' }]
+		? [
+				{ label: 'Atelier', href: '/atelier/' },
+				{ label: 'Paradimg', href: '/paradimg/' },
+			]
 		: [
+				{ label: 'Atelier', href: '/atelier/' },
 				{ label: 'Paradimg', href: '/paradimg/' },
 				{
 					label: title.replace(/^Paradimg\s*/i, ''),
@@ -67,6 +72,7 @@ const breadcrumbItems =
 		{
 			showHeader && (
 				<header>
+					<AtelierNav />
 					<h1>
 						<a href="/paradimg/">Paradimg</a>
 					</h1>

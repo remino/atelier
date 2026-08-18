@@ -16,7 +16,8 @@ main {
 }
 
 body > header > h1::before {
-	content: '>';
+	content: '∴';
 	font-weight: normal;
+	margin-inline-end: 0.2em;
 	opacity: 0.5;
 }

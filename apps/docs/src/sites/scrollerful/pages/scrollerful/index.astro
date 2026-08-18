@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro'
+import AtelierNav from '../../../../components/AtelierNav.astro'
 import Logo from '../../components/Logo.astro'
 import Usage from '../../content/scrollerful-usage.md'
 import { site } from '../../data/site.ts'
@@ -13,9 +14,11 @@ const pageUrl = site.url
 	description={site.description}
 	initializeScrollerful={false}
 	pageUrl={pageUrl}
+	showAtelierNav={false}
 	bodyClass="demo--vertical demo--cover">
 	<header class="sclf contain-always">
 		<div class="sclf__float content">
+			<AtelierNav />
 			<h1 class="sclf__sprite">
 				<Logo />
 			</h1>
