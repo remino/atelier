@@ -1,0 +1,38 @@
+---
+import AtelierNav from './AtelierNav.astro'
+
+interface NavItem {
+	label: string
+	href: string
+	external?: boolean
+}
+
+interface Props {
+	title: string
+	href: string
+	items: NavItem[]
+}
+
+const { title, href, items } = Astro.props
+---
+
+<header>
+	<AtelierNav />
+	<h1><a href={href}><slot>{title}</slot></a></h1>
+	<nav aria-label="Main">
+		<ul>
+			{
+				items.map(item => (
+					<li>
+						<a
+							href={item.href}
+							target={item.external ? '_blank' : undefined}
+							rel={item.external ? 'noreferrer noopener' : undefined}>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>

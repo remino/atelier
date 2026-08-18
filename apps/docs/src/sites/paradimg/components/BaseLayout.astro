@@ -2,8 +2,8 @@
 import SiteNavFooter from '@remino/astro-site-nav/SiteNavFooter.astro'
 import SiteNavHeader from '@remino/astro-site-nav/SiteNavHeader.astro'
 import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
-import AtelierNav from '../../../components/AtelierNav.astro'
-import HeaderNav from './HeaderNav.astro'
+import LibraryBreadcrumbs from '../../../components/LibraryBreadcrumbs.astro'
+import LibraryHeader from '../../../components/LibraryHeader.astro'
 import '../assets/css/style.css'
 
 const {
@@ -71,27 +71,11 @@ const breadcrumbItems =
 		<SiteNavHeader />
 		{
 			showHeader && (
-				<header>
-					<AtelierNav />
-					<h1>
-						<a href="/paradimg/">Paradimg</a>
-					</h1>
-					<HeaderNav items={navItems} />
-				</header>
+				<LibraryHeader title="Paradimg" href="/paradimg/" items={navItems} />
 			)
 		}
 		<main class={mainClass || undefined}><slot /></main>
-		<div class="rmn-nav__content">
-			<ul class="rmn-breadcrumbs">
-				{
-					breadcrumbItems.map((item: { label: string; href?: string }) => (
-						<li>
-							{item.href ? <a href={item.href}>{item.label}</a> : item.label}
-						</li>
-					))
-				}
-			</ul>
-		</div>
+		<LibraryBreadcrumbs items={breadcrumbItems} />
 		<SiteNavFooter />
 		<slot name="scripts" />
 		<script>
