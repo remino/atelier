@@ -8,6 +8,10 @@ import rehypeCodeBlocks from './src/sites/jukette/lib/rehype-code-blocks.mjs'
 export default defineConfig({
 	site: 'https://remino.net/',
 	trailingSlash: 'always',
+	outDir: resolve(
+		'../..',
+		process.env.ATELIER_SITE_OUT_DIR ?? 'apps/docs/dist'
+	),
 	markdown: { processor: unified({ rehypePlugins: [rehypeCodeBlocks] }) },
 	integrations: [
 		minifyHtml({
