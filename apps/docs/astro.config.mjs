@@ -30,6 +30,7 @@ export default defineConfig({
 		}),
 	],
 	vite: {
+		envDir: resolve('../..'),
 		build: { assetsInlineLimit: 0 },
 		resolve: {
 			alias: {

@@ -1,50 +1,14 @@
 ---
-import AtelierLayout from '../layouts/AtelierLayout.astro'
-import ReadmeContent from '../../../../README.md'
-
-const packages = [
-	{
-		description: 'Typewriter effect in JS using CSS.',
-		name: 'dactylo',
-	},
-	{
-		description:
-			'White-label jukebox custom element for audio, SoundCloud, and MIDI playlists.',
-		name: 'jukette',
-	},
-	{
-		description:
-			'Browser-side image processing controlled through URL fragments.',
-		name: 'paradimg',
-	},
-	{
-		description: 'Custom element tribute to the cursed glory of marquee.',
-		name: 'remarqueeble',
-	},
-	{
-		description: 'Small JS and CSS library for scroll animations.',
-		name: 'scrollerful',
-	},
-]
+const target = '/atelier/'
 ---
 
-<AtelierLayout>
-	<article><ReadmeContent /></article>
-	<section id="packages">
-		<h2>Packages</h2>
-		<dl class="package-list">
-			{
-				packages.map(item => (
-					<div>
-						<dt>
-							<a href={`/${item.name}/`}>
-								<strong>{item.name}</strong>
-							</a>
-						</dt>
-						<dd>{item.description}</dd>
-					</div>
-				))
-			}
-		</dl>
-	</section>
-</AtelierLayout>
+<html lang="en">
+	<head>
+		<meta http-equiv="refresh" content={`0; url=${target}`} />
+		<link rel="canonical" href={target} />
+		<title>Atelier</title>
+	</head>
+	<body>
+		<p>Atelier has moved to <a href={target}>{target}</a>.</p>
+	</body>
+</html>
