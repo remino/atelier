@@ -203,8 +203,9 @@ npm run build
 npm test
 ```
 
-Use Node 22.12 or newer. `npm run build` produces the npm library and the Astro
-documentation site. `npm run release:dry-run` previews the release-it workflow.
+Use the Node version configured by Mise. `npm run build` produces the npm
+library and the Astro documentation site. `npm run release:dry-run` previews the
+shared release-it workflow.
 
 [Back to top](#)
 

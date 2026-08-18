@@ -78,7 +78,6 @@ async function main() {
 	for (const ws of workspaces) {
 		await publishWorkspace(ws)
 	}
-	// After all publishes succeed, optionally continue with docs publish handled by release-it hook
 }
 
 main().catch(err => {
