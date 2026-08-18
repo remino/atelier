@@ -91,7 +91,6 @@ const release = version => {
 }
 
 const dryRun = () => {
-	assertClean()
 	runChecks()
 	packWorkspaces()
 }

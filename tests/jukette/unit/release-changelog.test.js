@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
 	extractReleaseNotes,
 	promoteHead,
-} from '../../bin/release-changelog.mjs'
+} from '../../../bin/release-changelog.mjs'
 
 describe('bin/release-changelog.mjs', () => {
 	const changelog = `# CHANGELOG

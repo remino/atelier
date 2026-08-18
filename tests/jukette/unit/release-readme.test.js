@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { updateReadmeVersion } from '../../bin/release-readme.mjs'
+import { updateReadmeVersion } from '../../../bin/release-readme.mjs'
 
 describe('bin/release-readme.mjs', () => {
 	const readme = `# jukette

@@ -67,7 +67,7 @@
 		"format:check": "prettier --check .",
 		"release": "release-it --config ../../.release-it.json",
 		"release:dry-run": "release-it --config ../../.release-it.json --dry-run --verbose",
-		"test": "tsx ./node_modules/jasmine/bin/jasmine.js",
+		"test": "NODE_OPTIONS=--import=tsx npx --no-install jasmine",
 		"test:e2e": "playwright test",
 		"typecheck": "tsc --noEmit"
 	},
