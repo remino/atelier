@@ -2,70 +2,58 @@
 
 Collection of artsy components.
 
-Atelier v0.1.0
-
-By Rémino Rem  
-<https://remino.net/>
+2026 Rémino Rem <https://remino.net/>
 
 [Docs](https://remino.net/) | [Code Repo](https://github.com/remino/atelier)
-
----
 
 <!-- mtoc-start -->
 
 - [Packages](#packages)
-- [Documentation](#documentation)
 - [Development](#development)
-- [Repository layout](#repository-layout)
-- [Contributing](#contributing)
+    - [Tasks](#tasks)
+    - [Publishing](#publishing)
 - [Licence](#licence)
 
 <!-- mtoc-end -->
-
----
 
 ## Packages
 
 Atelier contains independently versioned npm packages:
 
-- `dactylo`: typography and text utilities.
-- `paradimg`: browser-side image URL modifiers.
-- `remarqueeble`: a custom element tribute to `<marquee>`.
-- `scrollerful`: scroll-driven web components.
-- `@remino/jukette-*`: the Jukette audio, MIDI, SoundCloud, and core packages.
+<!-- atelier-packages -->
+
+- [`dactylo`](https://remino.net/dactylo/): Typewriter effect in JS using CSS.
+- [`jukette`](https://remino.net/jukette/): White-label jukebox custom element
+  for audio, SoundCloud, and MIDI playlists.
+- [`paradimg`](https://remino.net/paradimg/): Browser-side image URL modifiers
+  and canvas effects.
+- [`remarqueeble`](https://remino.net/remarqueeble/): Custom element tribute to
+  the cursed glory of marquee.
+- [`scrollerful`](https://remino.net/scrollerful/): Small JS & CSS library for
+  scroll animations.
+
+<!-- /atelier-packages -->
 
 Each package keeps its own README with installation, usage, API, and release
 documentation.
 
-[Back to top](#)
-
----
-
-## Documentation
-
-The single Astro 7 site lives in `apps/docs`. Library sites retain their public
-paths:
-
-- <https://remino.net/dactylo/>
-- <https://remino.net/jukette/>
-- <https://remino.net/paradimg/>
-- <https://remino.net/remarqueeble/>
-- <https://remino.net/scrollerful/>
-
-Shared navigation, fonts, and other site assets are supplied through the
-environment-configured middleware proxy.
-
-[Back to top](#)
-
----
-
 ## Development
 
-```sh
-npm install
-npm run dev
-npm run build
-```
+Atelier is an npm workspace with one Astro 7 documentation site in `apps/docs`.
+Install dependencies with `npm install`, then use the tasks below.
+
+### Tasks
+
+- `npm run dev`
+    - Start the documentation site locally.
+- `npm run build`
+    - Build the packages and the documentation site.
+- `npm test`
+    - Run the package and Jukette test suites.
+- `npm run lint`
+    - Check the workspace lint configuration.
+- `npm run format:check`
+    - Check the shared formatting configuration.
 
 Pass Astro arguments after `--`:
 
@@ -73,41 +61,14 @@ Pass Astro arguments after `--`:
 npm run dev -- --host 0.0.0.0
 ```
 
-Useful checks:
+### Publishing
 
-```sh
-npm run typecheck
-npm test
-npm run lint
-npm run format:check
-```
-
-[Back to top](#)
-
----
-
-## Repository layout
-
-- `packages/` contains the publishable workspaces.
-- `apps/docs/` contains the merged documentation site.
-- `bin/` contains shared Jukette build and release helpers.
-
-[Back to top](#)
-
----
-
-## Contributing
-
-Install dependencies, run the checks above, and keep package-specific changes
-inside the relevant workspace. Update the package README when changing a
-library’s public API.
-
-[Back to top](#)
-
----
+- `npm run docs:publish`
+    - Build the site into the deployment worktree, commit it, deploy it with
+      rsdeploy, and push the deployment branch.
+- `npm run release:jukette:dry-run`
+    - Validate the coordinated Jukette release without publishing.
 
 ## Licence
 
 Individual packages retain their own licence files and terms.
-
-[Back to top](#)

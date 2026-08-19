@@ -1,0 +1,13 @@
+---
+import AtelierLayout from '../../layouts/AtelierLayout.astro'
+import { getAtelierLicence } from '../../lib/atelier-readme'
+
+const licence = await getAtelierLicence()
+---
+
+<AtelierLayout title="Licence">
+	<article>
+		<p>All packages are licensed under ISC unless mentioned otherwise.</p>
+		<div set:html={licence} />
+	</article>
+</AtelierLayout>

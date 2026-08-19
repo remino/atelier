@@ -1,43 +1,43 @@
 ---
 import AtelierLayout from '../../layouts/AtelierLayout.astro'
-import ReadmeContent from '../../../../../README.md'
+import { getAtelierReadme } from '../../lib/atelier-readme'
+import dactylo from '../../../../../packages/dactylo/package.json'
+import jukette from '../../../../../packages/jukette/package.json'
+import paradimg from '../../../../../packages/paradimg/package.json'
+import remarqueeble from '../../../../../packages/remarqueeble/package.json'
+import scrollerful from '../../../../../packages/scrollerful/package.json'
 
+const readme = await getAtelierReadme()
 const packages = [
-	{
-		description: 'Typewriter effect in JS using CSS.',
-		name: 'dactylo',
-	},
-	{
-		description:
-			'White-label jukebox custom element for audio, SoundCloud, and MIDI playlists.',
-		name: 'jukette',
-	},
-	{
-		description:
-			'Browser-side image processing controlled through URL fragments.',
-		name: 'paradimg',
-	},
-	{
-		description: 'Custom element tribute to the cursed glory of marquee.',
-		name: 'remarqueeble',
-	},
-	{
-		description: 'Small JS and CSS library for scroll animations.',
-		name: 'scrollerful',
-	},
+	{ href: '/dactylo/', name: 'dactylo', ...dactylo },
+	{ href: '/jukette/', name: 'jukette', ...jukette },
+	{ href: '/paradimg/', name: 'paradimg', ...paradimg },
+	{ href: '/remarqueeble/', name: 'remarqueeble', ...remarqueeble },
+	{ href: '/scrollerful/', name: 'scrollerful', ...scrollerful },
 ]
 ---
 
 <AtelierLayout>
-	<article><ReadmeContent /></article>
+	<article set:html={readme.beforePackages} />
+	<nav class="readme-toc" aria-label="Contents">
+		<ul>
+			{
+				readme.headings.map(heading => (
+					<li class={`level-${heading.level}`}>
+						<a href={heading.href}>{heading.label}</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 	<section id="packages">
-		<h2>Packages</h2>
+		<h2 id="packages">Packages</h2>
 		<dl class="package-list">
 			{
 				packages.map(item => (
 					<div>
 						<dt>
-							<a href={`/${item.name}/`}>
+							<a href={item.href}>
 								<strong>{item.name}</strong>
 							</a>
 						</dt>
@@ -47,4 +47,5 @@ const packages = [
 			}
 		</dl>
 	</section>
+	<article set:html={readme.afterPackages} />
 </AtelierLayout>
