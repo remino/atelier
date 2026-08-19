@@ -1,0 +1,1 @@
+import{t as e}from"./scrollerful.BbOiVAf-.js";document.readyState===`interactive`?e():document.addEventListener(`DOMContentLoaded`,e);
