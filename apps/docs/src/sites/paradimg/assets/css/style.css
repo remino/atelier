@@ -6,14 +6,16 @@ main {
 
 body > header h1,
 .playground-header h1 {
-	display: flex;
-	flex-flow: row nowrap;
-	text-transform: lowercase;
+	a {
+		display: flex;
+		flex-flow: row nowrap;
+		text-transform: lowercase;
 
-	&::before {
-		content: '#?';
-		font-weight: normal;
-		opacity: 0.5;
+		&::before {
+			content: '#?';
+			font-weight: normal;
+			opacity: 0.5;
+		}
 	}
 }
 

@@ -12,6 +12,21 @@ header nav ul {
 	padding: 0;
 }
 
+body > header h1,
+.playground-header h1 {
+	a {
+		display: flex;
+		flex-flow: row nowrap;
+		text-transform: lowercase;
+
+		&::before {
+			content: '⏯︎';
+			font-weight: normal;
+			opacity: 0.5;
+		}
+	}
+}
+
 .code-block {
 	margin-block-end: var(--dress-m-be);
 	margin-block-start: var(--dress-m-bs);
@@ -47,12 +62,6 @@ header nav ul {
 			opacity: 1;
 		}
 	}
-}
-
-header > hgroup > h1 > a::before {
-	content: '⏯︎';
-	display: inline;
-	margin-right: 0.5rem;
 }
 
 .sr-only {
