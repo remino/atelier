@@ -22,14 +22,14 @@ Atelier contains independently versioned npm packages:
 
 <!-- atelier-packages -->
 
-- [`dactylo`](https://remino.net/dactylo/): Typewriter effect in JS using CSS.
-- [`jukette`](https://remino.net/jukette/): White-label jukebox custom element
+- [`Dactylo`](https://remino.net/dactylo/): Typewriter effect in JS using CSS.
+- [`Jukette`](https://remino.net/jukette/): White-label jukebox custom element
   for audio, SoundCloud, and MIDI playlists.
-- [`paradimg`](https://remino.net/paradimg/): Browser-side image URL modifiers
+- [`Paradimg`](https://remino.net/paradimg/): Browser-side image URL modifiers
   and canvas effects.
-- [`remarqueeble`](https://remino.net/remarqueeble/): Custom element tribute to
+- [`Remarqueeble`](https://remino.net/remarqueeble/): Custom element tribute to
   the cursed glory of marquee.
-- [`scrollerful`](https://remino.net/scrollerful/): Small JS & CSS library for
+- [`Scrollerful`](https://remino.net/scrollerful/): Small JS & CSS library for
   scroll animations.
 
 <!-- /atelier-packages -->

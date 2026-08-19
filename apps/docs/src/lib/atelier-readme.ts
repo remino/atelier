@@ -20,6 +20,10 @@ export interface ReadmeHeading {
 	href: string
 }
 
+export function capitalizeFirstLetter(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 export async function getAtelierReadme() {
 	const markdown = await readFile(readmePath, 'utf8')
 	const packageSection =

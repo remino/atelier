@@ -1,6 +1,9 @@
 ---
 import AtelierLayout from '../../layouts/AtelierLayout.astro'
-import { getAtelierReadme } from '../../lib/atelier-readme'
+import {
+	capitalizeFirstLetter,
+	getAtelierReadme,
+} from '../../lib/atelier-readme'
 import dactylo from '../../../../../packages/dactylo/package.json'
 import jukette from '../../../../../packages/jukette/package.json'
 import paradimg from '../../../../../packages/paradimg/package.json'
@@ -9,11 +12,11 @@ import scrollerful from '../../../../../packages/scrollerful/package.json'
 
 const readme = await getAtelierReadme()
 const packages = [
-	{ href: '/dactylo/', name: 'dactylo', ...dactylo },
-	{ href: '/jukette/', name: 'jukette', ...jukette },
-	{ href: '/paradimg/', name: 'paradimg', ...paradimg },
-	{ href: '/remarqueeble/', name: 'remarqueeble', ...remarqueeble },
-	{ href: '/scrollerful/', name: 'scrollerful', ...scrollerful },
+	{ href: '/dactylo/', ...dactylo },
+	{ href: '/jukette/', ...jukette },
+	{ href: '/paradimg/', ...paradimg },
+	{ href: '/remarqueeble/', ...remarqueeble },
+	{ href: '/scrollerful/', ...scrollerful },
 ]
 ---
 
@@ -38,7 +41,7 @@ const packages = [
 					<div>
 						<dt>
 							<a href={item.href}>
-								<strong>{item.name}</strong>
+								<strong>{capitalizeFirstLetter(item.name)}</strong>
 							</a>
 						</dt>
 						<dd>{item.description}</dd>
