@@ -12,7 +12,7 @@ import {
 	subscribeJuketteBackendRegistrations,
 	trackFromElement,
 } from '@remino/jukette-core'
-import { AudioPlayableTrack } from '../../../packages/audio/src/lib/audio-track'
+import { AudioPlayableTrack } from '../../../packages/jukette-audio/src/lib/audio-track'
 import { parseAudioFileMetadata, register } from '@remino/jukette-audio'
 import {
 	midiProgramToOscillator,
@@ -25,8 +25,11 @@ import {
 	midiPlaybackRuntime,
 	MidiPlayableTrack,
 	warmMidiAudioContext,
-} from '../../../packages/midi/src/lib/midi-track'
-import { formatTime, pad } from '../../../packages/core/src/lib/player-time'
+} from '../../../packages/jukette-midi/src/lib/midi-track'
+import {
+	formatTime,
+	pad,
+} from '../../../packages/jukette-core/src/lib/player-time'
 
 describe('jukette helpers', () => {
 	beforeEach(() => {
