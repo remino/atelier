@@ -2,10 +2,8 @@ import { existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { deployBranch, deployDir, root } from './site-env.mjs'
 
-const root = resolve(import.meta.dirname, '..')
-const deployDir = process.env.ATELIER_DEPLOY_DIR ?? 'deploy'
-const deployBranch = process.env.ATELIER_DEPLOY_BRANCH ?? 'deploy'
 const worktree = resolve(root, deployDir)
 
 const git = (...args) =>

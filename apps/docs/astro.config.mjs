@@ -10,7 +10,7 @@ export default defineConfig({
 	trailingSlash: 'always',
 	outDir: resolve(
 		'../..',
-		process.env.ATELIER_SITE_OUT_DIR ?? 'apps/docs/dist'
+		process.env.ATELIER_SITE_OUT_DIR ?? 'apps/docs/dist/public'
 	),
 	markdown: { processor: unified({ rehypePlugins: [rehypeCodeBlocks] }) },
 	integrations: [

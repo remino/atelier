@@ -1,8 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { resolve } from 'node:path'
-
-const root = resolve(import.meta.dirname, '..')
-const deployDir = process.env.ATELIER_DEPLOY_DIR ?? 'deploy'
+import { deployDir, root } from './site-env.mjs'
 const outputDir = `${deployDir}/public`
 
 const npm = (...args) =>
