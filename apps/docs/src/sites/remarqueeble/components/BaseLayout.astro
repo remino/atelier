@@ -118,11 +118,11 @@ const navItems = [
 					title={site.title}
 					items={navItems}>
 					<span id="site-title-readable" class="sr-only" slot="title">
-						<mark>{site.readableTitle}</mark>
+						{site.readableTitle}
 					</span>
-					<mark aria-hidden="true" slot="title">
+					<span class="mark" aria-hidden="true" slot="title">
 						{site.title}
-					</mark>
+					</span>
 				</LibraryHeader>
 			)
 		}

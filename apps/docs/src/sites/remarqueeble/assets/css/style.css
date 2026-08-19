@@ -1,5 +1,9 @@
 @import '@remino/directive';
 
+header h1:has(> a):not(:has(> :not(a))) > a {
+	display: inline;
+}
+
 main {
 	margin-block-end: var(--rmn-ribbon-push, 0px);
 }
@@ -39,6 +43,14 @@ main {
 			opacity: 1;
 		}
 	}
+}
+
+.mark,
+a[href].title-link {
+	background: var(--dress-mk);
+	color: var(--dress-mk-tx);
+	padding-block: calc(var(--dress-p-b) / 8);
+	padding-inline: calc(var(--dress-p-i) / 4);
 }
 
 .sr-only {

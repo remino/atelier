@@ -15,9 +15,9 @@ main {
 	margin: 0;
 }
 
-body > header > h1::before {
+body > header > h1::after {
 	content: '∴';
 	font-weight: normal;
-	margin-inline-end: 0.2em;
+	margin-inline-start: 0.2em;
 	opacity: 0.5;
 }
