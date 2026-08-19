@@ -5,12 +5,10 @@ import {
 	utf8,
 } from '@remino/astro-middleware'
 
-const siteRoot = import.meta.env.REMINO_SITE_ROOT
+const siteRoot = import.meta.env.PARENT_SITE_ROOT
 
 if (!siteRoot) {
-	throw new Error(
-		'REMINO_SITE_ROOT must point to the shared remino.net checkout.'
-	)
+	throw new Error('PARENT_SITE_ROOT must point to the parent site checkout.')
 }
 
 export const onRequest = defineChainedMiddleware(
