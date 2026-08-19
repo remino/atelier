@@ -6,20 +6,20 @@ import { resolve } from 'node:path'
 const root = resolve(import.meta.dirname, '..')
 const manifests = [
 	'package.json',
-	'packages/core/package.json',
-	'packages/audio/package.json',
-	'packages/midi/package.json',
-	'packages/soundcloud/package.json',
+	'packages/jukette-core/package.json',
+	'packages/jukette-audio/package.json',
+	'packages/jukette-midi/package.json',
+	'packages/jukette-soundcloud/package.json',
 	'packages/jukette/package.json',
 	'apps/docs/package.json',
 ]
 
 const lockfileEntries = new Map([
 	['package.json', ''],
-	['packages/core/package.json', 'packages/core'],
-	['packages/audio/package.json', 'packages/audio'],
-	['packages/midi/package.json', 'packages/midi'],
-	['packages/soundcloud/package.json', 'packages/soundcloud'],
+	['packages/jukette-core/package.json', 'packages/jukette-core'],
+	['packages/jukette-audio/package.json', 'packages/jukette-audio'],
+	['packages/jukette-midi/package.json', 'packages/jukette-midi'],
+	['packages/jukette-soundcloud/package.json', 'packages/jukette-soundcloud'],
 	['packages/jukette/package.json', 'packages/jukette'],
 	['apps/docs/package.json', 'apps/docs'],
 ])

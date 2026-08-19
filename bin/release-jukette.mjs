@@ -14,10 +14,10 @@ const workspaces = [
 const manifests = [
 	'package.json',
 	'package-lock.json',
-	'packages/core/package.json',
-	'packages/audio/package.json',
-	'packages/midi/package.json',
-	'packages/soundcloud/package.json',
+	'packages/jukette-core/package.json',
+	'packages/jukette-audio/package.json',
+	'packages/jukette-midi/package.json',
+	'packages/jukette-soundcloud/package.json',
 	'packages/jukette/package.json',
 	'apps/docs/package.json',
 ]

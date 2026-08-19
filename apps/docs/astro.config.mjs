@@ -39,24 +39,26 @@ export default defineConfig({
 		resolve: {
 			alias: {
 				'@remino/jukette-audio/auto': resolve(
-					'../../packages/audio/src/lib/audio-auto.ts'
+					'../../packages/jukette-audio/src/lib/audio-auto.ts'
 				),
 				'@remino/jukette-midi/auto': resolve(
-					'../../packages/midi/src/lib/midi-auto.ts'
+					'../../packages/jukette-midi/src/lib/midi-auto.ts'
 				),
 				'@remino/jukette-soundcloud/auto': resolve(
-					'../../packages/soundcloud/src/lib/soundcloud-auto.ts'
+					'../../packages/jukette-soundcloud/src/lib/soundcloud-auto.ts'
 				),
 				'jukette/auto': resolve('../../packages/jukette/src/lib/auto.ts'),
-				'@remino/jukette-core': resolve('../../packages/core/src/lib/core.ts'),
+				'@remino/jukette-core': resolve(
+					'../../packages/jukette-core/src/lib/core.ts'
+				),
 				'@remino/jukette-audio': resolve(
-					'../../packages/audio/src/lib/audio.ts'
+					'../../packages/jukette-audio/src/lib/audio.ts'
 				),
 				'@remino/jukette-midi': resolve(
-					'../../packages/midi/src/lib/midi-entry.ts'
+					'../../packages/jukette-midi/src/lib/midi-entry.ts'
 				),
 				'@remino/jukette-soundcloud': resolve(
-					'../../packages/soundcloud/src/lib/soundcloud.ts'
+					'../../packages/jukette-soundcloud/src/lib/soundcloud.ts'
 				),
 				jukette: resolve('../../packages/jukette/src/lib/jukette.ts'),
 			},

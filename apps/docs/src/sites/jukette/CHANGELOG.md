@@ -162,8 +162,8 @@
     - Replace the root Jasmine runner with Vitest, port the release-script and
       helper tests, and add `jsdom`-based player DOM coverage.
     - Migrate the repository to an npm workspaces monorepo with
-      `packages/jukette`, `packages/core`, `packages/audio`, `packages/midi`,
-      and `apps/docs`.
+      `packages/jukette`, `packages/jukette-core`, `packages/jukette-audio`,
+      `packages/jukette-midi`, and `apps/docs`.
     - Publish modular packages as `@remino/jukette-core`,
       `@remino/jukette-audio`, and `@remino/jukette-midi` while keeping unscoped
       `jukette` as the convenience bundle.

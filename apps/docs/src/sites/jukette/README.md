@@ -469,9 +469,9 @@ npm run build
 This repository is an npm workspaces monorepo:
 
 - `packages/jukette`: publishes `jukette`.
-- `packages/core`: publishes `@remino/jukette-core`.
-- `packages/audio`: publishes `@remino/jukette-audio`.
-- `packages/midi`: publishes `@remino/jukette-midi`.
+- `packages/jukette-core`: publishes `@remino/jukette-core`.
+- `packages/jukette-audio`: publishes `@remino/jukette-audio`.
+- `packages/jukette-midi`: publishes `@remino/jukette-midi`.
 - `apps/docs`: Astro docs and playground site.
 
 Root scripts orchestrate builds in dependency order. Use `npm run build`,

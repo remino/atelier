@@ -141,19 +141,19 @@ const buildLibrary = async ({
 			alias: {
 				'@remino/jukette-core': resolve(
 					workspaceRoot,
-					'packages/core/src/lib/core.ts'
+					'packages/jukette-core/src/lib/core.ts'
 				),
 				'@remino/jukette-audio': resolve(
 					workspaceRoot,
-					'packages/audio/src/lib/audio.ts'
+					'packages/jukette-audio/src/lib/audio.ts'
 				),
 				'@remino/jukette-midi': resolve(
 					workspaceRoot,
-					'packages/midi/src/lib/midi-entry.ts'
+					'packages/jukette-midi/src/lib/midi-entry.ts'
 				),
 				'@remino/jukette-soundcloud': resolve(
 					workspaceRoot,
-					'packages/soundcloud/src/lib/soundcloud.ts'
+					'packages/jukette-soundcloud/src/lib/soundcloud.ts'
 				),
 			},
 		},
