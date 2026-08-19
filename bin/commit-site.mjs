@@ -1,4 +1,5 @@
 import { execFileSync, spawnSync } from 'node:child_process'
+import { resolve } from 'node:path'
 import { deployBranch, deployDir, root } from './site-env.mjs'
 const worktree = resolve(root, deployDir)
 const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], {
