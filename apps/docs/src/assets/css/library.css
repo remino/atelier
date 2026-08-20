@@ -1,4 +1,4 @@
-@import '@remino/directive';
+@import '@remino/directive' layer(library);
 
 main {
 	margin-block-end: var(--rmn-ribbon-push, 0px);
