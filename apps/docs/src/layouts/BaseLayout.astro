@@ -1,0 +1,90 @@
+---
+import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
+import '../assets/css/library.css'
+
+interface SiteData {
+	title: string
+	readableTitle: string
+	description: string
+	url: string
+	image?: string
+	imageAlt?: string
+	twitterHandle?: string
+}
+
+interface Props {
+	site: SiteData
+	title: string
+	description: string
+	path: string
+	pageUrl?: string
+	htmlClass?: string
+	bodyClass?: string
+	scrollerfulCss?: boolean
+}
+
+const {
+	site,
+	title,
+	description,
+	path,
+	pageUrl,
+	htmlClass = '',
+	bodyClass = '',
+	scrollerfulCss = false,
+} = Astro.props as Props
+const siteUrl =
+	pageUrl ?? (Astro.site ? new URL(path, Astro.site).toString() : site.url)
+const imageUrl =
+	site.image &&
+	(Astro.site ? new URL(site.image, Astro.site).toString() : site.image)
+const documentTitle = title === site.title ? title : `${title} // ${site.title}`
+const combinedHtmlClass = ['no-js', 'rmn-nav-ribbon-bg-blur', htmlClass]
+	.filter(Boolean)
+	.join(' ')
+---
+
+<!doctype html>
+<html lang="en-CA" class={combinedHtmlClass}>
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="viewport-fit=cover, width=device-width, initial-scale=1.0"
+		/>
+		<meta name="format-detection" content="telephone=no" />
+		<title>{title === site.title ? site.readableTitle : documentTitle}</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={documentTitle} />
+		<meta property="og:description" content={description} />
+		{imageUrl && <meta property="og:image" content={imageUrl} />}
+		{site.imageAlt && <meta property="og:image:alt" content={site.imageAlt} />}
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={documentTitle} />
+		<meta name="twitter:description" content={description} />
+		{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+		{
+			site.twitterHandle && (
+				<meta name="twitter:site" content={site.twitterHandle} />
+			)
+		}
+		{
+			site.twitterHandle && (
+				<meta name="twitter:creator" content={site.twitterHandle} />
+			)
+		}
+		<meta name="twitter:url" content={siteUrl} />
+		{scrollerfulCss && <meta name="scrollerful-css" content="bundled" />}
+		<SiteNavHtmlHead />
+		<slot name="head" />
+		<script>
+			document.documentElement.classList.replace('no-js', 'js')
+		</script>
+	</head>
+	<body class={bodyClass}>
+		<slot />
+		<slot name="scripts" />
+	</body>
+</html>

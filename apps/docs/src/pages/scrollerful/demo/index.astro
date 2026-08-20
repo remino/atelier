@@ -1,19 +1,16 @@
 ---
-import LibraryLayout from '../../../layouts/LibraryLayout.astro'
+import FullLayout from '../../../layouts/FullLayout.astro'
 import Logo from '../../../sites/scrollerful/components/Logo.astro'
 import { site } from '../../../sites/scrollerful/data/site.ts'
 import '../../../sites/scrollerful/assets/css/site.css'
 import '../../../sites/scrollerful/lib/scrollerful.css'
 ---
 
-<LibraryLayout
-	library="scrollerful"
+<FullLayout
 	title={site.title}
 	description={site.description}
 	initializeScrollerful={false}
 	pageUrl={`${site.url}demo/`}
-	showHeader={false}
-	wrapMain={false}
 	scrollerfulCss
 	bodyClass="demo--vertical demo--cover">
 	<template class="controls-template js-template">
@@ -103,4 +100,4 @@ import '../../../sites/scrollerful/lib/scrollerful.css'
 		</div>
 	</section>
 	<script src="../../../sites/scrollerful/assets/js/site.ts"></script>
-</LibraryLayout>
+</FullLayout>
