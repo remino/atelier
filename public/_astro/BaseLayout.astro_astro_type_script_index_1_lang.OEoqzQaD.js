@@ -1,1 +1,0 @@
-import{t as e}from"./copy-buttons.Bk0cqRLs.js";e({blockSelector:`main:not(.playground-layout) .code-block`,copiedLabel:`Copied`});

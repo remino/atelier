@@ -1,1 +1,0 @@
-document.documentElement.classList.add(`js`),document.documentElement.classList.remove(`no-js`);

@@ -1,0 +1,1 @@
+main{margin-block-end:calc(var(--rmn-ribbon-push,0px) + var(--dress-m-b) * 2)}.package-list{gap:var(--dress-m-b) var(--dress-m-i);grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));padding:0;display:grid}.package-list>div{margin:0}body>header>h1:after{content:"∴";opacity:.5;margin-inline-start:.2em;font-weight:400}
