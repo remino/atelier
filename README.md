@@ -1,6 +1,6 @@
 # Atelier
 
-Collection of artsy components.
+Creative libraries for the web.
 
 2026 Rémino Rem <https://remino.net/>
 
