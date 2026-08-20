@@ -1,1 +1,0 @@
-header h1:has(>a):not(:has(>:not(a)))>a{display:inline}.mark,a[href].title-link{background:var(--dress-mk);color:var(--dress-mk-tx);padding-block:calc(var(--dress-p-b) / 8);padding-inline:calc(var(--dress-p-i) / 4)}
