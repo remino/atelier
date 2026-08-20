@@ -1,5 +1,13 @@
 ---
-import Page from '../../sites/jukette/pages/jukette/updates.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/jukette/data/site'
+import ChangelogContent from '../../sites/jukette/CHANGELOG.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="jukette"
+	title="Updates"
+	description={`Release notes for ${site.title}.`}
+	path="/jukette/updates/">
+	<ChangelogContent />
+</LibraryLayout>

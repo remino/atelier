@@ -1,4 +1,4 @@
-import playlist from '../../data/demo-playlist.json'
+import playlist from '../../sites/jukette/data/demo-playlist.json'
 
 export const GET = () =>
 	new Response(JSON.stringify(playlist), {

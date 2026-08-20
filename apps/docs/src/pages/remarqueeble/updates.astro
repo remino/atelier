@@ -1,5 +1,13 @@
 ---
-import Page from '../../sites/remarqueeble/pages/remarqueeble/updates.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/remarqueeble/data/site'
+import ChangelogContent from '../../sites/remarqueeble/CHANGELOG.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="remarqueeble"
+	title="Updates"
+	description={`Release notes for ${site.title}.`}
+	path="/remarqueeble/updates/">
+	<ChangelogContent />
+</LibraryLayout>

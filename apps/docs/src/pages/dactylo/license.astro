@@ -1,5 +1,16 @@
 ---
-import Page from '../../sites/dactylo/pages/dactylo/license.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/dactylo/data/site'
+import LicenseContent from '../../sites/dactylo/LICENSE.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="dactylo"
+	title="Licence"
+	description={`ISC licence for ${site.title}.`}
+	path="/dactylo/license/">
+	<main>
+		<h1>Licence</h1>
+		<LicenseContent />
+	</main>
+</LibraryLayout>

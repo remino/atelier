@@ -1,5 +1,12 @@
 ---
-import Page from '../../sites/jukette/pages/jukette/index.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/jukette/data/site'
+import ReadmeContent from '../../sites/jukette/README.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="jukette"
+	title={site.title}
+	description={site.description}>
+	<ReadmeContent />
+</LibraryLayout>

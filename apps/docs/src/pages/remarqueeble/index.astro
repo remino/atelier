@@ -1,5 +1,12 @@
 ---
-import Page from '../../sites/remarqueeble/pages/remarqueeble/index.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/remarqueeble/data/site'
+import ReadmeContent from '../../sites/remarqueeble/README.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="remarqueeble"
+	title={site.title}
+	description={site.description}>
+	<ReadmeContent />
+</LibraryLayout>

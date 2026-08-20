@@ -1,5 +1,15 @@
 ---
-import Page from '../../sites/dactylo/pages/dactylo/updates.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/dactylo/data/site'
+import ChangelogContent from '../../sites/dactylo/CHANGELOG.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="dactylo"
+	title="Updates"
+	description={`Release notes for ${site.title}.`}
+	path="/dactylo/updates/">
+	<main>
+		<ChangelogContent />
+	</main>
+</LibraryLayout>

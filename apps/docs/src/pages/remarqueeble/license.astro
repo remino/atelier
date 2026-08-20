@@ -1,5 +1,14 @@
 ---
-import Page from '../../sites/remarqueeble/pages/remarqueeble/license.astro'
+import LibraryLayout from '../../layouts/LibraryLayout.astro'
+import { site } from '../../sites/remarqueeble/data/site'
+import LicenseContent from '../../sites/remarqueeble/LICENSE.md'
 ---
 
-<Page />
+<LibraryLayout
+	library="remarqueeble"
+	title="Licence"
+	description={`ISC licence for ${site.title}.`}
+	path="/remarqueeble/license/">
+	<h1>Licence</h1>
+	<LicenseContent />
+</LibraryLayout>
