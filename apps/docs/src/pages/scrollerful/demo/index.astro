@@ -3,15 +3,12 @@ import FullLayout from '../../../layouts/FullLayout.astro'
 import Logo from '../../../sites/scrollerful/components/Logo.astro'
 import { site } from '../../../sites/scrollerful/data/site.ts'
 import '../../../sites/scrollerful/assets/css/site.css'
-import '../../../sites/scrollerful/lib/scrollerful.css'
 ---
 
 <FullLayout
 	title={site.title}
 	description={site.description}
-	initializeScrollerful={false}
 	pageUrl={`${site.url}demo/`}
-	scrollerfulCss
 	bodyClass="demo--vertical demo--cover">
 	<template class="controls-template js-template">
 		<details class="controls">

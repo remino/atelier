@@ -6,6 +6,7 @@ import AtelierNav from '../components/AtelierNav.astro'
 import LibraryBreadcrumbs from '../components/LibraryBreadcrumbs.astro'
 import LibraryHeader from '../components/LibraryHeader.astro'
 import '../assets/css/library.css'
+import '../assets/css/library.css'
 import { site as dactylo } from '../sites/dactylo/data/site'
 import { site as jukette } from '../sites/jukette/data/site'
 import { site as remarqueeble } from '../sites/remarqueeble/data/site'
@@ -262,37 +263,6 @@ const combinedHtmlClass = ['no-js', 'rmn-nav-ribbon-bg-blur', htmlClass]
 		<LibraryBreadcrumbs items={breadcrumbItems} />
 		<SiteNavFooter><a href={config.path}>{site.readableTitle}</a></SiteNavFooter
 		>
-		{
-			library === 'dactylo' && (
-				<script>
-					import '../sites/dactylo/lib/auto' import
-					'../sites/dactylo/assets/js/copy-buttons'
-				</script>
-			)
-		}
-		{
-			library === 'jukette' && (
-				<script>import '../sites/jukette/assets/js/copy-buttons'</script>
-			)
-		}
-		{
-			library === 'paradimg' && (
-				<script>import '../sites/paradimg/assets/js/copy-buttons'</script>
-			)
-		}
-		{
-			library === 'remarqueeble' && (
-				<script>
-					import '../sites/remarqueeble/lib/auto' import
-					'../sites/remarqueeble/assets/js/copy-buttons'
-				</script>
-			)
-		}
-		{
-			initializeScrollerful && (
-				<script src="../sites/scrollerful/assets/js/auto.ts" />
-			)
-		}
 		<slot name="scripts" />
 	</body>
 </html>

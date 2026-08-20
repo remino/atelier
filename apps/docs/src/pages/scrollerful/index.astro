@@ -5,7 +5,6 @@ import Logo from '../../sites/scrollerful/components/Logo.astro'
 import Usage from '../../sites/scrollerful/content/scrollerful-usage.md'
 import { site } from '../../sites/scrollerful/data/site.ts'
 import '../../sites/scrollerful/assets/css/site.css'
-import '../../sites/scrollerful/lib/scrollerful.css'
 
 const pageUrl = site.url
 ---
@@ -13,10 +12,8 @@ const pageUrl = site.url
 <FullLayout
 	title={site.title}
 	description={site.description}
-	initializeScrollerful={false}
 	pageUrl={pageUrl}
 	showAtelierNav={false}
-	scrollerfulCss
 	bodyClass="demo--vertical demo--cover">
 	<header class="sclf contain-always">
 		<div class="sclf__float content">

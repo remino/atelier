@@ -5,6 +5,8 @@ import AtelierNav from '../components/AtelierNav.astro'
 import LibraryBreadcrumbs from '../components/LibraryBreadcrumbs.astro'
 import BaseLayout from './BaseLayout.astro'
 import { site as scrollerful } from '../sites/scrollerful/data/site'
+import '../sites/scrollerful/assets/css/style.css'
+import '../sites/scrollerful/lib/scrollerful.css'
 
 interface Props {
 	title?: string
@@ -12,7 +14,6 @@ interface Props {
 	pageUrl?: string
 	bodyClass?: string
 	showAtelierNav?: boolean
-	initializeScrollerful?: boolean
 }
 
 const {
@@ -21,7 +22,6 @@ const {
 	pageUrl = scrollerful.url,
 	bodyClass = '',
 	showAtelierNav = true,
-	initializeScrollerful = false,
 } = Astro.props as Props
 const site = {
 	...scrollerful,
@@ -55,9 +55,4 @@ const site = {
 		]}
 	/>
 	<SiteNavFooter><a href="/scrollerful/">Scrollerful</a></SiteNavFooter>
-	{
-		initializeScrollerful && (
-			<script src="../sites/scrollerful/assets/js/auto.ts" />
-		)
-	}
 </BaseLayout>
