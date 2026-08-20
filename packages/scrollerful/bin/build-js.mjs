@@ -1,19 +1,14 @@
-import { execFile } from 'child_process'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 import postcss from 'postcss'
-import { rm, readFile, mkdir, copyFile, writeFile } from 'fs/promises'
+import { rm, readFile, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import { build } from 'vite'
-import { promisify } from 'util'
 
 const root = process.cwd()
-const execFileAsync = promisify(execFile)
 
 const paths = {
 	dist: resolve(root, 'dist'),
-	distLegacy: resolve(root, 'dist/scrollerful'),
-	publicAssets: resolve(root, 'public/scrollerful'),
 }
 
 const packageJson = JSON.parse(
@@ -90,28 +85,7 @@ const buildLibrary = async ({
 	})
 
 const clean = async () => {
-	await Promise.all([
-		rm(paths.dist, { force: true, recursive: true }),
-		rm(paths.distLegacy, { force: true, recursive: true }),
-	])
-}
-
-const copyArtifacts = async () => {
-	await mkdir(paths.publicAssets, { recursive: true })
-	await copyFile(
-		resolve(root, 'src/pages/scrollerful/demo.mp4'),
-		resolve(paths.publicAssets, 'demo.mp4')
-	)
-	await execFileAsync('magick', [
-		resolve(root, 'src/pages/scrollerful/share.avif'),
-		'-quality',
-		'90',
-		resolve(paths.publicAssets, 'share.avif.jpg'),
-	])
-	await execFileAsync('magick', [
-		resolve(root, 'src/pages/scrollerful/share.avif'),
-		resolve(paths.publicAssets, 'share.avif.webp'),
-	])
+	await rm(paths.dist, { force: true, recursive: true })
 }
 
 const ensureBanner = async filePath => {
@@ -158,8 +132,6 @@ const main = async () => {
 		ensureBanner(resolve(paths.dist, 'scrollerful.min.js')),
 		ensureBanner(resolve(paths.dist, 'scrollerful-auto.min.js')),
 	])
-
-	await copyArtifacts()
 }
 
 main().catch(error => {
