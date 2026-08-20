@@ -1,9 +1,21 @@
 ---
-import ProseLayout from './ProseLayout.astro'
+import DactyloLayout from './DactyloLayout.astro'
+import JuketteLayout from './JuketteLayout.astro'
+import ParadimgLayout from './ParadimgLayout.astro'
+import RemarqueebleLayout from './RemarqueebleLayout.astro'
+
+const layouts = {
+	dactylo: DactyloLayout,
+	jukette: JuketteLayout,
+	paradimg: ParadimgLayout,
+	remarqueeble: RemarqueebleLayout,
+}
+const { library, ...props } = Astro.props
+const Layout = layouts[library]
 ---
 
-<ProseLayout {...Astro.props}>
+<Layout {...props}>
 	<slot />
 	<slot name="head" slot="head" />
 	<slot name="scripts" slot="scripts" />
-</ProseLayout>
+</Layout>

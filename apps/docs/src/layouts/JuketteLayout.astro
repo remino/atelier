@@ -1,0 +1,31 @@
+---
+import ProseLayout from './ProseLayout.astro'
+import { site } from '../sites/jukette/data/site'
+import '../sites/jukette/assets/css/style.css'
+
+const navItems = [
+	{ label: 'Home', href: '/jukette/' },
+	{ label: 'Playground', href: '/jukette/playground/' },
+	{ label: 'Updates', href: '/jukette/updates/' },
+	{ label: 'Licence', href: '/jukette/license/' },
+	{
+		label: 'GitHub',
+		href: 'https://github.com/remino/jukette',
+		external: true,
+	},
+	{
+		label: 'npm',
+		href: 'https://www.npmjs.com/package/jukette',
+		external: true,
+	},
+]
+---
+
+<ProseLayout
+	site={site}
+	navItems={navItems}
+	libraryPath="/jukette/"
+	{...Astro.props}>
+	<slot />
+	<slot name="scripts" slot="scripts" />
+</ProseLayout>

@@ -1,0 +1,31 @@
+---
+import ProseLayout from './ProseLayout.astro'
+import { site } from '../sites/dactylo/data/site'
+import '../sites/dactylo/assets/css/style.css'
+
+const navItems = [
+	{ label: 'Home', href: '/dactylo/' },
+	{ label: 'Demo', href: '/dactylo/demo/' },
+	{ label: 'Updates', href: '/dactylo/updates/' },
+	{ label: 'Licence', href: '/dactylo/license/' },
+	{
+		label: 'GitHub',
+		href: 'https://github.com/remino/dactylo',
+		external: true,
+	},
+	{
+		label: 'npm',
+		href: 'https://www.npmjs.com/package/dactylo',
+		external: true,
+	},
+]
+---
+
+<ProseLayout
+	site={site}
+	navItems={navItems}
+	libraryPath="/dactylo/"
+	{...Astro.props}>
+	<slot />
+	<slot name="scripts" slot="scripts" />
+</ProseLayout>

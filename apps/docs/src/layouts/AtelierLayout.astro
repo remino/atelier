@@ -1,37 +1,30 @@
 ---
 import SiteNavFooter from '@remino/astro-site-nav/SiteNavFooter.astro'
 import SiteNavHeader from '@remino/astro-site-nav/SiteNavHeader.astro'
-import SiteNavHtmlHead from '@remino/astro-site-nav/SiteNavHtmlHead.astro'
 import AtelierMenu from '../components/AtelierMenu.astro'
+import BaseLayout from './BaseLayout.astro'
+import '../assets/css/library.css'
 import '../assets/css/atelier.css'
 
-const { title = 'Atelier' } = Astro.props
-const documentTitle = title === 'Atelier' ? title : `${title} // Atelier`
+interface Props {
+	title?: string
+}
+
+const { title = 'Atelier' } = Astro.props as Props
+const site = {
+	title: 'Atelier',
+	readableTitle: 'Atelier',
+	description: 'Collection of artsy components.',
+	url: 'https://remino.net/atelier/',
+}
 ---
 
-<!doctype html>
-<html lang="en-CA" class="no-js rmn-nav-ribbon-bg-blur">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="viewport-fit=cover, width=device-width, initial-scale=1.0"
-		/>
-		<meta name="description" content="Collection of artsy components." />
-		<title>{documentTitle}</title>
-		<SiteNavHtmlHead />
-		<script>
-			document.documentElement.classList.add('js')
-			document.documentElement.classList.remove('no-js')
-		</script>
-	</head>
-	<body>
-		<SiteNavHeader />
-		<header>
-			<h1><a href="/atelier/">Atelier</a></h1>
-			<AtelierMenu />
-		</header>
-		<main><slot /></main>
-		<SiteNavFooter><a href="/atelier/">Atelier</a></SiteNavFooter>
-	</body>
-</html>
+<BaseLayout site={site} {title} description={site.description} path="/atelier/">
+	<SiteNavHeader />
+	<header>
+		<h1><a href="/atelier/">Atelier</a></h1>
+		<AtelierMenu />
+	</header>
+	<main><slot /></main>
+	<SiteNavFooter><a href="/atelier/">Atelier</a></SiteNavFooter>
+</BaseLayout>

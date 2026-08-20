@@ -1,0 +1,34 @@
+---
+import ProseLayout from './ProseLayout.astro'
+import '../sites/paradimg/assets/css/style.css'
+
+const site = {
+	title: 'Paradimg',
+	readableTitle: 'Paradimg',
+	description: 'Browser-side image URL modifiers.',
+	url: 'https://remino.net/paradimg/',
+}
+const navItems = [
+	{ label: 'Home', href: '/paradimg/' },
+	{ label: 'Playground', href: '/paradimg/playground/' },
+	{
+		label: 'GitHub',
+		href: 'https://github.com/remino/paradimg',
+		external: true,
+	},
+	{
+		label: 'npm',
+		href: 'https://www.npmjs.com/package/paradimg',
+		external: true,
+	},
+]
+---
+
+<ProseLayout
+	site={site}
+	navItems={navItems}
+	libraryPath="/paradimg/"
+	{...Astro.props}>
+	<slot />
+	<slot name="scripts" slot="scripts" />
+</ProseLayout>
