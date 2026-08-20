@@ -1,9 +1,13 @@
 ---
-import BaseLayout from '../../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../../layouts/LibraryLayout.astro'
 import { site } from '../../../data/site'
 ---
 
-<BaseLayout title="Demo" description={site.description} path="/dactylo/demo/">
+<LibraryLayout
+	library="dactylo"
+	title="Demo"
+	description={site.description}
+	path="/dactylo/demo/">
 	<main>
 		<h1>Demo</h1>
 		<p>
@@ -133,4 +137,4 @@ dactylo(document.querySelector('main'), &lbrace; delay: 24 &rbrace;)</code></pre
 				updateState()
 			})
 	</script>
-</BaseLayout>
+</LibraryLayout>

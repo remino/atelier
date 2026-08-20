@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../../layouts/LibraryLayout.astro'
 import PlaygroundLayout from '../../../../../layouts/PlaygroundLayout.astro'
 import { site } from '../../../data/site'
 import '../../../assets/css/playground.css'
@@ -39,7 +39,8 @@ const embedCode = `<jukette-player preload-metadata prefer-media-metadata show-s
 </script>`
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="jukette"
 	title="Playground"
 	description={site.description}
 	path="/jukette/playground/"
@@ -148,4 +149,4 @@ const embedCode = `<jukette-player preload-metadata prefer-media-metadata show-s
 	<Fragment slot="scripts"
 		><script src="../../../assets/js/playground.js"></script></Fragment
 	>
-</BaseLayout>
+</LibraryLayout>

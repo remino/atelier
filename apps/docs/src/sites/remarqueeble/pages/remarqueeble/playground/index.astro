@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '../../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../../layouts/LibraryLayout.astro'
 import PlaygroundLayout from '../../../../../layouts/PlaygroundLayout.astro'
 import { site } from '../../../data/site'
 import '../../../assets/css/demo.css'
 import '../../../lib/lite.css'
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="remarqueeble"
 	title="Playground"
 	description={site.description}
 	path="/remarqueeble/playground/"
@@ -284,4 +285,4 @@ import '../../../lib/lite.css'
 	<Fragment slot="scripts"
 		><script src="../../../assets/js/demo.js"></script></Fragment
 	>
-</BaseLayout>
+</LibraryLayout>

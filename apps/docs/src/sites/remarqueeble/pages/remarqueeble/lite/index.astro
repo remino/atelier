@@ -1,11 +1,12 @@
 ---
-import BaseLayout from '../../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../../layouts/LibraryLayout.astro'
 import { site } from '../../../data/site'
 import LiteContent from '../../../content/lite.md'
 import '../../../lib/lite.css'
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="remarqueeble"
 	title="Lite"
 	description={site.description}
 	path="/remarqueeble/lite/"
@@ -30,4 +31,4 @@ import '../../../lib/lite.css'
 	</style>
 
 	<LiteContent />
-</BaseLayout>
+</LibraryLayout>

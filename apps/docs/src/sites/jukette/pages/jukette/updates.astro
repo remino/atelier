@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../layouts/LibraryLayout.astro'
 import { site } from '../../data/site'
 import ChangelogContent from '../../CHANGELOG.md'
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="jukette"
 	title="Updates"
 	description={`Release notes for ${site.title}.`}
 	path="/jukette/updates/">
 	<ChangelogContent />
-</BaseLayout>
+</LibraryLayout>

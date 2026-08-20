@@ -1,10 +1,11 @@
 ---
-import BaseLayout from '../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../layouts/LibraryLayout.astro'
 import { site } from '../../data/site'
 import LicenseContent from '../../LICENSE.md'
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="dactylo"
 	title="Licence"
 	description={`ISC licence for ${site.title}.`}
 	path="/dactylo/license/">
@@ -12,4 +13,4 @@ import LicenseContent from '../../LICENSE.md'
 		<h1>Licence</h1>
 		<LicenseContent />
 	</main>
-</BaseLayout>
+</LibraryLayout>

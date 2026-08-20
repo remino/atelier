@@ -1,20 +1,25 @@
 ---
-import BaseLayout from '../../components/BaseLayout.astro'
+import LibraryLayout from '../../../../layouts/LibraryLayout.astro'
 import AtelierNav from '../../../../components/AtelierNav.astro'
 import Logo from '../../components/Logo.astro'
 import Usage from '../../content/scrollerful-usage.md'
 import { site } from '../../data/site.ts'
 import '../../assets/css/site.css'
+import '../../lib/scrollerful.css'
 
 const pageUrl = site.url
 ---
 
-<BaseLayout
+<LibraryLayout
+	library="scrollerful"
 	title={site.title}
 	description={site.description}
 	initializeScrollerful={false}
 	pageUrl={pageUrl}
 	showAtelierNav={false}
+	showHeader={false}
+	wrapMain={false}
+	scrollerfulCss
 	bodyClass="demo--vertical demo--cover">
 	<header class="sclf contain-always">
 		<div class="sclf__float content">
@@ -170,4 +175,4 @@ const pageUrl = site.url
 		<div class="bg__cover sclf__sprite--contain"></div>
 	</div>
 	<script src="../../assets/js/site.ts"></script>
-</BaseLayout>
+</LibraryLayout>
