@@ -1,6 +1,24 @@
+---
+import dactylo from '../../../../packages/dactylo/package.json'
+import jukette from '../../../../packages/jukette/package.json'
+import paradimg from '../../../../packages/paradimg/package.json'
+import remarqueeble from '../../../../packages/remarqueeble/package.json'
+import scrollerful from '../../../../packages/scrollerful/package.json'
+import { capitalizeFirstLetter } from '../lib/atelier-readme'
+
+const packages = [dactylo, jukette, paradimg, remarqueeble, scrollerful]
+---
+
 <nav aria-label="Main">
 	<ul>
 		<li><a href="/atelier/">Home</a></li>
+		{
+			packages.map(pkg => (
+				<li>
+					<a href={`/${pkg.name}/`}>{capitalizeFirstLetter(pkg.name)}</a>
+				</li>
+			))
+		}
 		<li><a href="/atelier/licence/">Licence</a></li>
 		<li>
 			<a
