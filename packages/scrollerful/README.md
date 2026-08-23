@@ -1,6 +1,6 @@
 # Scrollerful
 
-Scrollerful v1.2.2
+Scrollerful v1.3.0
 
 By Rémino Rem <https://remino.net>
 
@@ -88,7 +88,7 @@ Link its auto-start script via `unpkg.org`:
 
 <!-- prettier-ignore -->
 ```html
-<script defer src="https://unpkg.com/scrollerful@1.2.2"></script>
+<script defer src="https://unpkg.com/scrollerful@1.3.0"></script>
 ```
 
 ### Via npm

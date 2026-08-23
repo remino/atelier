@@ -3,6 +3,7 @@
 <!-- mtoc-start -->
 
 - [HEAD](#head)
+- [v1.3.0](#v130)
 - [v1.2.2](#v122)
 - [v1.0.0](#v100)
 - [v0.6.4](#v064)
@@ -10,6 +11,8 @@
 <!-- mtoc-end -->
 
 ## HEAD
+
+## v1.3.0
 
 - Changed
     - The root unpkg and jsDelivr entries now load Scrollerful's auto-starting
