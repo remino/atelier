@@ -5,7 +5,7 @@ describe('bin/release-readme.mjs', () => {
 
 By Rémino Rem
 
-<script src="https://unpkg.com/scrollerful@1.2.1/dist/scrollerful-auto.min.js"></script>
+<script src="https://unpkg.com/scrollerful@1.2.1"></script>
 `
 
 	it('adds the visible README version line', () => {

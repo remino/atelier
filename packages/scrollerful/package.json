@@ -3,7 +3,7 @@
 		"name": "Rémino Rem",
 		"url": "https://remino.net/"
 	},
-	"browser": "dist/scrollerful.cjs",
+	"browser": "dist/scrollerful-auto.min.js",
 	"description": "Small JS & CSS library for scroll animations.",
 	"devDependencies": {
 		"autoprefixer": "^10.4.14",
@@ -21,8 +21,11 @@
 		"vite": "^8.1.0"
 	},
 	"exports": {
-		"import": "./dist/scrollerful.mjs",
-		"require": "./dist/scrollerful.cjs"
+		".": {
+			"unpkg": "./dist/scrollerful-auto.min.js",
+			"import": "./dist/scrollerful.mjs",
+			"require": "./dist/scrollerful.cjs"
+		}
 	},
 	"files": [
 		"dist/*"
@@ -36,6 +39,8 @@
 	],
 	"license": "ISC",
 	"main": "dist/scrollerful.cjs",
+	"unpkg": "./dist/scrollerful-auto.min.js",
+	"jsdelivr": "./dist/scrollerful-auto.min.js",
 	"name": "scrollerful",
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/"

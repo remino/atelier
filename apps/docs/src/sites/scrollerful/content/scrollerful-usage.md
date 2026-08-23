@@ -11,9 +11,7 @@ Scrollerful supplies the progress values that drive your CSS animations.
     </div>
 </section>
 
-<script
-    defer
-    src="https://unpkg.com/scrollerful@1.2.1/dist/scrollerful-auto.min.js"></script>
+<script defer src="https://unpkg.com/scrollerful@1.2.1"></script>
 
 <script>
     const scene = document.querySelector('.sclf')

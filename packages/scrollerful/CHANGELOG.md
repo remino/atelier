@@ -11,6 +11,10 @@
 
 ## HEAD
 
+- Changed
+    - The root unpkg and jsDelivr entries now load Scrollerful's auto-starting
+      browser bundle. Module imports continue to expose the explicit API.
+
 ## v1.2.2
 
 - Fixed
